@@ -1,0 +1,37 @@
+<div class="landing-page">
+    <app-navbar (toggleSidebar)="toggleSidebar()"></app-navbar>
+    <div class="content">
+      <div class="hero">
+        <div class="carousel">
+          <img *ngFor="let image of images; let i = index"
+               [src]="image"
+               [class.active]="i === currentIndex"
+               [@carouselAnimation]="i === currentIndex ? 'active' : 'inactive'">
+          <button class="arrow left" (click)="prevSlide()">&lt;</button>
+          <button class="arrow right" (click)="nextSlide()">&gt;</button>
+        </div>
+      </div>
+      <div class="logo-container">
+        <h2>"Impulsa tus proyectos con financiamiento inteligente"</h2>
+        <div class="logo">Logo Proyecto</div>
+        <div class="logo">Logo Proyecto</div>
+        <div class="logo">Logo Proyecto</div>
+        <div class="logo">Logo Proyecto</div>
+      </div>
+      <div class="articles">
+        <div class="article">
+          <h2>Título de interés</h2>
+          <p>Contenido del artículo...</p>
+        </div>
+        <div class="article">
+          <h2>Título de interés</h2>
+          <p>Contenido del artículo...</p>
+        </div>
+        <div class="article">
+          <h2>Título de interés</h2>
+          <p>Contenido del artículo...</p>
+        </div>
+      </div>
+    </div>
+    <app-sidebar [isOpen]="isSidebarOpen" (close)="closeSidebar()"></app-sidebar>
+  </div>
