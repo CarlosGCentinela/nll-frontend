@@ -1,23 +1,14 @@
-import { Component } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
-import { provideRouter, RouterOutlet } from '@angular/router';
-import { LandingPageComponent } from './app/Core/Pages/LandingPage/LandingPage.component';
-import { provideAnimations } from '@angular/platform-browser/animations';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { AppComponent } from './app/app.component';
+import { provideRouter } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Importar el módulo
+import { importProvidersFrom } from '@angular/core'; // Necesario para standalone
 
-@Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
-  template: '<router-outlet></router-outlet>',
-})
-export class App {}
+import { routes } from './app/app.routes';
 
-bootstrapApplication(App, {
+bootstrapApplication(AppComponent, {
   providers: [
-    provideRouter([
-      { path: '', component: LandingPageComponent },
-    ]),
-    provideAnimations(), provideAnimationsAsync()
-  ]
+    provideRouter(routes),
+    importProvidersFrom(BrowserAnimationsModule) // Proveer el BrowserAnimationsModule
+  ],
 }).catch(err => console.error(err));

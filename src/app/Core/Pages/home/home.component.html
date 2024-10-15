@@ -1,0 +1,8 @@
+<div class="home-page">
+  <app-navbar (toggleSidebar)="toggleSidebar()"></app-navbar>
+
+  <div class="content">
+    <router-outlet></router-outlet> <!-- Aquí se cargarán las rutas hijas -->
+  </div>
+  <app-sidebar [isOpen]="isSidebarOpen" (close)="closeSidebar()"></app-sidebar>
+</div>

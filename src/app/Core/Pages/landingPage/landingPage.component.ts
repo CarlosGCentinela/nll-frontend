@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from '../../Components/Navbar/Navbar.component';
-import { SidebarComponent } from '../../Components/Sidebar/Sidebar.component';
 import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [CommonModule, NavbarComponent, SidebarComponent],
-  templateUrl: './LandingPage.component.html',
-  styleUrl: './LandingPage.component.scss',
+  imports: [CommonModule],
+  templateUrl: './landingPage.component.html',
+  styleUrl: './landingPage.component.scss',
   animations: [
     trigger('carouselAnimation', [
       transition('inactive => active', [
@@ -23,7 +21,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
   ]
 })
 export class LandingPageComponent implements OnInit {
-  isSidebarOpen = false;
+  
   images = [
     'https://picsum.photos/id/1018/1000/600',
     'https://picsum.photos/id/1015/1000/600',
@@ -67,11 +65,5 @@ export class LandingPageComponent implements OnInit {
     this.startCarousel();
   }
 
-  toggleSidebar() {
-    this.isSidebarOpen = !this.isSidebarOpen;
-  }
-
-  closeSidebar() {
-    this.isSidebarOpen = false;
-  }
+  
 }
