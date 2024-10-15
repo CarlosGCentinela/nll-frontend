@@ -1,13 +1,15 @@
 <nav>
-    <div class="logo">NuevoLosLagos</div>
-    <ul>
-      <li>Quienes somos</li>
-      <li>Modelo de diagnóstico</li>
-      <li>Cursos</li>
-      <li>Proveedores</li>
-      <li>Casos de Éxitos</li>
-      <li>Financiamiento y Empleo</li>
-      <li>Artículos de interés</li>
-    </ul>
-    <button (click)="onToggleSidebar()">Toggle Sidebar</button>
-  </nav>
+  <div class="logo">NuevoLosLagos</div>
+  <ul>
+    <li>Quienes somos</li>
+    <li>Modelo de diagnóstico</li>
+    <li>Cursos</li>
+    <li>Proveedores</li>
+    <li>Casos de Éxitos</li>
+    <li>Financiamiento y Empleo</li>
+    <li>Artículos de interés</li>
+  </ul>
+  <button class="menu-toggle" (click)="onToggleSidebar()">
+    <mat-icon>menu</mat-icon>
+  </button>
+</nav>
