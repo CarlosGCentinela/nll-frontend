@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule, MatCardModule, MatIconModule],
   templateUrl: './registro.component.html',
-  styleUrl: './registro.component.scss'
+  styleUrls: ['./registro.component.scss']
 })
 export class RegistroComponent {
 

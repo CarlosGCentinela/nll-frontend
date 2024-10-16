@@ -1,7 +1,10 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+// src/app/Core/Components/navbar/navbar.component.ts
+
+import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { SidebarService } from '../../../Services/sidebar/sidebar.service'; // Asegúrate de que la ruta sea correcta
 
 @Component({
   selector: 'app-navbar',
@@ -11,22 +14,15 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   imports: [CommonModule, MatIconModule, RouterLink, RouterLinkActive],
 })
 export class NavbarComponent {
-  @Output() toggleSidebar = new EventEmitter<void>(); // Emite evento para alternar el sidebar
-  isMenuOpen = false; // Estado del menú
-  isDropdownOpen = false; // Estado del dropdown del menú
+  isDropdownOpen = false;
 
-  // Emite el evento para alternar el sidebar
-  onToggleSidebar() {
-    this.toggleSidebar.emit();
-  }
+  constructor(private sidebarService: SidebarService) {}
 
-  // Alternar el estado del menú principal
-  toggleMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
-  }
-
-  // Alternar el estado del menú desplegable
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  onToggleSidebar() {
+    this.sidebarService.toggleSidebar();
   }
 }

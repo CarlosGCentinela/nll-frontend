@@ -1,0 +1,387 @@
+{
+  "details": [
+    {
+      "project_description": "This is a project description"
+    },
+    {
+      "main_technologies": "node.js"
+    }
+  ],
+  "structure": [
+    {
+      "path": ".editorconfig"
+    },
+    {
+      "path": ".gitignore"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "angular.json"
+    },
+    {
+      "path": "package.json"
+    },
+    {
+      "path": "src/",
+      "contents": [
+        {
+          "path": "src/app/",
+          "contents": [
+            {
+              "path": "src/app/Core/",
+              "contents": [
+                {
+                  "path": "src/app/Core/Components/",
+                  "contents": [
+                    {
+                      "path": "src/app/Core/Components/navbar/",
+                      "contents": [
+                        {
+                          "path": "src/app/Core/Components/navbar/navbar.component.html"
+                        },
+                        {
+                          "path": "src/app/Core/Components/navbar/navbar.component.scss"
+                        },
+                        {
+                          "path": "src/app/Core/Components/navbar/navbar.component.ts"
+                        }
+                      ]
+                    },
+                    {
+                      "path": "src/app/Core/Components/sidebar/",
+                      "contents": [
+                        {
+                          "path": "src/app/Core/Components/sidebar/sidebar.component.html"
+                        },
+                        {
+                          "path": "src/app/Core/Components/sidebar/sidebar.component.scss"
+                        },
+                        {
+                          "path": "src/app/Core/Components/sidebar/sidebar.component.ts"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "path": "src/app/Core/Pages/",
+                  "contents": [
+                    {
+                      "path": "src/app/Core/Pages/home/",
+                      "contents": [
+                        {
+                          "path": "src/app/Core/Pages/home/home.component.html"
+                        },
+                        {
+                          "path": "src/app/Core/Pages/home/home.component.scss"
+                        },
+                        {
+                          "path": "src/app/Core/Pages/home/home.component.spec.ts"
+                        },
+                        {
+                          "path": "src/app/Core/Pages/home/home.component.ts"
+                        }
+                      ]
+                    },
+                    {
+                      "path": "src/app/Core/Pages/landingPage/",
+                      "contents": [
+                        {
+                          "path": "src/app/Core/Pages/landingPage/landingPage.component.html"
+                        },
+                        {
+                          "path": "src/app/Core/Pages/landingPage/landingPage.component.scss"
+                        },
+                        {
+                          "path": "src/app/Core/Pages/landingPage/landingPage.component.ts"
+                        }
+                      ]
+                    },
+                    {
+                      "path": "src/app/Core/Pages/login/",
+                      "contents": [
+                        {
+                          "path": "src/app/Core/Pages/login/login.component.html"
+                        },
+                        {
+                          "path": "src/app/Core/Pages/login/login.component.scss"
+                        },
+                        {
+                          "path": "src/app/Core/Pages/login/login.component.spec.ts"
+                        },
+                        {
+                          "path": "src/app/Core/Pages/login/login.component.ts"
+                        }
+                      ]
+                    },
+                    {
+                      "path": "src/app/Core/Pages/quienesSomos/",
+                      "contents": [
+                        {
+                          "path": "src/app/Core/Pages/quienesSomos/quienesSomos.component.html"
+                        },
+                        {
+                          "path": "src/app/Core/Pages/quienesSomos/quienesSomos.component.scss"
+                        },
+                        {
+                          "path": "src/app/Core/Pages/quienesSomos/quienesSomos.component.ts"
+                        }
+                      ]
+                    },
+                    {
+                      "path": "src/app/Core/Pages/registro/",
+                      "contents": [
+                        {
+                          "path": "src/app/Core/Pages/registro/registro.component.html"
+                        },
+                        {
+                          "path": "src/app/Core/Pages/registro/registro.component.scss"
+                        },
+                        {
+                          "path": "src/app/Core/Pages/registro/registro.component.spec.ts"
+                        },
+                        {
+                          "path": "src/app/Core/Pages/registro/registro.component.ts"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "path": "src/app/Services/",
+              "contents": [
+                {
+                  "path": "src/app/Services/general.service.spec.ts"
+                },
+                {
+                  "path": "src/app/Services/general.service.ts"
+                }
+              ]
+            },
+            {
+              "path": "src/app/app.component.html"
+            },
+            {
+              "path": "src/app/app.component.scss"
+            },
+            {
+              "path": "src/app/app.component.ts"
+            },
+            {
+              "path": "src/app/app.config.ts"
+            },
+            {
+              "path": "src/app/app.routes.ts"
+            }
+          ]
+        },
+        {
+          "path": "src/index.html"
+        },
+        {
+          "path": "src/main.ts"
+        },
+        {
+          "path": "src/styles.scss"
+        }
+      ]
+    },
+    {
+      "path": "tsconfig.app.json"
+    },
+    {
+      "path": "tsconfig.json"
+    },
+    {
+      "path": "tsconfig.spec.json"
+    }
+  ],
+  "excluded": {
+    "directories": [
+      ".angular/",
+      ".git/",
+      ".vscode/",
+      "node_modules/",
+      "public/"
+    ],
+    "files": [
+      ".env",
+      "package-lock.json",
+      "project_files.json"
+    ]
+  },
+  "filesContent": [
+    {
+      "path": ".editorconfig",
+      "content": "# Editor configuration, see https://editorconfig.org root = true [*] charset = utf-8 indent_style = space indent_size = 2 insert_final_newline = true trim_trailing_whitespace = true [*.ts] quote_type = single [*.md] max_line_length = off trim_trailing_whitespace = false "
+    },
+    {
+      "path": ".gitignore",
+      "content": "# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files. # Compiled output /dist /tmp /out-tsc /bazel-out # Node /node_modules npm-debug.log yarn-error.log # IDEs and editors .idea/ .project .classpath .c9/ *.launch .settings/ *.sublime-workspace # Visual Studio Code .vscode/* !.vscode/settings.json !.vscode/tasks.json !.vscode/launch.json !.vscode/extensions.json .history/* # Miscellaneous /.angular/cache .sass-cache/ /connect.lock /coverage /libpeerconnection.log testem.log /typings # System files .DS_Store Thumbs.db "
+    },
+    {
+      "path": "README.md",
+      "content": "# NllFrontend This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.5. ## Development server Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files. ## Code scaffolding Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`. ## Build Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. ## Running unit tests Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io). ## Running end-to-end tests Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities. ## Further help To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page. "
+    },
+    {
+      "path": "angular.json",
+      "content": "{ \"$schema\": \"./node_modules/@angular/cli/lib/config/schema.json\", \"version\": 1, \"newProjectRoot\": \"projects\", \"projects\": { \"nll-frontend\": { \"projectType\": \"application\", \"schematics\": { \"@schematics/angular:component\": { \"style\": \"scss\" } }, \"root\": \"\", \"sourceRoot\": \"src\", \"prefix\": \"app\", \"architect\": { \"build\": { \"builder\": \"@angular-devkit/build-angular:application\", \"options\": { \"outputPath\": \"dist/nll-frontend\", \"index\": \"src/index.html\", \"browser\": \"src/main.ts\", \"polyfills\": [ \"zone.js\" ], \"tsConfig\": \"tsconfig.app.json\", \"inlineStyleLanguage\": \"scss\", \"assets\": [ { \"glob\": \"**/*\", \"input\": \"public\" } ], \"styles\": [ \"@angular/material/prebuilt-themes/azure-blue.css\", \"src/styles.scss\" ], \"scripts\": [] }, \"configurations\": { \"production\": { \"budgets\": [ { \"type\": \"initial\", \"maximumWarning\": \"500kB\", \"maximumError\": \"1MB\" }, { \"type\": \"anyComponentStyle\", \"maximumWarning\": \"2kB\", \"maximumError\": \"4kB\" } ], \"outputHashing\": \"all\" }, \"development\": { \"optimization\": false, \"extractLicenses\": false, \"sourceMap\": true } }, \"defaultConfiguration\": \"production\" }, \"serve\": { \"builder\": \"@angular-devkit/build-angular:dev-server\", \"configurations\": { \"production\": { \"buildTarget\": \"nll-frontend:build:production\" }, \"development\": { \"buildTarget\": \"nll-frontend:build:development\" } }, \"defaultConfiguration\": \"development\" }, \"extract-i18n\": { \"builder\": \"@angular-devkit/build-angular:extract-i18n\" }, \"test\": { \"builder\": \"@angular-devkit/build-angular:karma\", \"options\": { \"polyfills\": [ \"zone.js\", \"zone.js/testing\" ], \"tsConfig\": \"tsconfig.spec.json\", \"inlineStyleLanguage\": \"scss\", \"assets\": [ { \"glob\": \"**/*\", \"input\": \"public\" } ], \"styles\": [ \"@angular/material/prebuilt-themes/azure-blue.css\", \"src/styles.scss\" ], \"scripts\": [] } } } } } } "
+    },
+    {
+      "path": "package.json",
+      "content": "{ \"name\": \"nll-frontend\", \"version\": \"0.0.0\", \"scripts\": { \"ng\": \"ng\", \"start\": \"ng serve\", \"build\": \"ng build\", \"watch\": \"ng build --watch --configuration development\", \"test\": \"ng test\", \"scan\": \"node node_modules/vmvv/lib/project_files.js\" }, \"private\": true, \"dependencies\": { \"@angular/animations\": \"^18.2.0\", \"@angular/cdk\": \"^18.2.8\", \"@angular/common\": \"^18.2.0\", \"@angular/compiler\": \"^18.2.0\", \"@angular/core\": \"^18.2.0\", \"@angular/forms\": \"^18.2.0\", \"@angular/material\": \"^18.2.8\", \"@angular/platform-browser\": \"^18.2.0\", \"@angular/platform-browser-dynamic\": \"^18.2.0\", \"@angular/router\": \"^18.2.0\", \"rxjs\": \"~7.8.0\", \"tslib\": \"^2.3.0\", \"vmvv\": \"^2.3.1\", \"zone.js\": \"~0.14.10\" }, \"devDependencies\": { \"@angular-devkit/build-angular\": \"^18.2.5\", \"@angular/cli\": \"^18.2.5\", \"@angular/compiler-cli\": \"^18.2.0\", \"@types/jasmine\": \"~5.1.0\", \"jasmine-core\": \"~5.2.0\", \"karma\": \"~6.4.0\", \"karma-chrome-launcher\": \"~3.2.0\", \"karma-coverage\": \"~2.2.0\", \"karma-jasmine\": \"~5.1.0\", \"karma-jasmine-html-reporter\": \"~2.1.0\", \"typescript\": \"~5.5.2\" } } "
+    },
+    {
+      "path": "src/app/Core/Components/navbar/navbar.component.html",
+      "content": "<nav> <li class=\"logo\" routerLink=\"/\" routerLinkActive=\"active\">NuevoLosLagos</li> <!-- Menú principal --> <ul class=\"main-menu\"> <li routerLink=\"/quienes-somos\" routerLinkActive=\"active\"> <mat-icon>info</mat-icon> <span>Quienes somos</span> </li> <li> <mat-icon>assessment</mat-icon> <span>Modelo de diagnóstico</span> </li> <li> <mat-icon>book</mat-icon> <span>Cursos</span> </li> <li> <mat-icon>business</mat-icon> <span>Proveedores</span> </li> <li> <mat-icon>star</mat-icon> <span>Casos de Éxitos</span> </li> <li> <mat-icon>attach_money</mat-icon> <span>Financiamiento y Empleo</span> </li> <li> <mat-icon>article</mat-icon> <span>Artículos de interés</span> </li> </ul> <!-- Menú desplegable para pantallas pequeñas --> <div class=\"dropdown-menu\"> <button class=\"dropdown-toggle\" (click)=\"toggleDropdown()\"> <mat-icon>arrow_drop_down</mat-icon> </button> <ul *ngIf=\"isDropdownOpen\"> <li routerLink=\"/quienes-somos\" routerLinkActive=\"active\"> <mat-icon>info</mat-icon> <span>Quienes somos</span> </li> <li> <mat-icon>assessment</mat-icon> <span>Modelo de diagnóstico</span> </li> <li> <mat-icon>book</mat-icon> <span>Cursos</span> </li> <li> <mat-icon>business</mat-icon> <span>Proveedores</span> </li> <li> <mat-icon>star</mat-icon> <span>Casos de Éxitos</span> </li> <li> <mat-icon>attach_money</mat-icon> <span>Financiamiento y Empleo</span> </li> <li> <mat-icon>article</mat-icon> <span>Artículos de interés</span> </li> </ul> </div> <button class=\"menu-toggle\" (click)=\"onToggleSidebar()\"> <mat-icon>menu</mat-icon> </button> </nav> "
+    },
+    {
+      "path": "src/app/Core/Components/navbar/navbar.component.scss",
+      "content": "nav { display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; background-color: #333; color: white; position: relative; } .logo { font-weight: bold; } .main-menu { display: flex; list-style-type: none; margin: 0; padding: 0; } .main-menu li { display: flex; flex-direction: column; align-items: center; margin: 0 10px; cursor: pointer; } .main-menu mat-icon { font-size: 24px; } .main-menu span { font-size: 12px; margin-top: 4px; } /* Botón del menú desplegable para pantallas pequeñas */ .dropdown-menu { display: none; top: 60px; /* Ajusta según la altura de tu nav */ right: 20px; background-color: #444; border: 1px solid #555; border-radius: 4px; } .dropdown-toggle { background-color: transparent; border: none; color: white; font-size: 24px; cursor: pointer; } .dropdown-menu ul { list-style-type: none; margin: 0; padding: 10px 0; } .dropdown-menu li { display: flex; align-items: center; padding: 10px 20px; cursor: pointer; } .dropdown-menu li mat-icon { margin-right: 10px; } .dropdown-menu li:hover { background-color: #555; } /* Botón de menú principal */ button.menu-toggle { background-color: transparent; border: none; color: white; padding: 10px; font-size: 24px; cursor: pointer; } /* Media Queries */ /* Pantallas medianas: Mostrar solo iconos */ @media (max-width: 1024px) and (min-width: 768px) { .main-menu span { display: none; } } /* Pantallas pequeñas: Mostrar menú desplegable y ocultar menú principal */ @media (max-width: 767px) { .main-menu { display: none; } .dropdown-menu { display: block; } } "
+    },
+    {
+      "path": "src/app/Core/Components/navbar/navbar.component.ts",
+      "content": "import { Component, Output, EventEmitter } from '@angular/core'; import { MatIconModule } from '@angular/material/icon'; import { CommonModule } from '@angular/common'; import { RouterLink, RouterLinkActive } from '@angular/router'; @Component({ selector: 'app-navbar', standalone: true, templateUrl: './navbar.component.html', styleUrls: ['./navbar.component.scss'], imports: [CommonModule, MatIconModule, RouterLink, RouterLinkActive], }) export class NavbarComponent { @Output() toggleSidebar = new EventEmitter<void>(); // Emite evento para alternar el sidebar isMenuOpen = false; // Estado del menú isDropdownOpen = false; // Estado del dropdown del menú // Emite el evento para alternar el sidebar onToggleSidebar() { this.toggleSidebar.emit(); } // Alternar el estado del menú principal toggleMenu() { this.isMenuOpen = !this.isMenuOpen; } // Alternar el estado del menú desplegable toggleDropdown() { this.isDropdownOpen = !this.isDropdownOpen; } } "
+    },
+    {
+      "path": "src/app/Core/Components/sidebar/sidebar.component.html",
+      "content": "<div class=\"sidebar\" [class.open]=\"isOpen\"> <button class=\"close-btn\" (click)=\"onClose()\">×</button> <div class=\"container-lead\"> <button routerLink=\"/login\" routerLinkActive=\"active\">Ingresar</button> <button routerLink=\"/registro\" routerLinkActive=\"active\">Registrar</button> </div> </div>"
+    },
+    {
+      "path": "src/app/Core/Components/sidebar/sidebar.component.scss",
+      "content": ".sidebar { position: fixed; top: 0; right: -250px; width: 250px; height: 100%; background-color: #f1f1f1; transition: right 0.3s ease-in-out; padding: 20px; box-sizing: border-box; } .sidebar.open { right: 0; } button { display: block; width: 100%; padding: 10px; margin-bottom: 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer; } .close-btn { position: absolute; top: 10px; right: 10px; width: 30px; height: 30px; padding: 0; font-size: 20px; background-color: #f44336; border-radius: 50%; } .container-lead{ padding: 40px 0px; }"
+    },
+    {
+      "path": "src/app/Core/Components/sidebar/sidebar.component.ts",
+      "content": "import { Component, Input, Output, EventEmitter } from '@angular/core'; import { CommonModule } from '@angular/common'; import { RouterLink, RouterLinkActive } from '@angular/router'; import { MatIconModule } from '@angular/material/icon'; @Component({ selector: 'app-sidebar', standalone: true, imports: [CommonModule, RouterLink, RouterLinkActive, MatIconModule], templateUrl: './sidebar.component.html', styleUrls: ['./sidebar.component.scss'], // Corregir 'styleUrl' a 'styleUrls' }) export class SidebarComponent { @Input() isOpen = false; // Recibe el estado del sidebar (abierto/cerrado) del componente padre @Output() close = new EventEmitter<void>(); // Emite un evento para cerrar el sidebar // Método para emitir el evento de cierre del sidebar onClose() { this.close.emit(); } } "
+    },
+    {
+      "path": "src/app/Core/Pages/home/home.component.html",
+      "content": "<div class=\"home-page\"> <app-navbar (toggleSidebar)=\"toggleSidebar()\"></app-navbar> <div class=\"content\"> <router-outlet></router-outlet> <!-- Aquí se cargarán las rutas hijas --> </div> <app-sidebar [isOpen]=\"isSidebarOpen\" (close)=\"closeSidebar()\"></app-sidebar> </div>"
+    },
+    {
+      "path": "src/app/Core/Pages/home/home.component.scss",
+      "content": ".home-page { display: flex; flex-direction: column; min-height: 100vh; } .content { flex: 1; padding: 20px; }"
+    },
+    {
+      "path": "src/app/Core/Pages/home/home.component.spec.ts",
+      "content": "import { ComponentFixture, TestBed } from '@angular/core/testing'; import { HomeComponent } from './home.component'; describe('HomeComponent', () => { let component: HomeComponent; let fixture: ComponentFixture<HomeComponent>; beforeEach(async () => { await TestBed.configureTestingModule({ imports: [HomeComponent] }) .compileComponents(); fixture = TestBed.createComponent(HomeComponent); component = fixture.componentInstance; fixture.detectChanges(); }); it('should create', () => { expect(component).toBeTruthy(); }); }); "
+    },
+    {
+      "path": "src/app/Core/Pages/home/home.component.ts",
+      "content": "import { Component } from '@angular/core'; import { NavbarComponent } from '../../Components/navbar/navbar.component'; import { SidebarComponent } from '../../Components/sidebar/sidebar.component'; import { CommonModule } from '@angular/common'; import { RouterOutlet } from '@angular/router'; @Component({ selector: 'app-home', standalone: true, imports: [CommonModule, NavbarComponent, SidebarComponent, RouterOutlet], templateUrl: './home.component.html', styleUrls: ['./home.component.scss'] // Corregir 'styleUrl' a 'styleUrls' para evitar error }) export class HomeComponent { isSidebarOpen = false; // Controla el estado del sidebar (abierto o cerrado) // Alternar el estado del sidebar entre abierto y cerrado toggleSidebar() { this.isSidebarOpen = !this.isSidebarOpen; } // Cerrar el sidebar si está abierto closeSidebar() { if (this.isSidebarOpen) { this.toggleSidebar(); // Reutilizar toggleSidebar para evitar duplicación } } } "
+    },
+    {
+      "path": "src/app/Core/Pages/landingPage/landingPage.component.html",
+      "content": " <div class=\"hero\"> <div class=\"carousel\"> <img *ngFor=\"let image of images; let i = index\" [src]=\"image\" [class.active]=\"i === currentIndex\" [@carouselAnimation]=\"i === currentIndex ? 'active' : 'inactive'\"> <button class=\"arrow left\" (click)=\"prevSlide()\">&lt;</button> <button class=\"arrow right\" (click)=\"nextSlide()\">&gt;</button> </div> </div> <div class=\"logo-container\"> <h5>\"Impulsa tus proyectos con financiamiento inteligente\"</h5> <div class=\"logo\">Logo Proyecto</div> <div class=\"logo\">Logo Proyecto</div> <div class=\"logo\">Logo Proyecto</div> <div class=\"logo\">Logo Proyecto</div> </div> <div class=\"articles\"> <div class=\"article\"> <h2>Título de interés</h2> <p>Contenido del artículo...</p> </div> <div class=\"article\"> <h2>Título de interés</h2> <p>Contenido del artículo...</p> </div> <div class=\"article\"> <h2>Título de interés</h2> <p>Contenido del artículo...</p> </div> </div> "
+    },
+    {
+      "path": "src/app/Core/Pages/landingPage/landingPage.component.scss",
+      "content": ".landing-page { display: flex; flex-direction: column; min-height: 100vh; } .content { flex: 1; padding: 20px; } .hero { text-align: center; margin-bottom: 40px; } .hero h1 { font-size: 24px; margin-bottom: 20px; } .carousel { position: relative; width: 100%; height: 500px; overflow: hidden; } .carousel img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.5s ease-in-out; } .carousel img.active { opacity: 1; } .arrow { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0, 0, 0, 0.5); color: white; border: none; padding: 10px 15px; font-size: 20px; cursor: pointer; transition: background-color 0.3s; } .arrow:hover { background-color: rgba(0, 0, 0, 0.8); } .arrow.left { left: 10px; } .arrow.right { right: 10px; } .logo-container { display: flex; justify-content: space-around; flex-wrap: wrap; margin-top: 20px; align-items: center; } .logo { width: 100px; height: 100px; background-color: #f1f1f1; display: flex; align-items: center; justify-content: center; margin: 10px; text-align: -webkit-center } .articles { display: flex; justify-content: space-between; flex-wrap: wrap; margin-top: 40px; } .article { width: calc(33.33% - 20px); margin-bottom: 20px; } @media (max-width: 768px) { .article { width: 100%; } }"
+    },
+    {
+      "path": "src/app/Core/Pages/landingPage/landingPage.component.ts",
+      "content": "import { Component, OnInit, OnDestroy } from '@angular/core'; import { CommonModule } from '@angular/common'; import { trigger, transition, style, animate } from '@angular/animations'; @Component({ selector: 'app-landing-page', standalone: true, imports: [CommonModule], templateUrl: './landingPage.component.html', styleUrls: ['./landingPage.component.scss'], // Corregir 'styleUrl' a 'styleUrls' animations: [ trigger('carouselAnimation', [ transition('inactive => active', [ style({ opacity: 0 }), animate('500ms', style({ opacity: 1 })) ]), transition('active => inactive', [ animate('500ms', style({ opacity: 0 })) ]) ]) ] }) export class LandingPageComponent implements OnInit, OnDestroy { images = [ 'https://picsum.photos/id/1018/1000/600', 'https://picsum.photos/id/1015/1000/600', 'https://picsum.photos/id/1019/1000/600' ]; currentIndex = 0; // Índice de la imagen actual private intervalId: any; // ID del temporizador del carrusel // Iniciar el carrusel al cargar el componente ngOnInit() { this.startCarousel(); } // Limpiar el temporizador al destruir el componente ngOnDestroy() { this.stopCarousel(); } // Iniciar el temporizador del carrusel startCarousel() { this.intervalId = setInterval(() => { this.nextSlide(); // Cambiar a la siguiente imagen }, 5000); } // Detener el temporizador del carrusel stopCarousel() { if (this.intervalId) { clearInterval(this.intervalId); } } // Cambiar a la siguiente imagen nextSlide() { this.currentIndex = (this.currentIndex + 1) % this.images.length; this.resetCarouselTimer(); } // Cambiar a la imagen anterior prevSlide() { this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length; this.resetCarouselTimer(); } // Reiniciar el temporizador del carrusel resetCarouselTimer() { this.stopCarousel(); // Detener el temporizador actual this.startCarousel(); // Iniciar un nuevo temporizador } } "
+    },
+    {
+      "path": "src/app/Core/Pages/login/login.component.html",
+      "content": "<div class=\"login-container\"> <mat-card class=\"login-card\"> <div> <div class=\"button-container\"> <button mat-button class=\"btn-secondary\">volver</button> <button mat-flat-button color=\"primary\">Crear cuenta</button> <button mat-flat-button color=\"accent\">Acceder</button> </div> </div> <div class=\"login-content\"> <!-- Logo y Nombre de la Empresa --> <div class=\"logo-container\"> <mat-icon>diamond</mat-icon> <h2>NuevoLosLagos</h2> </div> <!-- Formulario --> <form class=\"form-container\"> <mat-form-field appearance=\"outline\" class=\"full-width\"> <mat-label>Correo</mat-label> <input matInput type=\"email\" required /> </mat-form-field> <mat-form-field appearance=\"outline\" class=\"full-width\"> <mat-label>Contraseña</mat-label> <input matInput type=\"password\" required /> </mat-form-field> <a class=\"forgot-password\" href=\"#\">¿Has olvidado la contraseña?</a> </form> </div> </mat-card> </div> "
+    },
+    {
+      "path": "src/app/Core/Pages/login/login.component.scss",
+      "content": ".login-container { display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f5f5f5; } .login-card { padding: 40px; border-radius: 20px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); background: linear-gradient(to bottom, #ffffff, #dcdcdc); max-width: 800px; width: 100%; transition: all 0.3s ease-in-out; @media (max-width: 768px) { padding: 20px; } @media (max-width: 480px) { padding: 15px; } .login-content { display: flex; justify-content: space-between; align-items: center; @media (max-width: 768px) { flex-direction: column; } } } .logo-container { display: flex; flex-direction: column; align-items: center; text-align: center; margin-right: 40px; mat-icon { font-size: 60px; margin-bottom: 10px; } h2 { font-size: 24px; font-weight: bold; color: #333; @media (max-width: 480px) { font-size: 20px; } } } .form-container { flex-grow: 1; display: flex; flex-direction: column; max-width: 350px; .full-width { width: 100%; } .forgot-password { display: block; margin-bottom: 20px; font-size: 14px; text-align: right; color: #607d8b; text-decoration: none; @media (max-width: 480px) { font-size: 12px; text-align: center; } &:hover { text-decoration: underline; } } .button-container { display: flex; justify-content: space-between; button { min-width: 100px; } .btn-secondary { color: black; border: 1px solid #cccccc; } @media (max-width: 480px) { flex-direction: column; align-items: center; gap: 10px; button { width: 100%; } } } } "
+    },
+    {
+      "path": "src/app/Core/Pages/login/login.component.spec.ts",
+      "content": "import { ComponentFixture, TestBed } from '@angular/core/testing'; import { LoginComponent } from './login.component'; describe('LoginComponent', () => { let component: LoginComponent; let fixture: ComponentFixture<LoginComponent>; beforeEach(async () => { await TestBed.configureTestingModule({ imports: [LoginComponent] }) .compileComponents(); fixture = TestBed.createComponent(LoginComponent); component = fixture.componentInstance; fixture.detectChanges(); }); it('should create', () => { expect(component).toBeTruthy(); }); }); "
+    },
+    {
+      "path": "src/app/Core/Pages/login/login.component.ts",
+      "content": "import { Component } from '@angular/core'; import { MatCardModule } from '@angular/material/card'; import { MatFormFieldModule } from '@angular/material/form-field'; import { MatInputModule } from '@angular/material/input'; import { MatButtonModule } from '@angular/material/button'; import { MatIconModule } from '@angular/material/icon'; import { CommonModule } from '@angular/common'; @Component({ selector: 'app-login', standalone: true, templateUrl: './login.component.html', styleUrls: ['./login.component.scss'], imports: [ CommonModule, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, ], }) export class LoginComponent {} "
+    },
+    {
+      "path": "src/app/Core/Pages/quienesSomos/quienesSomos.component.html",
+      "content": "<div class=\"container\"> <h1>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h1> <div class=\"content\"> <div class=\"image-placeholder\"> <p>image</p> </div> <div class=\"text-section\"> <p> Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p> <div class=\"solutions\"> <div class=\"solution\"> <input type=\"checkbox\" id=\"solucion1\"> <label for=\"solucion1\">solución 1</label> </div> <div class=\"solution\"> <input type=\"checkbox\" id=\"solucion2\"> <label for=\"solucion2\">solución 2</label> </div> <div class=\"solution\"> <input type=\"checkbox\" id=\"solucion3\"> <label for=\"solucion3\">solución 3</label> </div> <div class=\"solution\"> <input type=\"checkbox\" id=\"solucion4\"> <label for=\"solucion4\">solución 4</label> </div> </div> </div> </div> </div> "
+    },
+    {
+      "path": "src/app/Core/Pages/quienesSomos/quienesSomos.component.scss",
+      "content": ".container { text-align: center; padding: 20px; h1 { font-size: 24px; font-weight: bold; margin-bottom: 20px; } .content { display: flex; justify-content: center; align-items: center; .image-placeholder { width: 200px; height: 200px; background-color: #e0e0e0; border-radius: 20px; display: flex; justify-content: center; align-items: center; margin-right: 20px; p { font-size: 18px; color: #333; } } .text-section { max-width: 400px; text-align: left; p { font-size: 16px; margin-bottom: 20px; } .solutions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; .solution { display: flex; align-items: center; input { margin-right: 10px; } } } } } } @media (max-width: 768px) { .content { flex-direction: column; .image-placeholder { margin-bottom: 20px; margin-right: 0; } .text-section { text-align: center; } } } "
+    },
+    {
+      "path": "src/app/Core/Pages/quienesSomos/quienesSomos.component.ts",
+      "content": "import { Component } from '@angular/core'; @Component({ selector: 'app-quienes-somos', standalone: true, templateUrl: './quienesSomos.component.html', styleUrls: ['./quienesSomos.component.scss'], }) export class QuienesSomosComponent {}"
+    },
+    {
+      "path": "src/app/Core/Pages/registro/registro.component.html",
+      "content": "<div class=\"registro-container\"> <div class=\"crear-cuenta-container\"> <div class=\"header\"> <mat-icon>diamond</mat-icon> <h2>NuevoLosLagos</h2> <h3>Crear nueva cuenta</h3> </div> <div class=\"card-container\"> <mat-card class=\"account-card\"> <mat-card-title>Crear cuenta para Proveedores</mat-card-title> <mat-card-content> <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.</p> </mat-card-content> </mat-card> <mat-card class=\"account-card\"> <mat-card-title>Crear cuenta para Empresas de los lagos</mat-card-title> <mat-card-content> <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.</p> </mat-card-content> </mat-card> <mat-card class=\"account-card\"> <mat-card-title>Crear cuenta Personal</mat-card-title> <mat-card-content> <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.</p> </mat-card-content> </mat-card> </div> </div> </div>"
+    },
+    {
+      "path": "src/app/Core/Pages/registro/registro.component.scss",
+      "content": ".crear-cuenta-container { text-align: center; padding: 40px; background-color: #f5f5f5; border-radius: 20px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); max-width: 1000px; margin: 0 auto; .header { display: flex; align-items: center; justify-content: center; margin-bottom: 30px; mat-icon { font-size: 40px; margin-right: 10px; } h2 { font-size: 24px; font-weight: bold; margin: 0; margin-right: 20px; } h3 { font-size: 20px; margin: 0; } } .card-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; @media (max-width: 1024px) { grid-template-columns: repeat(2, 1fr); } @media (max-width: 768px) { grid-template-columns: 1fr; } .account-card { padding: 20px; border-radius: 20px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); background: linear-gradient(to bottom, #ffffff, #dcdcdc); mat-card-title { font-size: 18px; font-weight: bold; } mat-card-content { p { font-size: 14px; color: #333; } } } } } .registro-container { display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f5f5f5; }"
+    },
+    {
+      "path": "src/app/Core/Pages/registro/registro.component.spec.ts",
+      "content": "import { ComponentFixture, TestBed } from '@angular/core/testing'; import { RegistroComponent } from './registro.component'; describe('RegistroComponent', () => { let component: RegistroComponent; let fixture: ComponentFixture<RegistroComponent>; beforeEach(async () => { await TestBed.configureTestingModule({ imports: [RegistroComponent] }) .compileComponents(); fixture = TestBed.createComponent(RegistroComponent); component = fixture.componentInstance; fixture.detectChanges(); }); it('should create', () => { expect(component).toBeTruthy(); }); }); "
+    },
+    {
+      "path": "src/app/Core/Pages/registro/registro.component.ts",
+      "content": "import { Component } from '@angular/core'; import { MatCardModule } from '@angular/material/card'; import { MatIconModule } from '@angular/material/icon'; import { CommonModule } from '@angular/common'; @Component({ selector: 'app-registro', standalone: true, imports: [CommonModule, MatCardModule, MatIconModule], templateUrl: './registro.component.html', styleUrl: './registro.component.scss' }) export class RegistroComponent { }"
+    },
+    {
+      "path": "src/app/Services/general.service.spec.ts",
+      "content": "import { TestBed } from '@angular/core/testing'; import { GeneralService } from './general.service'; describe('GeneralService', () => { let service: GeneralService; beforeEach(() => { TestBed.configureTestingModule({}); service = TestBed.inject(GeneralService); }); it('should be created', () => { expect(service).toBeTruthy(); }); }); "
+    },
+    {
+      "path": "src/app/Services/general.service.ts",
+      "content": "import { Injectable } from '@angular/core'; @Injectable({ providedIn: 'root' }) export class GeneralService { constructor() { } } "
+    },
+    {
+      "path": "src/app/app.component.html",
+      "content": "<router-outlet></router-outlet>"
+    },
+    {
+      "path": "src/app/app.component.scss",
+      "content": ""
+    },
+    {
+      "path": "src/app/app.component.ts",
+      "content": " import { Component } from '@angular/core'; import { RouterOutlet } from '@angular/router'; @Component({ selector: 'app-root', standalone: true, imports: [RouterOutlet], templateUrl: './app.component.html', styleUrl: './app.component.scss' }) export class AppComponent { title = 'nll-frontend'; } "
+    },
+    {
+      "path": "src/app/app.config.ts",
+      "content": "import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core'; import { provideRouter } from '@angular/router'; import { routes } from './app.routes'; export const appConfig: ApplicationConfig = { providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)] }; "
+    },
+    {
+      "path": "src/app/app.routes.ts",
+      "content": "import { Routes } from '@angular/router'; import { LandingPageComponent } from './Core/Pages/landingPage/landingPage.component'; import { LoginComponent } from './Core/Pages/login/login.component'; import { RegistroComponent } from './Core/Pages/registro/registro.component'; import { HomeComponent } from './Core/Pages/home/home.component'; export const routes: Routes = [ // Rutas que no incluyen el sidebar ni el navbar { path: 'login', component: LoginComponent, // Ruta de login }, { path: 'registro', component: RegistroComponent, // Ruta de registro }, // Ruta principal que incluye el sidebar y el navbar { path: '', component: HomeComponent, // El layout principal (HomeComponent) contiene el navbar y sidebar children: [ { path: '', component: LandingPageComponent, // Página de inicio por defecto dentro de HomeComponent }, { path: 'quienes-somos', loadComponent: () => import('./Core/Pages/quienesSomos/quienesSomos.component').then( (m) => m.QuienesSomosComponent ), // Carga el componente QuienesSomos de forma asíncrona }, ], }, // Ruta comodín: redirige cualquier ruta no definida al path por defecto { path: '**', redirectTo: '' }, ]; "
+    },
+    {
+      "path": "src/index.html",
+      "content": "<!doctype html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <title>NllFrontend</title> <base href=\"/\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <link rel=\"icon\" type=\"image/x-icon\" href=\"favicon.ico\"> <link href=\"https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap\" rel=\"stylesheet\"> <link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" rel=\"stylesheet\"> </head> <body class=\"mat-typography\"> <app-root></app-root> </body> </html> "
+    },
+    {
+      "path": "src/main.ts",
+      "content": "import { bootstrapApplication } from '@angular/platform-browser'; import { AppComponent } from './app/app.component'; import { provideRouter } from '@angular/router'; import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Importar el módulo de animaciones del navegador import { importProvidersFrom } from '@angular/core'; // Importar proveedores necesarios para aplicaciones standalone import { routes } from './app/app.routes'; // Importar las rutas definidas // Inicializar la aplicación con el componente principal y proveedores necesarios bootstrapApplication(AppComponent, { providers: [ provideRouter(routes), // Proveer las rutas de la aplicación importProvidersFrom(BrowserAnimationsModule) // Proveer el módulo de animaciones del navegador ], }).catch(err => console.error(err)); // Capturar y manejar errores de inicialización "
+    },
+    {
+      "path": "src/styles.scss",
+      "content": "/* You can add global styles to this file, and also import other style files */ html, body { height: 100%; } body { margin: 0; font-family: Roboto, \"Helvetica Neue\", sans-serif; } "
+    },
+    {
+      "path": "tsconfig.app.json",
+      "content": "/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */ /* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */ { \"extends\": \"./tsconfig.json\", \"compilerOptions\": { \"outDir\": \"./out-tsc/app\", \"types\": [] }, \"files\": [ \"src/main.ts\" ], \"include\": [ \"src/**/*.d.ts\" ] } "
+    },
+    {
+      "path": "tsconfig.json",
+      "content": "/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */ /* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */ { \"compileOnSave\": false, \"compilerOptions\": { \"outDir\": \"./dist/out-tsc\", \"strict\": true, \"noImplicitOverride\": true, \"noPropertyAccessFromIndexSignature\": true, \"noImplicitReturns\": true, \"noFallthroughCasesInSwitch\": true, \"skipLibCheck\": true, \"isolatedModules\": true, \"esModuleInterop\": true, \"sourceMap\": true, \"declaration\": false, \"experimentalDecorators\": true, \"moduleResolution\": \"bundler\", \"importHelpers\": true, \"target\": \"ES2022\", \"module\": \"ES2022\", \"lib\": [ \"ES2022\", \"dom\" ] }, \"angularCompilerOptions\": { \"enableI18nLegacyMessageIdFormat\": false, \"strictInjectionParameters\": true, \"strictInputAccessModifiers\": true, \"strictTemplates\": true } } "
+    },
+    {
+      "path": "tsconfig.spec.json",
+      "content": "/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */ /* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */ { \"extends\": \"./tsconfig.json\", \"compilerOptions\": { \"outDir\": \"./out-tsc/spec\", \"types\": [ \"jasmine\" ] }, \"include\": [ \"src/**/*.spec.ts\", \"src/**/*.d.ts\" ] } "
+    }
+  ]
+}
