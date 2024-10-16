@@ -1,38 +1,106 @@
 nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #333;
-    color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  position: relative;
+}
+
+.logo {
+  font-weight: bold;
+}
+
+.main-menu {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main-menu li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.main-menu mat-icon {
+  font-size: 24px;
+}
+
+.main-menu span {
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* Botón del menú desplegable para pantallas pequeñas */
+.dropdown-menu {
+  display: none;
+  top: 60px; /* Ajusta según la altura de tu nav */
+  right: 20px;
+  background-color: #444;
+  border: 1px solid #555;
+  border-radius: 4px;
+}
+
+.dropdown-toggle {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.dropdown-menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 10px 0;
+}
+
+.dropdown-menu li {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.dropdown-menu li mat-icon {
+  margin-right: 10px;
+}
+
+.dropdown-menu li:hover {
+  background-color: #555;
+}
+
+/* Botón de menú principal */
+button.menu-toggle {
+  background-color: transparent;
+  border: none;
+  color: white;
+  padding: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Media Queries */
+
+/* Pantallas medianas: Mostrar solo iconos */
+@media (max-width: 1024px) and (min-width: 768px) {
+  .main-menu span {
+    display: none;
   }
-  .logo {
-    font-weight: bold;
-  }
-  ul {
-    display: flex;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  li {
-    margin: 0 10px;
-    cursor: pointer;
-  }
-  button {
-    background-color: transparent;
-    border: none;
-    color: white;
-    padding: 10px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  @media (max-width: 1024px) {
-    ul {
-      display: none;
-    }
+}
+
+/* Pantallas pequeñas: Mostrar menú desplegable y ocultar menú principal */
+@media (max-width: 767px) {
+  .main-menu {
+    display: none;
   }
   
+  .dropdown-menu {
+    display: block;
+  }
+}

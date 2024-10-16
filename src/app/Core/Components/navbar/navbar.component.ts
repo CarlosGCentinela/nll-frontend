@@ -13,6 +13,9 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 export class NavbarComponent {
   @Output() toggleSidebar = new EventEmitter<void>();
   isMenuOpen = false;
+  
+  // Variable para el menú desplegable
+  isDropdownOpen = false;
 
   onToggleSidebar() {
     this.toggleSidebar.emit();
@@ -20,5 +23,9 @@ export class NavbarComponent {
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
   }
 }
