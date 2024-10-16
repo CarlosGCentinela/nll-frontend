@@ -11,20 +11,21 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   imports: [CommonModule, MatIconModule, RouterLink, RouterLinkActive],
 })
 export class NavbarComponent {
-  @Output() toggleSidebar = new EventEmitter<void>();
-  isMenuOpen = false;
-  
-  // Variable para el menú desplegable
-  isDropdownOpen = false;
+  @Output() toggleSidebar = new EventEmitter<void>(); // Emite evento para alternar el sidebar
+  isMenuOpen = false; // Estado del menú
+  isDropdownOpen = false; // Estado del dropdown del menú
 
+  // Emite el evento para alternar el sidebar
   onToggleSidebar() {
     this.toggleSidebar.emit();
   }
 
+  // Alternar el estado del menú principal
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
+  // Alternar el estado del menú desplegable
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
   }

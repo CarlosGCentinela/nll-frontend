@@ -6,31 +6,38 @@ import { HomeComponent } from './Core/Pages/home/home.component';
 
 export const routes: Routes = [
 
-  // Rutas que no tienen el sidebar y el navbar
+  // Rutas que no incluyen el sidebar ni el navbar
   {
     path: 'login',
-    component: LoginComponent,
+    component: LoginComponent, // Ruta de login
   },
   {
     path: 'registro',
-    component: RegistroComponent,
+    component: RegistroComponent, // Ruta de registro
   },
-  {// Rutas con el sidebar y el navbar
+
+  // Ruta principal que incluye el sidebar y el navbar
+  {
     path: '',
-    component: HomeComponent, // Home es el layout principal que contiene el Navbar y Sidebar
+    component: HomeComponent, // El layout principal (HomeComponent) contiene el navbar y sidebar
     children: [
       {
         path: '',
-        component: LandingPageComponent, // Carga LandingPage por defecto dentro del Home
+        component: LandingPageComponent, // Página de inicio por defecto dentro de HomeComponent
       },
       {
         path: 'quienes-somos',
-        loadComponent: () =>
+        loadComponent: () => 
           import('./Core/Pages/quienesSomos/quienesSomos.component').then(
             (m) => m.QuienesSomosComponent
-          ),
+          ), // Carga el componente QuienesSomos de forma asíncrona
       },
     ],
   },
-  { path: '**', redirectTo: '' }, // Redirecciona cualquier ruta no definida al path por defecto
+
+  // Ruta comodín: redirige cualquier ruta no definida al path por defecto
+  { 
+    path: '**', 
+    redirectTo: '' 
+  },
 ];

@@ -1,1 +1,28 @@
-<p>login works!</p>
+<div class="login-container">
+  <mat-card class="login-card">
+    <div class="logo-container">
+      <mat-icon>diamond</mat-icon>
+      <h2>NuevoLosLagos</h2>
+    </div>
+
+    <form>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Correo</mat-label>
+        <input matInput type="email" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Contraseña</mat-label>
+        <input matInput type="password" required />
+      </mat-form-field>
+
+      <a class="forgot-password" href="#">¿Has olvidado la contraseña?</a>
+
+      <div class="button-container">
+        <button mat-button class="btn-secondary">volver</button>
+        <button mat-flat-button color="primary">Crear cuenta</button>
+        <button mat-flat-button color="accent">Acceder</button>
+      </div>
+    </form>
+  </mat-card>
+</div>

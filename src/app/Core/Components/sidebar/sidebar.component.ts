@@ -8,12 +8,13 @@ import { MatIconModule } from '@angular/material/icon';
   standalone: true,
   imports: [CommonModule, RouterLink, RouterLinkActive, MatIconModule],
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.scss',
+  styleUrls: ['./sidebar.component.scss'], // Corregir 'styleUrl' a 'styleUrls'
 })
 export class SidebarComponent {
-  @Input() isOpen = false;
-  @Output() close = new EventEmitter<void>();
+  @Input() isOpen = false; // Recibe el estado del sidebar (abierto/cerrado) del componente padre
+  @Output() close = new EventEmitter<void>(); // Emite un evento para cerrar el sidebar
 
+  // Método para emitir el evento de cierre del sidebar
   onClose() {
     this.close.emit();
   }
