@@ -4,7 +4,7 @@
       "project_description": "This is a project description"
     },
     {
-      "main_technologies": "node.js"
+      "main_technologies": "node.js, Angular v18 (Standalone), Material Angular v18"
     }
   ],
   "structure": [
@@ -159,6 +159,14 @@
                 },
                 {
                   "path": "src/app/Services/general.service.ts"
+                },
+                {
+                  "path": "src/app/Services/sidebar/",
+                  "contents": [
+                    {
+                      "path": "src/app/Services/sidebar/sidebar.service.ts"
+                    }
+                  ]
                 }
               ]
             },
@@ -245,7 +253,7 @@
     },
     {
       "path": "src/app/Core/Components/navbar/navbar.component.ts",
-      "content": "import { Component, Output, EventEmitter } from '@angular/core'; import { MatIconModule } from '@angular/material/icon'; import { CommonModule } from '@angular/common'; import { RouterLink, RouterLinkActive } from '@angular/router'; @Component({ selector: 'app-navbar', standalone: true, templateUrl: './navbar.component.html', styleUrls: ['./navbar.component.scss'], imports: [CommonModule, MatIconModule, RouterLink, RouterLinkActive], }) export class NavbarComponent { @Output() toggleSidebar = new EventEmitter<void>(); // Emite evento para alternar el sidebar isMenuOpen = false; // Estado del menú isDropdownOpen = false; // Estado del dropdown del menú // Emite el evento para alternar el sidebar onToggleSidebar() { this.toggleSidebar.emit(); } // Alternar el estado del menú principal toggleMenu() { this.isMenuOpen = !this.isMenuOpen; } // Alternar el estado del menú desplegable toggleDropdown() { this.isDropdownOpen = !this.isDropdownOpen; } } "
+      "content": "// src/app/Core/Components/navbar/navbar.component.ts import { Component } from '@angular/core'; import { MatIconModule } from '@angular/material/icon'; import { CommonModule } from '@angular/common'; import { RouterLink, RouterLinkActive } from '@angular/router'; import { SidebarService } from '../../../Services/sidebar/sidebar.service'; // Asegúrate de que la ruta sea correcta @Component({ selector: 'app-navbar', standalone: true, templateUrl: './navbar.component.html', styleUrls: ['./navbar.component.scss'], imports: [CommonModule, MatIconModule, RouterLink, RouterLinkActive], }) export class NavbarComponent { isDropdownOpen = false; constructor(private sidebarService: SidebarService) {} toggleDropdown() { this.isDropdownOpen = !this.isDropdownOpen; } onToggleSidebar() { this.sidebarService.toggleSidebar(); } } "
     },
     {
       "path": "src/app/Core/Components/sidebar/sidebar.component.html",
@@ -257,11 +265,11 @@
     },
     {
       "path": "src/app/Core/Components/sidebar/sidebar.component.ts",
-      "content": "import { Component, Input, Output, EventEmitter } from '@angular/core'; import { CommonModule } from '@angular/common'; import { RouterLink, RouterLinkActive } from '@angular/router'; import { MatIconModule } from '@angular/material/icon'; @Component({ selector: 'app-sidebar', standalone: true, imports: [CommonModule, RouterLink, RouterLinkActive, MatIconModule], templateUrl: './sidebar.component.html', styleUrls: ['./sidebar.component.scss'], // Corregir 'styleUrl' a 'styleUrls' }) export class SidebarComponent { @Input() isOpen = false; // Recibe el estado del sidebar (abierto/cerrado) del componente padre @Output() close = new EventEmitter<void>(); // Emite un evento para cerrar el sidebar // Método para emitir el evento de cierre del sidebar onClose() { this.close.emit(); } } "
+      "content": "import { Component, OnInit, OnDestroy } from '@angular/core'; import { CommonModule } from '@angular/common'; import { RouterLink, RouterLinkActive } from '@angular/router'; import { MatIconModule } from '@angular/material/icon'; import { SidebarService } from '../../../Services/sidebar/sidebar.service'; import { Subscription, Subject } from 'rxjs'; import { takeUntil } from 'rxjs/operators'; @Component({ selector: 'app-sidebar', standalone: true, imports: [CommonModule, RouterLink, RouterLinkActive, MatIconModule], templateUrl: './sidebar.component.html', styleUrls: ['./sidebar.component.scss'], }) export class SidebarComponent implements OnInit, OnDestroy { isOpen = false; // Controla el estado abierto/cerrado del sidebar private destroy$ = new Subject<void>(); // Utilizado para manejar la desuscripción constructor(private sidebarService: SidebarService) {} ngOnInit(): void { // Suscribirse al estado del sidebar y actualizar 'isOpen' cuando cambie this.sidebarService.sidebarOpen$ .pipe(takeUntil(this.destroy$)) // Desuscribirse automáticamente cuando se destruya el componente .subscribe((isOpen) => { this.isOpen = isOpen; }); } ngOnDestroy(): void { // Emitir para cerrar las suscripciones this.destroy$.next(); this.destroy$.complete(); } // Método para cerrar el sidebar onClose(): void { this.sidebarService.closeSidebar(); } } "
     },
     {
       "path": "src/app/Core/Pages/home/home.component.html",
-      "content": "<div class=\"home-page\"> <app-navbar (toggleSidebar)=\"toggleSidebar()\"></app-navbar> <div class=\"content\"> <router-outlet></router-outlet> <!-- Aquí se cargarán las rutas hijas --> </div> <app-sidebar [isOpen]=\"isSidebarOpen\" (close)=\"closeSidebar()\"></app-sidebar> </div>"
+      "content": "<div class=\"home-page\"> <app-navbar></app-navbar> <div class=\"content\"> <router-outlet></router-outlet> <!-- Aquí se cargarán las rutas hijas --> </div> <app-sidebar (close)=\"closeSidebar()\"></app-sidebar> </div>"
     },
     {
       "path": "src/app/Core/Pages/home/home.component.scss",
@@ -273,7 +281,7 @@
     },
     {
       "path": "src/app/Core/Pages/home/home.component.ts",
-      "content": "import { Component } from '@angular/core'; import { NavbarComponent } from '../../Components/navbar/navbar.component'; import { SidebarComponent } from '../../Components/sidebar/sidebar.component'; import { CommonModule } from '@angular/common'; import { RouterOutlet } from '@angular/router'; @Component({ selector: 'app-home', standalone: true, imports: [CommonModule, NavbarComponent, SidebarComponent, RouterOutlet], templateUrl: './home.component.html', styleUrls: ['./home.component.scss'] // Corregir 'styleUrl' a 'styleUrls' para evitar error }) export class HomeComponent { isSidebarOpen = false; // Controla el estado del sidebar (abierto o cerrado) // Alternar el estado del sidebar entre abierto y cerrado toggleSidebar() { this.isSidebarOpen = !this.isSidebarOpen; } // Cerrar el sidebar si está abierto closeSidebar() { if (this.isSidebarOpen) { this.toggleSidebar(); // Reutilizar toggleSidebar para evitar duplicación } } } "
+      "content": "// src/app/Core/Pages/home/home.component.ts import { Component } from '@angular/core'; import { NavbarComponent } from '../../Components/navbar/navbar.component'; import { SidebarComponent } from '../../Components/sidebar/sidebar.component'; import { CommonModule } from '@angular/common'; import { RouterOutlet } from '@angular/router'; import { SidebarService } from '../../../Services/sidebar/sidebar.service'; @Component({ selector: 'app-home', standalone: true, imports: [CommonModule, NavbarComponent, SidebarComponent, RouterOutlet], templateUrl: './home.component.html', styleUrls: ['./home.component.scss'], }) export class HomeComponent { constructor(private sidebarService: SidebarService) {} closeSidebar(): void { this.sidebarService.closeSidebar(); } } "
     },
     {
       "path": "src/app/Core/Pages/landingPage/landingPage.component.html",
@@ -329,7 +337,7 @@
     },
     {
       "path": "src/app/Core/Pages/registro/registro.component.ts",
-      "content": "import { Component } from '@angular/core'; import { MatCardModule } from '@angular/material/card'; import { MatIconModule } from '@angular/material/icon'; import { CommonModule } from '@angular/common'; @Component({ selector: 'app-registro', standalone: true, imports: [CommonModule, MatCardModule, MatIconModule], templateUrl: './registro.component.html', styleUrl: './registro.component.scss' }) export class RegistroComponent { }"
+      "content": "import { Component } from '@angular/core'; import { MatCardModule } from '@angular/material/card'; import { MatIconModule } from '@angular/material/icon'; import { CommonModule } from '@angular/common'; @Component({ selector: 'app-registro', standalone: true, imports: [CommonModule, MatCardModule, MatIconModule], templateUrl: './registro.component.html', styleUrls: ['./registro.component.scss'] }) export class RegistroComponent { }"
     },
     {
       "path": "src/app/Services/general.service.spec.ts",
@@ -338,6 +346,10 @@
     {
       "path": "src/app/Services/general.service.ts",
       "content": "import { Injectable } from '@angular/core'; @Injectable({ providedIn: 'root' }) export class GeneralService { constructor() { } } "
+    },
+    {
+      "path": "src/app/Services/sidebar/sidebar.service.ts",
+      "content": "import { Injectable } from '@angular/core'; import { BehaviorSubject, Observable } from 'rxjs'; @Injectable({ providedIn: 'root', // Singleton en toda la aplicación }) export class SidebarService { private sidebarOpenSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false); public sidebarOpen$: Observable<boolean> = this.sidebarOpenSubject.asObservable(); // Observable para escuchar el estado del sidebar constructor() {} // Alternar el estado actual del sidebar (abierto/cerrado) toggleSidebar(): void { this.setSidebarState(!this.sidebarOpenSubject.value); } // Abrir el sidebar openSidebar(): void { this.setSidebarState(true); } // Cerrar el sidebar closeSidebar(): void { this.setSidebarState(false); } // Actualizar el estado del sidebar (true = abierto, false = cerrado) private setSidebarState(isOpen: boolean): void { this.sidebarOpenSubject.next(isOpen); } } "
     },
     {
       "path": "src/app/app.component.html",
@@ -349,7 +361,7 @@
     },
     {
       "path": "src/app/app.component.ts",
-      "content": " import { Component } from '@angular/core'; import { RouterOutlet } from '@angular/router'; @Component({ selector: 'app-root', standalone: true, imports: [RouterOutlet], templateUrl: './app.component.html', styleUrl: './app.component.scss' }) export class AppComponent { title = 'nll-frontend'; } "
+      "content": " import { Component } from '@angular/core'; import { RouterOutlet } from '@angular/router'; @Component({ selector: 'app-root', standalone: true, imports: [RouterOutlet], templateUrl: './app.component.html', styleUrls: ['./app.component.scss'] }) export class AppComponent { title = 'nll-frontend'; } "
     },
     {
       "path": "src/app/app.config.ts",

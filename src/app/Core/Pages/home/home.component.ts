@@ -5,7 +5,7 @@ import { NavbarComponent } from '../../Components/navbar/navbar.component';
 import { SidebarComponent } from '../../Components/sidebar/sidebar.component';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { SidebarService } from '../../../Services/sidebar/sidebar.service';
+import { SidebarService } from '../../../Services/sidebar.service.ts/sidebar.service';
 
 @Component({
   selector: 'app-home',
