@@ -36,6 +36,7 @@ yarn-error.log
 /libpeerconnection.log
 testem.log
 /typings
+proyecy_files.json
 
 # System files
 .DS_Store

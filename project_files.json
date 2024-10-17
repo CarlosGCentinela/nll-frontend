@@ -69,6 +69,40 @@
                   "path": "src/app/Core/Pages/",
                   "contents": [
                     {
+                      "path": "src/app/Core/Pages/buscador/",
+                      "contents": [
+                        {
+                          "path": "src/app/Core/Pages/buscador/buscador.component.html"
+                        },
+                        {
+                          "path": "src/app/Core/Pages/buscador/buscador.component.scss"
+                        },
+                        {
+                          "path": "src/app/Core/Pages/buscador/buscador.component.spec.ts"
+                        },
+                        {
+                          "path": "src/app/Core/Pages/buscador/buscador.component.ts"
+                        }
+                      ]
+                    },
+                    {
+                      "path": "src/app/Core/Pages/buscador-detalle/",
+                      "contents": [
+                        {
+                          "path": "src/app/Core/Pages/buscador-detalle/buscador-detalle.component.html"
+                        },
+                        {
+                          "path": "src/app/Core/Pages/buscador-detalle/buscador-detalle.component.scss"
+                        },
+                        {
+                          "path": "src/app/Core/Pages/buscador-detalle/buscador-detalle.component.spec.ts"
+                        },
+                        {
+                          "path": "src/app/Core/Pages/buscador-detalle/buscador-detalle.component.ts"
+                        }
+                      ]
+                    },
+                    {
                       "path": "src/app/Core/Pages/home/",
                       "contents": [
                         {
@@ -117,6 +151,23 @@
                       ]
                     },
                     {
+                      "path": "src/app/Core/Pages/modelo/",
+                      "contents": [
+                        {
+                          "path": "src/app/Core/Pages/modelo/modelo.component.html"
+                        },
+                        {
+                          "path": "src/app/Core/Pages/modelo/modelo.component.scss"
+                        },
+                        {
+                          "path": "src/app/Core/Pages/modelo/modelo.component.spec.ts"
+                        },
+                        {
+                          "path": "src/app/Core/Pages/modelo/modelo.component.ts"
+                        }
+                      ]
+                    },
+                    {
                       "path": "src/app/Core/Pages/quienesSomos/",
                       "contents": [
                         {
@@ -161,10 +212,10 @@
                   "path": "src/app/Services/general.service.ts"
                 },
                 {
-                  "path": "src/app/Services/sidebar/",
+                  "path": "src/app/Services/sidebar.service.ts/",
                   "contents": [
                     {
-                      "path": "src/app/Services/sidebar/sidebar.service.ts"
+                      "path": "src/app/Services/sidebar.service.ts/sidebar.service.ts"
                     }
                   ]
                 }
@@ -229,7 +280,7 @@
     },
     {
       "path": ".gitignore",
-      "content": "# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files. # Compiled output /dist /tmp /out-tsc /bazel-out # Node /node_modules npm-debug.log yarn-error.log # IDEs and editors .idea/ .project .classpath .c9/ *.launch .settings/ *.sublime-workspace # Visual Studio Code .vscode/* !.vscode/settings.json !.vscode/tasks.json !.vscode/launch.json !.vscode/extensions.json .history/* # Miscellaneous /.angular/cache .sass-cache/ /connect.lock /coverage /libpeerconnection.log testem.log /typings # System files .DS_Store Thumbs.db "
+      "content": "# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files. # Compiled output /dist /tmp /out-tsc /bazel-out # Node /node_modules npm-debug.log yarn-error.log # IDEs and editors .idea/ .project .classpath .c9/ *.launch .settings/ *.sublime-workspace # Visual Studio Code .vscode/* !.vscode/settings.json !.vscode/tasks.json !.vscode/launch.json !.vscode/extensions.json .history/* # Miscellaneous /.angular/cache .sass-cache/ /connect.lock /coverage /libpeerconnection.log testem.log /typings proyecy_files.json # System files .DS_Store Thumbs.db "
     },
     {
       "path": "README.md",
@@ -245,7 +296,7 @@
     },
     {
       "path": "src/app/Core/Components/navbar/navbar.component.html",
-      "content": "<nav> <li class=\"logo\" routerLink=\"/\" routerLinkActive=\"active\">NuevoLosLagos</li> <!-- Menú principal --> <ul class=\"main-menu\"> <li routerLink=\"/quienes-somos\" routerLinkActive=\"active\"> <mat-icon>info</mat-icon> <span>Quienes somos</span> </li> <li> <mat-icon>assessment</mat-icon> <span>Modelo de diagnóstico</span> </li> <li> <mat-icon>book</mat-icon> <span>Cursos</span> </li> <li> <mat-icon>business</mat-icon> <span>Proveedores</span> </li> <li> <mat-icon>star</mat-icon> <span>Casos de Éxitos</span> </li> <li> <mat-icon>attach_money</mat-icon> <span>Financiamiento y Empleo</span> </li> <li> <mat-icon>article</mat-icon> <span>Artículos de interés</span> </li> </ul> <!-- Menú desplegable para pantallas pequeñas --> <div class=\"dropdown-menu\"> <button class=\"dropdown-toggle\" (click)=\"toggleDropdown()\"> <mat-icon>arrow_drop_down</mat-icon> </button> <ul *ngIf=\"isDropdownOpen\"> <li routerLink=\"/quienes-somos\" routerLinkActive=\"active\"> <mat-icon>info</mat-icon> <span>Quienes somos</span> </li> <li> <mat-icon>assessment</mat-icon> <span>Modelo de diagnóstico</span> </li> <li> <mat-icon>book</mat-icon> <span>Cursos</span> </li> <li> <mat-icon>business</mat-icon> <span>Proveedores</span> </li> <li> <mat-icon>star</mat-icon> <span>Casos de Éxitos</span> </li> <li> <mat-icon>attach_money</mat-icon> <span>Financiamiento y Empleo</span> </li> <li> <mat-icon>article</mat-icon> <span>Artículos de interés</span> </li> </ul> </div> <button class=\"menu-toggle\" (click)=\"onToggleSidebar()\"> <mat-icon>menu</mat-icon> </button> </nav> "
+      "content": "<nav> <li class=\"logo\" routerLink=\"/\" routerLinkActive=\"active\">NuevoLosLagos</li> <!-- Menú principal --> <ul class=\"main-menu\"> <li routerLink=\"/quienes-somos\" routerLinkActive=\"active\"> <mat-icon>info</mat-icon> <span>Quienes somos</span> </li> <li routerLink=\"/modelo\" routerLinkActive=\"active\"> <mat-icon>assessment</mat-icon> <span>Modelo de diagnóstico</span> </li> <li routerLink=\"/cursos\" routerLinkActive=\"active\"> <mat-icon>book</mat-icon> <span>Cursos</span> </li> <li routerLink=\"/proveedores\" routerLinkActive=\"active\"> <mat-icon>business</mat-icon> <span>Proveedores</span> </li> <li routerLink=\"/casos-exito\" routerLinkActive=\"active\"> <mat-icon>star</mat-icon> <span>Casos de Éxitos</span> </li> <li routerLink=\"/financiamiento-empleo\" routerLinkActive=\"active\"> <mat-icon>attach_money</mat-icon> <span>Financiamiento y Empleo</span> </li> <li routerLink=\"/articulos\" routerLinkActive=\"active\"> <mat-icon>article</mat-icon> <span>Artículos de interés</span> </li> </ul> <!-- Menú desplegable para pantallas pequeñas --> <div class=\"dropdown-menu\"> <button class=\"dropdown-toggle\" (click)=\"toggleDropdown()\"> <mat-icon>arrow_drop_down</mat-icon> </button> <ul *ngIf=\"isDropdownOpen\"> <li routerLink=\"/quienes-somos\" routerLinkActive=\"active\"> <mat-icon>info</mat-icon> <span>Quienes somos</span> </li> <li> <mat-icon>assessment</mat-icon> <span>Modelo de diagnóstico</span> </li> <li> <mat-icon>book</mat-icon> <span>Cursos</span> </li> <li> <mat-icon>business</mat-icon> <span>Proveedores</span> </li> <li> <mat-icon>star</mat-icon> <span>Casos de Éxitos</span> </li> <li> <mat-icon>attach_money</mat-icon> <span>Financiamiento y Empleo</span> </li> <li> <mat-icon>article</mat-icon> <span>Artículos de interés</span> </li> </ul> </div> <button class=\"menu-toggle\" (click)=\"onToggleSidebar()\"> <mat-icon>menu</mat-icon> </button> </nav> "
     },
     {
       "path": "src/app/Core/Components/navbar/navbar.component.scss",
@@ -253,7 +304,7 @@
     },
     {
       "path": "src/app/Core/Components/navbar/navbar.component.ts",
-      "content": "// src/app/Core/Components/navbar/navbar.component.ts import { Component } from '@angular/core'; import { MatIconModule } from '@angular/material/icon'; import { CommonModule } from '@angular/common'; import { RouterLink, RouterLinkActive } from '@angular/router'; import { SidebarService } from '../../../Services/sidebar/sidebar.service'; // Asegúrate de que la ruta sea correcta @Component({ selector: 'app-navbar', standalone: true, templateUrl: './navbar.component.html', styleUrls: ['./navbar.component.scss'], imports: [CommonModule, MatIconModule, RouterLink, RouterLinkActive], }) export class NavbarComponent { isDropdownOpen = false; constructor(private sidebarService: SidebarService) {} toggleDropdown() { this.isDropdownOpen = !this.isDropdownOpen; } onToggleSidebar() { this.sidebarService.toggleSidebar(); } } "
+      "content": "// src/app/Core/Components/navbar/navbar.component.ts import { Component } from '@angular/core'; import { MatIconModule } from '@angular/material/icon'; import { CommonModule } from '@angular/common'; import { RouterLink, RouterLinkActive } from '@angular/router'; import { SidebarService } from '../../../Services/sidebar.service.ts/sidebar.service'; // Asegúrate de que la ruta sea correcta @Component({ selector: 'app-navbar', standalone: true, templateUrl: './navbar.component.html', styleUrls: ['./navbar.component.scss'], imports: [CommonModule, MatIconModule, RouterLink, RouterLinkActive], }) export class NavbarComponent { isDropdownOpen = false; constructor(private sidebarService: SidebarService) {} toggleDropdown() { this.isDropdownOpen = !this.isDropdownOpen; } onToggleSidebar() { this.sidebarService.toggleSidebar(); } } "
     },
     {
       "path": "src/app/Core/Components/sidebar/sidebar.component.html",
@@ -265,7 +316,39 @@
     },
     {
       "path": "src/app/Core/Components/sidebar/sidebar.component.ts",
-      "content": "import { Component, OnInit, OnDestroy } from '@angular/core'; import { CommonModule } from '@angular/common'; import { RouterLink, RouterLinkActive } from '@angular/router'; import { MatIconModule } from '@angular/material/icon'; import { SidebarService } from '../../../Services/sidebar/sidebar.service'; import { Subscription, Subject } from 'rxjs'; import { takeUntil } from 'rxjs/operators'; @Component({ selector: 'app-sidebar', standalone: true, imports: [CommonModule, RouterLink, RouterLinkActive, MatIconModule], templateUrl: './sidebar.component.html', styleUrls: ['./sidebar.component.scss'], }) export class SidebarComponent implements OnInit, OnDestroy { isOpen = false; // Controla el estado abierto/cerrado del sidebar private destroy$ = new Subject<void>(); // Utilizado para manejar la desuscripción constructor(private sidebarService: SidebarService) {} ngOnInit(): void { // Suscribirse al estado del sidebar y actualizar 'isOpen' cuando cambie this.sidebarService.sidebarOpen$ .pipe(takeUntil(this.destroy$)) // Desuscribirse automáticamente cuando se destruya el componente .subscribe((isOpen) => { this.isOpen = isOpen; }); } ngOnDestroy(): void { // Emitir para cerrar las suscripciones this.destroy$.next(); this.destroy$.complete(); } // Método para cerrar el sidebar onClose(): void { this.sidebarService.closeSidebar(); } } "
+      "content": "import { Component, OnInit, OnDestroy } from '@angular/core'; import { CommonModule } from '@angular/common'; import { RouterLink, RouterLinkActive } from '@angular/router'; import { MatIconModule } from '@angular/material/icon'; import { SidebarService } from '../../../Services/sidebar.service.ts/sidebar.service'; import { Subscription, Subject } from 'rxjs'; import { takeUntil } from 'rxjs/operators'; @Component({ selector: 'app-sidebar', standalone: true, imports: [CommonModule, RouterLink, RouterLinkActive, MatIconModule], templateUrl: './sidebar.component.html', styleUrls: ['./sidebar.component.scss'], }) export class SidebarComponent implements OnInit, OnDestroy { isOpen = false; // Controla el estado abierto/cerrado del sidebar private destroy$ = new Subject<void>(); // Utilizado para manejar la desuscripción constructor(private sidebarService: SidebarService) {} ngOnInit(): void { // Suscribirse al estado del sidebar y actualizar 'isOpen' cuando cambie this.sidebarService.sidebarOpen$ .pipe(takeUntil(this.destroy$)) // Desuscribirse automáticamente cuando se destruya el componente .subscribe((isOpen) => { this.isOpen = isOpen; }); } ngOnDestroy(): void { // Emitir para cerrar las suscripciones this.destroy$.next(); this.destroy$.complete(); } // Método para cerrar el sidebar onClose(): void { this.sidebarService.closeSidebar(); } } "
+    },
+    {
+      "path": "src/app/Core/Pages/buscador/buscador.component.html",
+      "content": "<p>buscador works!</p> <h4>{{entityType}}</h4> "
+    },
+    {
+      "path": "src/app/Core/Pages/buscador/buscador.component.scss",
+      "content": ""
+    },
+    {
+      "path": "src/app/Core/Pages/buscador/buscador.component.spec.ts",
+      "content": "import { ComponentFixture, TestBed } from '@angular/core/testing'; import { BuscadorComponent } from './buscador.component'; describe('BuscadorComponent', () => { let component: BuscadorComponent; let fixture: ComponentFixture<BuscadorComponent>; beforeEach(async () => { await TestBed.configureTestingModule({ imports: [BuscadorComponent] }) .compileComponents(); fixture = TestBed.createComponent(BuscadorComponent); component = fixture.componentInstance; fixture.detectChanges(); }); it('should create', () => { expect(component).toBeTruthy(); }); }); "
+    },
+    {
+      "path": "src/app/Core/Pages/buscador/buscador.component.ts",
+      "content": "import { Component, OnInit, OnDestroy } from '@angular/core'; import { ActivatedRoute } from '@angular/router'; import { Subject } from 'rxjs'; import { takeUntil } from 'rxjs/operators'; @Component({ selector: 'app-buscador', standalone: true, imports: [], templateUrl: './buscador.component.html', styleUrl: './buscador.component.scss' }) export class BuscadorComponent implements OnInit { entityType: string = ''; items: any[] = []; // Define el tipo según tus datos private unsubscribe$ = new Subject<void>(); constructor(private route: ActivatedRoute) {} ngOnInit(): void { // Obtener el tipo de entidad desde los datos de la ruta this.route.data .pipe(takeUntil(this.unsubscribe$)) .subscribe(data => { this.entityType = data['entityType'] || ''; this.loadData(); }); } loadData(): void { switch(this.entityType) { case 'cursos': // Implementa la lógica para cargar cursos this.items = [/* datos de cursos */]; break; case 'articulos': // Implementa la lógica para cargar artículos this.items = [/* datos de artículos */]; break; case 'proveedores': // Implementa la lógica para cargar proveedores this.items = [/* datos de proveedores */]; break; case 'casos-exito': // Implementa la lógica para cargar casos de éxito this.items = [/* datos de casos de éxito */]; break; case 'financiamiento-empleo': // Implementa la lógica para cargar financiamiento-empleo this.items = [/* datos de financiamiento-empleo */]; break; default: this.items = []; } } ngOnDestroy(): void { this.unsubscribe$.next(); this.unsubscribe$.complete(); } } "
+    },
+    {
+      "path": "src/app/Core/Pages/buscador-detalle/buscador-detalle.component.html",
+      "content": "<p>buscador-detalle works!</p> <h4>{{entityType}}</h4> <h4>{{id}}</h4>"
+    },
+    {
+      "path": "src/app/Core/Pages/buscador-detalle/buscador-detalle.component.scss",
+      "content": ""
+    },
+    {
+      "path": "src/app/Core/Pages/buscador-detalle/buscador-detalle.component.spec.ts",
+      "content": "import { ComponentFixture, TestBed } from '@angular/core/testing'; import { BuscadorDetalleComponent } from './buscador-detalle.component'; describe('BuscadorDetalleComponent', () => { let component: BuscadorDetalleComponent; let fixture: ComponentFixture<BuscadorDetalleComponent>; beforeEach(async () => { await TestBed.configureTestingModule({ imports: [BuscadorDetalleComponent] }) .compileComponents(); fixture = TestBed.createComponent(BuscadorDetalleComponent); component = fixture.componentInstance; fixture.detectChanges(); }); it('should create', () => { expect(component).toBeTruthy(); }); }); "
+    },
+    {
+      "path": "src/app/Core/Pages/buscador-detalle/buscador-detalle.component.ts",
+      "content": "import { Component, OnInit, OnDestroy } from '@angular/core'; import { ActivatedRoute } from '@angular/router'; import { Subject } from 'rxjs'; import { takeUntil } from 'rxjs/operators'; @Component({ selector: 'app-buscador-detalle', standalone: true, imports: [], templateUrl: './buscador-detalle.component.html', styleUrl: './buscador-detalle.component.scss' }) export class BuscadorDetalleComponent implements OnInit, OnDestroy { entityType: string = ''; id: string = ''; itemDetails: any; // Define el tipo según tus datos private unsubscribe$ = new Subject<void>(); constructor(private route: ActivatedRoute) {} ngOnInit(): void { // Obtener el tipo de entidad desde los datos de la ruta this.route.data .pipe(takeUntil(this.unsubscribe$)) .subscribe(data => { this.entityType = data['entityType'] || ''; this.loadDetail(); }); // Obtener el ID desde los parámetros de la ruta this.route.paramMap .pipe(takeUntil(this.unsubscribe$)) .subscribe(params => { this.id = params.get('id') || ''; this.loadDetail(); }); } loadDetail(): void { if (this.entityType && this.id) { switch(this.entityType) { case 'cursos': // Implementa la lógica para cargar detalle del curso con ID 'this.id' this.itemDetails = { /* datos del curso */ }; break; case 'articulos': // Implementa la lógica para cargar detalle del artículo con ID 'this.id' this.itemDetails = { /* datos del artículo */ }; break; case 'proveedores': // Implementa la lógica para cargar detalle del proveedor con ID 'this.id' this.itemDetails = { /* datos del proveedor */ }; break; case 'casos-exito': // Implementa la lógica para cargar detalle del caso de éxito con ID 'this.id' this.itemDetails = { /* datos del caso de éxito */ }; break; case 'financiamiento-empleo': // Implementa la lógica para cargar detalle de financiamiento-empleo con ID 'this.id' this.itemDetails = { /* datos de financiamiento-empleo */ }; break; default: this.itemDetails = null; } } } ngOnDestroy(): void { this.unsubscribe$.next(); this.unsubscribe$.complete(); } } "
     },
     {
       "path": "src/app/Core/Pages/home/home.component.html",
@@ -281,7 +364,7 @@
     },
     {
       "path": "src/app/Core/Pages/home/home.component.ts",
-      "content": "// src/app/Core/Pages/home/home.component.ts import { Component } from '@angular/core'; import { NavbarComponent } from '../../Components/navbar/navbar.component'; import { SidebarComponent } from '../../Components/sidebar/sidebar.component'; import { CommonModule } from '@angular/common'; import { RouterOutlet } from '@angular/router'; import { SidebarService } from '../../../Services/sidebar/sidebar.service'; @Component({ selector: 'app-home', standalone: true, imports: [CommonModule, NavbarComponent, SidebarComponent, RouterOutlet], templateUrl: './home.component.html', styleUrls: ['./home.component.scss'], }) export class HomeComponent { constructor(private sidebarService: SidebarService) {} closeSidebar(): void { this.sidebarService.closeSidebar(); } } "
+      "content": "// src/app/Core/Pages/home/home.component.ts import { Component } from '@angular/core'; import { NavbarComponent } from '../../Components/navbar/navbar.component'; import { SidebarComponent } from '../../Components/sidebar/sidebar.component'; import { CommonModule } from '@angular/common'; import { RouterOutlet } from '@angular/router'; import { SidebarService } from '../../../Services/sidebar.service.ts/sidebar.service'; @Component({ selector: 'app-home', standalone: true, imports: [CommonModule, NavbarComponent, SidebarComponent, RouterOutlet], templateUrl: './home.component.html', styleUrls: ['./home.component.scss'], }) export class HomeComponent { constructor(private sidebarService: SidebarService) {} closeSidebar(): void { this.sidebarService.closeSidebar(); } } "
     },
     {
       "path": "src/app/Core/Pages/landingPage/landingPage.component.html",
@@ -297,11 +380,11 @@
     },
     {
       "path": "src/app/Core/Pages/login/login.component.html",
-      "content": "<div class=\"login-container\"> <mat-card class=\"login-card\"> <div> <div class=\"button-container\"> <button mat-button class=\"btn-secondary\">volver</button> <button mat-flat-button color=\"primary\">Crear cuenta</button> <button mat-flat-button color=\"accent\">Acceder</button> </div> </div> <div class=\"login-content\"> <!-- Logo y Nombre de la Empresa --> <div class=\"logo-container\"> <mat-icon>diamond</mat-icon> <h2>NuevoLosLagos</h2> </div> <!-- Formulario --> <form class=\"form-container\"> <mat-form-field appearance=\"outline\" class=\"full-width\"> <mat-label>Correo</mat-label> <input matInput type=\"email\" required /> </mat-form-field> <mat-form-field appearance=\"outline\" class=\"full-width\"> <mat-label>Contraseña</mat-label> <input matInput type=\"password\" required /> </mat-form-field> <a class=\"forgot-password\" href=\"#\">¿Has olvidado la contraseña?</a> </form> </div> </mat-card> </div> "
+      "content": "<div class=\"login-container\"> <mat-card class=\"login-card\"> <div class=\"login-content\"> <!-- Logo y Nombre de la Empresa --> <div class=\"logo-container\"> <mat-icon>diamond</mat-icon> <h2>NuevoLosLagos</h2> </div> <!-- Formulario --> <form class=\"form-container\"> <mat-form-field appearance=\"outline\" class=\"full-width\"> <mat-label>Correo</mat-label> <input matInput type=\"email\" required /> </mat-form-field> <mat-form-field appearance=\"outline\" class=\"full-width\"> <mat-label>Contraseña</mat-label> <input matInput type=\"password\" required /> </mat-form-field> <a class=\"forgot-password\" href=\"#\">¿Has olvidado la contraseña?</a> </form> </div> <div class=\"buttons-general\"> <button mat-button class=\"btn-secondary\">volver</button> <div class=\"button-container\"> <button mat-flat-button color=\"primary\">Crear cuenta</button> <button mat-flat-button color=\"accent\">Acceder</button> </div> </div> </mat-card> </div> "
     },
     {
       "path": "src/app/Core/Pages/login/login.component.scss",
-      "content": ".login-container { display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f5f5f5; } .login-card { padding: 40px; border-radius: 20px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); background: linear-gradient(to bottom, #ffffff, #dcdcdc); max-width: 800px; width: 100%; transition: all 0.3s ease-in-out; @media (max-width: 768px) { padding: 20px; } @media (max-width: 480px) { padding: 15px; } .login-content { display: flex; justify-content: space-between; align-items: center; @media (max-width: 768px) { flex-direction: column; } } } .logo-container { display: flex; flex-direction: column; align-items: center; text-align: center; margin-right: 40px; mat-icon { font-size: 60px; margin-bottom: 10px; } h2 { font-size: 24px; font-weight: bold; color: #333; @media (max-width: 480px) { font-size: 20px; } } } .form-container { flex-grow: 1; display: flex; flex-direction: column; max-width: 350px; .full-width { width: 100%; } .forgot-password { display: block; margin-bottom: 20px; font-size: 14px; text-align: right; color: #607d8b; text-decoration: none; @media (max-width: 480px) { font-size: 12px; text-align: center; } &:hover { text-decoration: underline; } } .button-container { display: flex; justify-content: space-between; button { min-width: 100px; } .btn-secondary { color: black; border: 1px solid #cccccc; } @media (max-width: 480px) { flex-direction: column; align-items: center; gap: 10px; button { width: 100%; } } } } "
+      "content": ".login-container { display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f5f5f5; } .login-card { padding: 40px; border-radius: 20px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); background: linear-gradient(to bottom, #ffffff, #dcdcdc); max-width: 650px; width: 100%; transition: all 0.3s ease-in-out; @media (max-width: 768px) { padding: 20px; } @media (max-width: 480px) { padding: 15px; } .login-content { display: flex; justify-content: space-between; align-items: center; @media (max-width: 768px) { flex-direction: column; } } } .logo-container { display: flex; flex-direction: column; align-items: center; text-align: center; margin-right: 40px; mat-icon { font-size: 60px; margin-bottom: 10px; } h2 { font-size: 24px; font-weight: bold; color: #333; @media (max-width: 480px) { font-size: 20px; } } } .form-container { flex-grow: 1; display: flex; flex-direction: column; max-width: 320px; .full-width { width: 100%; } .forgot-password { display: block; margin-bottom: 20px; font-size: 14px; text-align: right; color: #607d8b; text-decoration: none; @media (max-width: 480px) { font-size: 12px; text-align: center; } &:hover { text-decoration: underline; } } } .button-container { display: flex; justify-content: space-between; gap: 24px; button { min-width: 100px; } .btn-secondary { color: black; border: 1px solid #cccccc; } @media (max-width: 480px) { flex-direction: column; align-items: center; gap: 10px; button { width: 100%; } } } .buttons-general{ display: flex; justify-content: space-between; } "
     },
     {
       "path": "src/app/Core/Pages/login/login.component.spec.ts",
@@ -310,6 +393,22 @@
     {
       "path": "src/app/Core/Pages/login/login.component.ts",
       "content": "import { Component } from '@angular/core'; import { MatCardModule } from '@angular/material/card'; import { MatFormFieldModule } from '@angular/material/form-field'; import { MatInputModule } from '@angular/material/input'; import { MatButtonModule } from '@angular/material/button'; import { MatIconModule } from '@angular/material/icon'; import { CommonModule } from '@angular/common'; @Component({ selector: 'app-login', standalone: true, templateUrl: './login.component.html', styleUrls: ['./login.component.scss'], imports: [ CommonModule, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, ], }) export class LoginComponent {} "
+    },
+    {
+      "path": "src/app/Core/Pages/modelo/modelo.component.html",
+      "content": "<p>modelo works!</p> "
+    },
+    {
+      "path": "src/app/Core/Pages/modelo/modelo.component.scss",
+      "content": ""
+    },
+    {
+      "path": "src/app/Core/Pages/modelo/modelo.component.spec.ts",
+      "content": "import { ComponentFixture, TestBed } from '@angular/core/testing'; import { ModeloComponent } from './modelo.component'; describe('ModeloComponent', () => { let component: ModeloComponent; let fixture: ComponentFixture<ModeloComponent>; beforeEach(async () => { await TestBed.configureTestingModule({ imports: [ModeloComponent] }) .compileComponents(); fixture = TestBed.createComponent(ModeloComponent); component = fixture.componentInstance; fixture.detectChanges(); }); it('should create', () => { expect(component).toBeTruthy(); }); }); "
+    },
+    {
+      "path": "src/app/Core/Pages/modelo/modelo.component.ts",
+      "content": "import { Component } from '@angular/core'; @Component({ selector: 'app-modelo', standalone: true, imports: [], templateUrl: './modelo.component.html', styleUrl: './modelo.component.scss' }) export class ModeloComponent { } "
     },
     {
       "path": "src/app/Core/Pages/quienesSomos/quienesSomos.component.html",
@@ -348,7 +447,7 @@
       "content": "import { Injectable } from '@angular/core'; @Injectable({ providedIn: 'root' }) export class GeneralService { constructor() { } } "
     },
     {
-      "path": "src/app/Services/sidebar/sidebar.service.ts",
+      "path": "src/app/Services/sidebar.service.ts/sidebar.service.ts",
       "content": "import { Injectable } from '@angular/core'; import { BehaviorSubject, Observable } from 'rxjs'; @Injectable({ providedIn: 'root', // Singleton en toda la aplicación }) export class SidebarService { private sidebarOpenSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false); public sidebarOpen$: Observable<boolean> = this.sidebarOpenSubject.asObservable(); // Observable para escuchar el estado del sidebar constructor() {} // Alternar el estado actual del sidebar (abierto/cerrado) toggleSidebar(): void { this.setSidebarState(!this.sidebarOpenSubject.value); } // Abrir el sidebar openSidebar(): void { this.setSidebarState(true); } // Cerrar el sidebar closeSidebar(): void { this.setSidebarState(false); } // Actualizar el estado del sidebar (true = abierto, false = cerrado) private setSidebarState(isOpen: boolean): void { this.sidebarOpenSubject.next(isOpen); } } "
     },
     {
@@ -369,7 +468,7 @@
     },
     {
       "path": "src/app/app.routes.ts",
-      "content": "import { Routes } from '@angular/router'; import { LandingPageComponent } from './Core/Pages/landingPage/landingPage.component'; import { LoginComponent } from './Core/Pages/login/login.component'; import { RegistroComponent } from './Core/Pages/registro/registro.component'; import { HomeComponent } from './Core/Pages/home/home.component'; export const routes: Routes = [ // Rutas que no incluyen el sidebar ni el navbar { path: 'login', component: LoginComponent, // Ruta de login }, { path: 'registro', component: RegistroComponent, // Ruta de registro }, // Ruta principal que incluye el sidebar y el navbar { path: '', component: HomeComponent, // El layout principal (HomeComponent) contiene el navbar y sidebar children: [ { path: '', component: LandingPageComponent, // Página de inicio por defecto dentro de HomeComponent }, { path: 'quienes-somos', loadComponent: () => import('./Core/Pages/quienesSomos/quienesSomos.component').then( (m) => m.QuienesSomosComponent ), // Carga el componente QuienesSomos de forma asíncrona }, ], }, // Ruta comodín: redirige cualquier ruta no definida al path por defecto { path: '**', redirectTo: '' }, ]; "
+      "content": "import { Routes } from '@angular/router'; import { LandingPageComponent } from './Core/Pages/landingPage/landingPage.component'; import { LoginComponent } from './Core/Pages/login/login.component'; import { RegistroComponent } from './Core/Pages/registro/registro.component'; import { HomeComponent } from './Core/Pages/home/home.component'; import { ModeloComponent } from './Core/Pages/modelo/modelo.component'; import { BuscadorComponent } from './Core/Pages/buscador/buscador.component'; import { BuscadorDetalleComponent } from './Core/Pages/buscador-detalle/buscador-detalle.component'; export const routes: Routes = [ // Rutas que no incluyen el sidebar ni el navbar { path: 'login', component: LoginComponent }, { path: 'registro', component: RegistroComponent }, // Ruta principal que incluye el sidebar y el navbar { path: '', component: HomeComponent, children: [ { path: '', component: LandingPageComponent }, // Página de inicio por defecto { path: 'quienes-somos', loadComponent: () => import('./Core/Pages/quienesSomos/quienesSomos.component').then(m => m.QuienesSomosComponent) }, { path: 'modelo', component: ModeloComponent }, // Rutas para 'cursos' { path: 'cursos', component: BuscadorComponent, data: { entityType: 'cursos' } }, { path: 'cursos/:id', component: BuscadorDetalleComponent, data: { entityType: 'cursos' } }, // Rutas para 'articulos' { path: 'articulos', component: BuscadorComponent, data: { entityType: 'articulos' } }, { path: 'articulos/:id', component: BuscadorDetalleComponent, data: { entityType: 'articulos' } }, // Rutas para 'proveedores' { path: 'proveedores', component: BuscadorComponent, data: { entityType: 'proveedores' } }, { path: 'proveedores/:id', component: BuscadorDetalleComponent, data: { entityType: 'proveedores' } }, // Rutas para 'casos-exito' { path: 'casos-exito', component: BuscadorComponent, data: { entityType: 'casos-exito' } }, { path: 'casos-exito/:id', component: BuscadorDetalleComponent, data: { entityType: 'casos-exito' } }, // Rutas para 'financiamiento-empleo' { path: 'financiamiento-empleo', component: BuscadorComponent, data: { entityType: 'financiamiento-empleo' } }, { path: 'financiamiento-empleo/:id', component: BuscadorDetalleComponent, data: { entityType: 'financiamiento-empleo' } }, ], }, // Ruta comodín: redirige cualquier ruta no definida al path por defecto { path: '**', redirectTo: '' }, ]; "
     },
     {
       "path": "src/index.html",
