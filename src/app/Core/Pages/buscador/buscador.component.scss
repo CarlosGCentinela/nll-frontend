@@ -20,6 +20,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    place-self: center;
 
     .search-field {
       flex: 1;
@@ -29,6 +30,7 @@
     .search-button {
       background-color: var(--primary-color);
       color: white;
+      margin-top: -20px;
     }
   }
 
@@ -81,8 +83,9 @@
     }
 
     .search-bar {
-      flex-direction: column; // Cambiar a columna en pantallas pequeñas
+      flex-direction: row; // Cambiar a columna en pantallas pequeñas
       align-items: stretch;
+      gap: 8px;
 
       .search-field {
         margin-right: 0;
@@ -90,7 +93,7 @@
       }
 
       .search-button {
-        width: 100%; // Botón ocupa el ancho completo
+        margin-top: 0px; 
       }
     }
 
