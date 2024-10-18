@@ -1,9 +1,12 @@
 .quienes-somos-container {
-  background-color: var(--background-color);
+  background-color: var(--background-color-blur);
   color: var(--text-color);
   margin: 20px;
   padding: 20px;
   border-radius: 8px;
+  backdrop-filter: blur(17px);
+  -webkit-backdrop-filter: blur(17px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 
   .title {
     color: var(--primary-color);

@@ -29,60 +29,60 @@ export const routes: Routes = [
       {
         path: 'cursos',
         component: BuscadorComponent,
-        data: { entityType: 'cursos' }
+        data: { entityType: 'cursos', name: 'Cursos' }
       },
       {
         path: 'cursos/:id',
         component: BuscadorDetalleComponent,
-        data: { entityType: 'cursos' }
+        data: { entityType: 'cursos', name: 'Cursos' }
       },
 
       // Rutas para 'articulos'
       {
         path: 'articulos',
         component: BuscadorComponent,
-        data: { entityType: 'articulos' }
+        data: { entityType: 'articulos', name: 'Artículos de interés' }
       },
       {
         path: 'articulos/:id',
         component: BuscadorDetalleComponent,
-        data: { entityType: 'articulos' }
+        data: { entityType: 'articulos', name: 'Artículos de interés' }
       },
 
       // Rutas para 'proveedores'
       {
         path: 'proveedores',
         component: BuscadorComponent,
-        data: { entityType: 'proveedores' }
+        data: { entityType: 'proveedores', name: 'Proveedores' }
       },
       {
         path: 'proveedores/:id',
         component: BuscadorDetalleComponent,
-        data: { entityType: 'proveedores' }
+        data: { entityType: 'proveedores', name: 'Proveedores' }
       },
 
       // Rutas para 'casos-exito'
       {
         path: 'casos-exito',
         component: BuscadorComponent,
-        data: { entityType: 'casos-exito' }
+        data: { entityType: 'casos-exito', name: 'Casos de éxito' }
       },
       {
         path: 'casos-exito/:id',
         component: BuscadorDetalleComponent,
-        data: { entityType: 'casos-exito' }
+        data: { entityType: 'casos-exito', name: 'Casos de éxito' }
       },
 
       // Rutas para 'financiamiento-empleo'
       {
         path: 'financiamiento-empleo',
         component: BuscadorComponent,
-        data: { entityType: 'financiamiento-empleo' }
+        data: { entityType: 'financiamiento-empleo', name: 'Financiamiento y empleo' }
       },
       {
         path: 'financiamiento-empleo/:id',
         component: BuscadorDetalleComponent,
-        data: { entityType: 'financiamiento-empleo' }
+        data: { entityType: 'financiamiento-empleo', name: 'Financiamiento y empleo' }
       },
     ],
   },

@@ -1,0 +1,135 @@
+.buscador-container {
+  padding: 20px;
+  background-color: var(--background-color-blur);
+  color: var(--text-color);
+  margin: 20px;
+  border-radius: 8px;
+  backdrop-filter: blur(17px);
+  -webkit-backdrop-filter: blur(17px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+  .title {
+    color: var(--primary-color);
+    font-size: 28px;
+    font-weight: 600;
+    display: flex;
+    gap: 8px;
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .search-field {
+      flex: 1;
+      margin-right: 10px;
+    }
+
+    .search-button {
+      background-color: var(--primary-color);
+      color: white;
+    }
+  }
+
+  .recomendaciones {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    margin: 20px 0;
+
+    .recomendacion {
+      margin: 0 10px; // Aumentar margen lateral
+      flex: 0 0 auto;
+    }
+
+    .prev-button,
+    .next-button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 24px;
+    }
+  }
+
+  h2 {
+    margin-top: 20px;
+    font-size: 20px;
+  }
+
+  .resultado {
+    margin: 10px 0;
+    border-top: 1px solid #ccc;
+    padding: 10px 0;
+
+    mat-card {
+      margin-bottom: 10px;
+    }
+  }
+
+  .listar-todos {
+    margin-top: 20px;
+  }
+
+  /* Estilos Responsivos */
+  @media (max-width: 768px) {
+    padding: 10px;
+    margin: 10px;
+
+    .title {
+      font-size: 24px; // Tamaño de fuente más pequeño en pantallas pequeñas
+    }
+
+    .search-bar {
+      flex-direction: column; // Cambiar a columna en pantallas pequeñas
+      align-items: stretch;
+
+      .search-field {
+        margin-right: 0;
+        margin-bottom: 10px; // Espacio entre campo de búsqueda y botón
+      }
+
+      .search-button {
+        width: 100%; // Botón ocupa el ancho completo
+      }
+    }
+
+    .recomendaciones {
+      flex-direction: column; // Cambiar a columna en pantallas pequeñas
+
+      .recomendacion {
+        margin: 10px 0; // Espacio vertical entre recomendaciones
+      }
+    }
+
+    h2 {
+      font-size: 18px; // Tamaño de fuente más pequeño en pantallas pequeñas
+    }
+
+    .resultado {
+      padding: 5px 0; // Menos padding en pantallas pequeñas
+    }
+
+    .listar-todos {
+      font-size: 14px; // Tamaño de fuente más pequeño para el botón
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 8px;
+    margin: -8px;
+    .title {
+      font-size: 1em; // Tamaño de fuente más pequeño en pantallas muy pequeñas
+    }
+
+    .search-bar {
+      .search-button {
+        font-size: 14px; // Tamaño de fuente más pequeño para el botón
+      }
+    }
+
+    h2 {
+      font-size: 16px; // Tamaño de fuente más pequeño en pantallas muy pequeñas
+    }
+  }
+}
