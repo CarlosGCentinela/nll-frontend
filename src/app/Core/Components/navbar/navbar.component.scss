@@ -3,9 +3,18 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #333;
+  background-color:transparent;
   color: white;
   position: relative;
+
+  /* Agregar efecto de blur */
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px); /* Soporte para Safari */
+  
+  background-color: #00000073;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(30px);
+  box-shadow: 0 4px 6px rgb(0 0 0 / 30%);
 }
 
 .logo {
@@ -41,8 +50,6 @@ nav {
   display: none;
   top: 60px; /* Ajusta según la altura de tu nav */
   right: 20px;
-  background-color: #444;
-  border: 1px solid #555;
   border-radius: 4px;
 }
 

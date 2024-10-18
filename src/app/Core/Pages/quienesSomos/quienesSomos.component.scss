@@ -1,71 +1,82 @@
-.container {
-  text-align: center;
+.quienes-somos-container {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 20px;
   padding: 20px;
+  border-radius: 8px;
 
-  h1 {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
+  .title {
+    color: var(--primary-color);
+    font-size: 28px;
+    font-weight: 600;
   }
 
-  .content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .subtitle {
+    color: var(--secondary-color);
+    font-size: 18px;
+    margin-top: 4px;
+  }
 
-    .image-placeholder {
-      width: 200px;
-      height: 200px;
-      background-color: #e0e0e0;
-      border-radius: 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-right: 20px;
-      p {
-        font-size: 18px;
-        color: #333;
-      }
+  .section {
+    margin-top: 20px;
+
+    h2 {
+      color: var(--primary-color);
+      font-size: 24px;
+      margin-bottom: 10px;
     }
 
-    .text-section {
-      max-width: 400px;
-      text-align: left;
+    h3 {
+      color: var(--secondary-color);
+      font-size: 20px;
+      margin-top: 15px;
+      margin-bottom: 8px;
+    }
 
-      p {
+    p {
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    mat-list-item {
+      align-items: start;
+
+      mat-icon {
+        color: var(--primary-color);
+        margin-top: 4px;
+      }
+
+      span {
         font-size: 16px;
-        margin-bottom: 20px;
       }
+    }
+  }
 
-      .solutions {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+  mat-divider {
+    margin: 20px 0;
+    border-color: var(--secondary-color);
+  }
 
-        .solution {
-          display: flex;
-          align-items: center;
+  mat-expansion-panel {
+    background-color: var(--card-background);
+    color: var(--text-color);
+    margin-bottom: 10px;
 
-          input {
-            margin-right: 10px;
-          }
-        }
-      }
+    .mat-expansion-panel-header {
+      background-color: var(--primary-color);
+      color: #fff;
+    }
+
+    .mat-expansion-panel-content {
+      background-color: var(--background-color);
+    }
+
+    p {
+      padding: 10px 0;
     }
   }
 }
 
-@media (max-width: 768px) {
-  .content {
-    flex-direction: column;
-
-    .image-placeholder {
-      margin-bottom: 20px;
-      margin-right: 0;
-    }
-
-    .text-section {
-      text-align: center;
-    }
-  }
+mat-panel-title{
+  color: var(--text-backgroud-color)
 }

@@ -1,32 +1,12 @@
-
+<!-- src/app/landing-page/landingPage.component.html -->
 <div class="hero">
-  <div class="carousel">
-    <img *ngFor="let image of images; let i = index"
-         [src]="image"
-         [class.active]="i === currentIndex"
-         [@carouselAnimation]="i === currentIndex ? 'active' : 'inactive'">
-    <button class="arrow left" (click)="prevSlide()">&lt;</button>
-    <button class="arrow right" (click)="nextSlide()">&gt;</button>
-  </div>
+  <app-carousel [slides]="mySlides" [showIndicators]="true" [showArrows]="false"></app-carousel>
 </div>
-<div class="logo-container">
-  <h5>"Impulsa tus proyectos con financiamiento inteligente"</h5>
-  <div class="logo">Logo Proyecto</div>
-  <div class="logo">Logo Proyecto</div>
-  <div class="logo">Logo Proyecto</div>
-  <div class="logo">Logo Proyecto</div>
-</div>
-<div class="articles">
-  <div class="article">
-    <h2>Título de interés</h2>
-    <p>Contenido del artículo...</p>
-  </div>
-  <div class="article">
-    <h2>Título de interés</h2>
-    <p>Contenido del artículo...</p>
-  </div>
-  <div class="article">
-    <h2>Título de interés</h2>
-    <p>Contenido del artículo...</p>
-  </div>
+
+<div class="articles-container">
+  <app-article-card 
+    *ngFor="let article of articles" 
+    [title]="article.title" 
+    [description]="article.description">
+  </app-article-card>
 </div>

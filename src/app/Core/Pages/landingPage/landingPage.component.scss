@@ -55,23 +55,7 @@
   .arrow.right {
     right: 10px;
   }
-  .logo-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    margin-top: 20px;
-    align-items: center;
-  }
-  .logo {
-    width: 100px;
-    height: 100px;
-    background-color: #f1f1f1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 10px;
-    text-align: -webkit-center
-  }
+  
   .articles {
     display: flex;
     justify-content: space-between;

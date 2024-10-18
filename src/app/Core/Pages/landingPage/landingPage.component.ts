@@ -1,74 +1,54 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+// src/app/landing-page/landing-page.component.ts
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { trigger, transition, style, animate } from '@angular/animations';
+import { CarouselComponent } from '../../Components/carousel/carousel.component';
+import { Slide} from '../../Models/slide.model';
+import { ArticleCardComponent } from '../../Components/article-card/article-card.component';
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CarouselComponent, ArticleCardComponent],
   templateUrl: './landingPage.component.html',
-  styleUrls: ['./landingPage.component.scss'], // Corregir 'styleUrl' a 'styleUrls'
-  animations: [
-    trigger('carouselAnimation', [
-      transition('inactive => active', [
-        style({ opacity: 0 }),
-        animate('500ms', style({ opacity: 1 }))
-      ]),
-      transition('active => inactive', [
-        animate('500ms', style({ opacity: 0 }))
-      ])
-    ])
-  ]
+  styleUrls: ['./landingPage.component.scss']
 })
-export class LandingPageComponent implements OnInit, OnDestroy {
-  
-  images = [
-    'https://picsum.photos/id/1018/1000/600',
-    'https://picsum.photos/id/1015/1000/600',
-    'https://picsum.photos/id/1019/1000/600'
-  ];
-  currentIndex = 0; // Índice de la imagen actual
-  private intervalId: any; // ID del temporizador del carrusel
+export class LandingPageComponent {
 
-  // Iniciar el carrusel al cargar el componente
-  ngOnInit() {
-    this.startCarousel();
-  }
-
-  // Limpiar el temporizador al destruir el componente
-  ngOnDestroy() {
-    this.stopCarousel();
-  }
-
-  // Iniciar el temporizador del carrusel
-  startCarousel() {
-    this.intervalId = setInterval(() => {
-      this.nextSlide(); // Cambiar a la siguiente imagen
-    }, 5000);
-  }
-
-  // Detener el temporizador del carrusel
-  stopCarousel() {
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
+  mySlides: Slide[] = [
+    {
+      type: 'custom2',
+      duration: 5000 // 5 segundos
+    },
+    {
+      type: 'custom1',
+      duration: 8000 // 8 segundos
+    },
+    {
+      type: 'regular',
+      content: '<h3>Slide 1</h3><p>Contenido del Slide 1</p>',
+      duration: 3000 // 3 segundos
+    },
+    {
+      type: 'regular',
+      imageUrl: 'assets/img-fondo.png',
+      content: '<h3>Slide 4</h3><p>Contenido del Slide 4</p>'
+      // Sin duración específica, usará defaultDuration (5000 ms)
     }
-  }
+  ];
 
-  // Cambiar a la siguiente imagen
-  nextSlide() {
-    this.currentIndex = (this.currentIndex + 1) % this.images.length;
-    this.resetCarouselTimer();
-  }
+  articles = [
+    {
+      title: 'Artículo 1',
+      description: 'Esta es la descripción del artículo 1. Proporciona una visión general del contenido.'
+    },
+    {
+      title: 'Artículo 2',
+      description: 'Esta es la descripción del artículo 2. Ofrece detalles adicionales sobre el tema.'
+    },
+    {
+      title: 'Artículo 3',
+      description: 'Esta es la descripción del artículo 3. Contiene información relevante y útil.'
+    }
+  ];
 
-  // Cambiar a la imagen anterior
-  prevSlide() {
-    this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
-    this.resetCarouselTimer();
-  }
-
-  // Reiniciar el temporizador del carrusel
-  resetCarouselTimer() {
-    this.stopCarousel(); // Detener el temporizador actual
-    this.startCarousel(); // Iniciar un nuevo temporizador
-  }
 }

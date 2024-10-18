@@ -1,4 +1,33 @@
-/* You can add global styles to this file, and also import other style files */
+/* src/styles.scss */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* Estilos globales */
+html, body { 
+  height: 100%; 
+}
+
+body { 
+  margin: 0; 
+  font-family: Roboto, "Helvetica Neue", sans-serif; 
+}
+
+:root {
+  /* Colores Primarios */
+  --primary-color: #006064;
+  --secondary-color: #004d40;
+
+  /* Colores de Fondo */
+  --background-color: #e0f7fa;
+  --card-background: #ffffff;
+
+  /* Colores de Texto */
+  --text-color: #333333;
+  --text-light: #666666;
+  --text-backgroud-color: white;
+
+  /* Colores de Estado */
+  --success-color: #4caf50;
+  --error-color: #f44336;
+  --warning-color: #ff9800;
+}
+
+/* Puedes añadir más estilos globales aquí */

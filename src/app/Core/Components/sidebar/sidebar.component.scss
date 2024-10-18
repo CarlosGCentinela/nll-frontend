@@ -8,6 +8,13 @@
   transition: right 0.3s ease-in-out;
   padding: 20px;
   box-sizing: border-box;
+
+  /* blur */
+  background-color: #00000073;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 .sidebar.open {
   right: 0;
