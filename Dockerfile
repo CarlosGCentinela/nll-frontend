@@ -1,5 +1,8 @@
-# Etapa 1: Construcción de la aplicación
-FROM node:18-alpine AS build
+# Etapa 1: Construcción del entorno de desarrollo
+FROM node:20-alpine
+
+# Instalar Angular CLI globalmente
+RUN npm install -g @angular/cli
 
 # Establecer el directorio de trabajo
 WORKDIR /app
@@ -8,25 +11,13 @@ WORKDIR /app
 COPY package*.json ./
 
 # Instalar las dependencias
-RUN npm install
+RUN npm install --production
 
 # Copiar el resto de los archivos del proyecto
 COPY . .
 
-# Construir la aplicación en modo producción
-RUN npm run build --prod
+# Exponer el puerto 4200
+EXPOSE 4200
 
-# Etapa 2: Servir la aplicación con Nginx
-FROM nginx:alpine
-
-# Copiar los archivos construidos desde la etapa de construcción
-COPY --from=build /app/dist/tu-nombre-de-proyecto /usr/share/nginx/html
-
-# Copiar configuración personalizada de Nginx (opcional)
-# COPY nginx.conf /etc/nginx/nginx.conf
-
-# Exponer el puerto 80
-EXPOSE 80
-
-# Comando para ejecutar Nginx en primer plano
-CMD ["nginx", "-g", "daemon off;"]
+# Comando para ejecutar el servidor de desarrollo
+CMD ["ng", "serve", "--host", "0.0.0.0"]

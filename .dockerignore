@@ -1,0 +1,30 @@
+# Ignorar node_modules (las dependencias se instalan en la imagen)
+node_modules
+dist
+coverage
+
+# Ignorar archivos de configuración del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Ignorar carpetas y archivos de Git
+.git
+.gitignore
+
+# Ignorar el archivo de configuración de Docker
+Dockerfile
+docker-compose.yml
+
+# Ignorar archivos de configuración de entornos locales
+.env
+.vscode
+.idea
+*.swp
+
+# Ignorar cache de Angular
+.angular/cache
+
+# Ignorar logs y otros archivos de salida
+npm-debug.log
+yarn-debug.log
+yarn-error.log
