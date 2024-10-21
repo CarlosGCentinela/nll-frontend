@@ -70,7 +70,10 @@
     </ul>
   </div>
   
-  <button class="menu-toggle" (click)="onToggleSidebar()">
+  <button class="menu-toggle" *ngIf="!isLoggedIn" (click)="onToggleSidebar()">
     <mat-icon>menu</mat-icon>
+  </button>
+  <button class="profile-icon" *ngIf="isLoggedIn" (click)="onToggleSidebar()">
+    <mat-icon>account_circle</mat-icon>
   </button>
 </nav>

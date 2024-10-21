@@ -3,8 +3,9 @@
 import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { SidebarService } from '../../../Services/sidebar.service.ts/sidebar.service'; // Asegúrate de que la ruta sea correcta
+import { GeneralService } from '../../../Services/general.service';
 
 @Component({
   selector: 'app-navbar',
@@ -15,8 +16,21 @@ import { SidebarService } from '../../../Services/sidebar.service.ts/sidebar.ser
 })
 export class NavbarComponent {
   isDropdownOpen = false;
+  isLoggedIn = false;
 
-  constructor(private sidebarService: SidebarService) {}
+  constructor(
+    private sidebarService: SidebarService,
+    private generalService: GeneralService,
+    private router: Router
+  ) {
+    // Suscribirse al estado de autenticación
+    this.generalService.isLoggedIn$.subscribe((loggedIn) => {
+      this.isLoggedIn = loggedIn;
+      if (!loggedIn) {
+        this.isDropdownOpen = false; // Cerrar el dropdown al cerrar sesión
+      }
+    });
+  }
 
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
@@ -24,5 +38,11 @@ export class NavbarComponent {
 
   onToggleSidebar() {
     this.sidebarService.toggleSidebar();
+  }
+
+  logout() {
+    this.generalService.logout();
+    this.router.navigate(['/login']); // Redirigir a la página de login después de cerrar sesión
+    this.isDropdownOpen = false;
   }
 }

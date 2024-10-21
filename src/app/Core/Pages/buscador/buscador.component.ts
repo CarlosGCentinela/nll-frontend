@@ -12,6 +12,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ArticleCardComponent } from '../../Components/article-card/article-card.component';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-buscador',
@@ -28,13 +29,15 @@ import { ArticleCardComponent } from '../../Components/article-card/article-card
     MatListModule,
     MatExpansionModule,
     MatInputModule,
-    ArticleCardComponent
+    ArticleCardComponent,
+    RouterLink, RouterLinkActive
   ],
   templateUrl: './buscador.component.html',
   styleUrl: './buscador.component.scss'
 })
 export class BuscadorComponent implements OnInit {
 
+  enableRecomendacion=['cursos', 'proveedores']
   entityType: string = '';
   name: string = '';
   items: any[] = []; // Define el tipo según tus datos
@@ -67,9 +70,9 @@ export class BuscadorComponent implements OnInit {
     ];
   
     this.items = [
-      { id: 1, description: 'Resultado de búsqueda 1' },
-      { id: 2, description: 'Resultado de búsqueda 2' },
-      { id: 3, description: 'Resultado de búsqueda 3' }
+      { id: 1, title: 'Buscado 1', description: 'Resultado de búsqueda 1' },
+      { id: 2, title: 'Buscado 2', description: 'Resultado de búsqueda 2' },
+      { id: 3, title: 'Buscado 3', description: 'Resultado de búsqueda 3' }
     ];
   }
 }
