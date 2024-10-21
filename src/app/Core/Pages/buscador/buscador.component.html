@@ -19,19 +19,14 @@
 
   <div class="recomendaciones">
     <mat-card-subtitle>Recomendados según tu modelo de madurez tecnológico:</mat-card-subtitle>
-
-    <button mat-icon-button class="prev-button">&lt;</button>
-    <div class="recomendacion" *ngFor="let recomendacion of recomendaciones">
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>{{ recomendacion.title }}</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <p>{{ recomendacion.description }}</p>
-        </mat-card-content>
-      </mat-card>
+    <div class="recomendacion-box">
+      <div class="recomendacion" *ngFor="let recomendacion of recomendaciones">
+        <app-article-card
+          [title]="recomendacion.title"
+          [description]="recomendacion.description">
+        </app-article-card>
+      </div>
     </div>
-    <button mat-icon-button class="next-button">&gt;</button>
   </div>
 
   <h2>Resultados de búsqueda:</h2>

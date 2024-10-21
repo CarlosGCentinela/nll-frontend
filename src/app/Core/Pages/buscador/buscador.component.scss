@@ -35,13 +35,24 @@
   }
 
   .recomendaciones {
-    display: flex;
+    display: grid;
     align-items: center;
     overflow: hidden;
-    margin: 20px 0;
+    margin: 0px 0px;
+
+    .recomendacion-box{
+      text-align: -webkit-center;
+      display: ruby;
+    }
+
+    mat-card-subtitle{
+      max-width: 80vw;
+      font-weight: 600;
+      color: var(--text-color);
+    }
 
     .recomendacion {
-      margin: 0 10px; // Aumentar margen lateral
+      margin: 0 0; // Aumentar margen lateral
       flex: 0 0 auto;
     }
 
@@ -101,7 +112,11 @@
       flex-direction: column; // Cambiar a columna en pantallas pequeñas
 
       .recomendacion {
-        margin: 10px 0; // Espacio vertical entre recomendaciones
+        margin: 0 0; // Espacio vertical entre recomendaciones
+      }
+
+      .recomendacion-box{
+        display: ruby;
       }
     }
 
@@ -133,6 +148,19 @@
 
     h2 {
       font-size: 16px; // Tamaño de fuente más pequeño en pantallas muy pequeñas
+    }
+
+    .recomendaciones{
+      display: grid;
+
+      .recomendacion-box{
+        display: ruby;
+        text-align: start;
+      }
+  
+      .recomendacion{
+        margin: 0 0;
+      }
     }
   }
 }

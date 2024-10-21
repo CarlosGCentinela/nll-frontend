@@ -1,3 +1,5 @@
+/* login.component.scss */
+
 .login-container {
   display: flex;
   justify-content: center;
@@ -30,87 +32,102 @@
 
     @media (max-width: 768px) {
       flex-direction: column;
+      align-items: center;
     }
   }
-}
 
-.logo-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin-right: 40px;
-
-  mat-icon {
-    font-size: 60px;
-    margin-bottom: 10px;
-  }
-
-  h2 {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-
-    @media (max-width: 480px) {
-      font-size: 20px;
-    }
-  }
-}
-
-.form-container {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  max-width: 320px;
-
-  .full-width {
-    width: 100%;
-  }
-
-  .forgot-password {
-    display: block;
-    margin-bottom: 20px;
-    font-size: 14px;
-    text-align: right;
-    color: #607d8b;
-    text-decoration: none;
-
-    @media (max-width: 480px) {
-      font-size: 12px;
-      text-align: center;
-    }
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-}
-
-.button-container {
-  display: flex;
-  justify-content: space-between;
-  gap: 24px;
-
-  button {
-    min-width: 100px;
-  }
-
-  .btn-secondary {
-    color: black;
-    border: 1px solid #cccccc;
-  }
-
-  @media (max-width: 480px) {
+  .logo-container {
+    display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    text-align: center;
+    margin-right: 40px;
 
-    button {
-      width: 100%;
+    mat-icon {
+      font-size: 60px;
+      margin-bottom: 10px;
+      color: #3f51b5; /* Opcional: color del icono */
+    }
+
+    h2 {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+
+      @media (max-width: 480px) {
+        font-size: 20px;
+      }
     }
   }
-}
-.buttons-general{
-  display: flex;
-  justify-content: space-between;
+
+  .form-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: 320px;
+
+    .full-width {
+      width: 100%;
+    }
+
+    .forgot-password {
+      display: block;
+      margin-bottom: 20px;
+      font-size: 14px;
+      text-align: right;
+      color: #607d8b;
+      text-decoration: none;
+
+      @media (max-width: 480px) {
+        font-size: 12px;
+        text-align: center;
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .error-message {
+      color: red;
+      margin-top: 10px;
+      text-align: center;
+    }
+  }
+
+  .buttons-general {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+
+    .btn-secondary {
+      color: black;
+      border: 1px solid #cccccc;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+
+      button {
+        min-width: 100px;
+      }
+
+      @media (max-width: 480px) {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+
+        button {
+          width: 100%;
+        }
+      }
+    }
+
+    mat-progress-spinner {
+      margin-left: 20px;
+    }
+  }
 }
