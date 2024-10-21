@@ -1,5 +1,7 @@
-# Ignorar node_modules (las dependencias se instalan en la imagen)
+# Ignorar node_modules
 node_modules
+
+# Ignorar la carpeta de distribución
 dist
 coverage
 

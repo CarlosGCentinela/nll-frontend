@@ -1,23 +1,26 @@
-# Etapa 1: Construcción del entorno de desarrollo
-FROM node:20-alpine
+# Etapa 1: Construcción de la aplicación
+FROM node:20-alpine AS build
 
-# Instalar Angular CLI globalmente
-RUN npm install -g @angular/cli
-
-# Establecer el directorio de trabajo
 WORKDIR /app
 
-# Copiar los archivos de configuración
 COPY package*.json ./
 
-# Instalar las dependencias
-RUN npm install --production
+RUN npm install
 
-# Copiar el resto de los archivos del proyecto
 COPY . .
 
-# Exponer el puerto 4200
-EXPOSE 4200
+RUN npm run build --prod
 
-# Comando para ejecutar el servidor de desarrollo
-CMD ["ng", "serve", "--host", "0.0.0.0"]
+# Etapa 2: Servir la aplicación con Nginx
+FROM nginx:alpine
+
+COPY --from=build /app/dist/nll-frontend/browser /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
+
+
+#solo subimos el build de angular, que es el cod reducido
+#docker build -t nll-frontend:latest .
+#docker run -d -p 80:80 nll-frontend:latest
