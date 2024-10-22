@@ -40,22 +40,24 @@
               <ng-container *ngIf="question.type === 'rating'">
                 <div class="rating-container">
                   <label>{{ question.label }}</label>
-                  <div class="stars"
-                       (mouseleave)="leaveRating(question.name)">
-                    <mat-icon
+                  <div class="stars">
+                    <button
                       *ngFor="let star of [1, 2, 3, 4, 5]"
-                      [ngClass]="{'active': star <= getRating(question.name)}"
+                      type="button"
+                      class="star-button"
                       (click)="setRating(question.name, star)"
                       (mouseenter)="hoverRating(question.name, star)"
+                      (mouseleave)="leaveRating(question.name)"
                       [attr.aria-label]="'Calificación de ' + star + ' estrellas'"
-                      [attr.role]="'button'"
-                      [attr.tabindex]="'0'"
+                      [attr.aria-pressed]="star <= getRating(question.name)"
                     >
-                      {{ star <= getRating(question.name) ? 'star' : 'star_border' }}
-                    </mat-icon>
+                      <mat-icon [ngClass]="{'active': star <= getRating(question.name)}">
+                        {{ star <= getRating(question.name) ? 'star' : 'star_border' }}
+                      </mat-icon>
+                    </button>
                   </div>
                   <mat-error *ngIf="registroForm.get(question.name)?.hasError('required')">
-                    {{ question.label }} es obligatorio
+                    La pregunta es obligatoria
                   </mat-error>
                 </div>
               </ng-container>
@@ -105,7 +107,13 @@
           Volver
         </button>
         <button mat-flat-button class="registrar-button" type="submit" [disabled]="isLoading">
-          <mat-icon>save</mat-icon>
+          <mat-icon *ngIf="!isLoading">save</mat-icon>
+          <mat-progress-spinner
+            *ngIf="isLoading"
+            diameter="20"
+            mode="indeterminate"
+            color="accent">
+          </mat-progress-spinner>
           Registrar
         </button>
       </div>

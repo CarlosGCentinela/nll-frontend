@@ -15,6 +15,7 @@ import { ArticleCardComponent } from '../../Components/article-card/article-card
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 interface Question {
   label: string;
@@ -42,6 +43,7 @@ interface Question {
     RouterLinkActive,
     ReactiveFormsModule,
     MatSelectModule,
+    MatProgressSpinnerModule
   ],
   templateUrl: './registro-formulario.component.html',
   styleUrls: ['./registro-formulario.component.scss']
@@ -57,7 +59,7 @@ export class RegistroFormularioComponent implements OnInit, OnDestroy {
 
   // Definición de preguntas para cada tipo de entidad
   preguntas: { [key: string]: Question[] } = {
-    Usuario: [
+    Personal: [
       {
         label: 'Nombre',
         name: 'nombre',
