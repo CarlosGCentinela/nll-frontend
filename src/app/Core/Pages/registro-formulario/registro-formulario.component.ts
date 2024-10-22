@@ -16,6 +16,14 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 
+interface Question {
+  label: string;
+  name: string;
+  type: string;
+  validators: any[];
+  options?: { value: number, label: string }[]; // Para preguntas con opciones (1 a 5)
+}
+
 @Component({
   selector: 'app-registro-formulario',
   standalone: true,
@@ -26,7 +34,6 @@ import { MatSelectModule } from '@angular/material/select';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule,
     MatDividerModule,
     MatListModule,
     MatExpansionModule,
@@ -37,7 +44,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatSelectModule,
   ],
   templateUrl: './registro-formulario.component.html',
-  styleUrl: './registro-formulario.component.scss'
+  styleUrls: ['./registro-formulario.component.scss']
 })
 export class RegistroFormularioComponent implements OnInit, OnDestroy {
   private unsubscribe$ = new Subject<void>();
@@ -45,21 +52,139 @@ export class RegistroFormularioComponent implements OnInit, OnDestroy {
   registroForm: FormGroup;
   isLoading = false;
 
+  // Propiedad para manejar el hover de las estrellas
+  hoverRatings: { [key: string]: number } = {};
+
+  // Definición de preguntas para cada tipo de entidad
+  preguntas: { [key: string]: Question[] } = {
+    Usuario: [
+      {
+        label: 'Nombre',
+        name: 'nombre',
+        type: 'text',
+        validators: [Validators.required]
+      }
+    ],
+    Empresa: [
+      {
+        label: 'Nombre de la Empresa',
+        name: 'nombreEmpresa',
+        type: 'text',
+        validators: [Validators.required]
+      },
+      {
+        label: 'RUT de la Empresa',
+        name: 'rut',
+        type: 'text',
+        validators: [Validators.required, this.rutValidator]
+      },
+      {
+        label: 'Documento ERUT',
+        name: 'eRut',
+        type: 'file',
+        validators: [Validators.required, this.fileValidator]
+      },
+      {
+        label: 'Nombre del Representante',
+        name: 'nombreRepresentante',
+        type: 'text',
+        validators: [Validators.required]
+      },
+      {
+        label: 'RUT del Representante',
+        name: 'rutRepresentante',
+        type: 'text',
+        validators: [Validators.required, this.rutValidator]
+      },
+      // Nuevas preguntas para empresas y proveedores
+      {
+        label: '¿Qué tan clara es la estrategia digital de tu organización?',
+        name: 'estrategiaDigital',
+        type: 'rating',
+        validators: [Validators.required],
+      },
+      {
+        label: '¿Qué tan complejos son los desafíos para implementar soluciones de la Industria 4.0 en tu organización?',
+        name: 'desafiosIndustria4',
+        type: 'rating',
+        validators: [Validators.required],
+      },
+      {
+        label: '¿Qué tan alta es la prioridad de la adopción de tecnologías digitales y la integración de la Industria 4.0 en tu organización?',
+        name: 'prioridadAdopcion',
+        type: 'rating',
+        validators: [Validators.required],
+      }
+    ],
+    Proveedor: [
+      // Asumiendo que proveedores tienen las mismas preguntas que empresas
+      {
+        label: 'Nombre de la Empresa',
+        name: 'nombreEmpresa',
+        type: 'text',
+        validators: [Validators.required]
+      },
+      {
+        label: 'RUT de la Empresa',
+        name: 'rut',
+        type: 'text',
+        validators: [Validators.required, this.rutValidator]
+      },
+      {
+        label: 'Documento ERUT',
+        name: 'eRut',
+        type: 'file',
+        validators: [Validators.required, this.fileValidator]
+      },
+      {
+        label: 'Nombre del Representante',
+        name: 'nombreRepresentante',
+        type: 'text',
+        validators: [Validators.required]
+      },
+      {
+        label: 'RUT del Representante',
+        name: 'rutRepresentante',
+        type: 'text',
+        validators: [Validators.required, this.rutValidator]
+      },
+      // Nuevas preguntas para empresas y proveedores
+      {
+        label: '¿Qué tan clara es la estrategia digital de tu organización?',
+        name: 'estrategiaDigital',
+        type: 'rating',
+        validators: [Validators.required],
+      },
+      {
+        label: '¿Qué tan complejos son los desafíos para implementar soluciones de la Industria 4.0 en tu organización?',
+        name: 'desafiosIndustria4',
+        type: 'rating',
+        validators: [Validators.required],
+      },
+      {
+        label: '¿Qué tan alta es la prioridad de la adopción de tecnologías digitales y la integración de la Industria 4.0 en tu organización?',
+        name: 'prioridadAdopcion',
+        type: 'rating',
+        validators: [Validators.required],
+      }
+    ]
+  };
+
   constructor(private route: ActivatedRoute, private fb: FormBuilder) {
-    // Inicializar el formulario según los campos disponibles para usuarios y empresas
     this.registroForm = this.fb.group({
       tipoUsuario: [{ value: '', disabled: true }, Validators.required],
-      nombre: [''],  // Campos de usuario
       correo: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, this.passwordStrengthValidator]],
-      nombreEmpresa: [''], // Campos de empresa
-      eRut: [''],
+      confirmPassword: ['', [Validators.required]],
+      // Campos específicos
+      nombreEmpresa: [''],
       rut: [''],
+      eRut: [null],
       nombreRepresentante: [''],
       rutRepresentante: ['']
-    });
+    }, { validators: this.passwordMatchValidator });
   }
-  
+
   ngOnInit(): void {
     // Obtener el tipo de entidad desde los datos de la ruta
     this.route.data
@@ -77,61 +202,34 @@ export class RegistroFormularioComponent implements OnInit, OnDestroy {
 
   // Configurar el formulario según el tipo de usuario o empresa
   setupForm(): void {
-    if (this.entityType === 'usuario') {
-      this.setUsuarioValidators();
-      this.clearEmpresaValidators();
-    } else if (this.entityType === 'empresa') {
-      this.setEmpresaValidators();
-      this.clearUsuarioValidators();
+    // Primero, limpiar todas las preguntas adicionales
+    this.clearAllDynamicFields();
+
+    // Establecer los validadores y campos dinámicamente
+    if (this.preguntas[this.entityType]) {
+      this.preguntas[this.entityType].forEach(question => {
+        if (!this.registroForm.contains(question.name)) {
+          if (question.type === 'file') {
+            // Inicializar el control con null para archivos
+            this.registroForm.addControl(question.name, this.fb.control(null, question.validators));
+          } else {
+            this.registroForm.addControl(question.name, this.fb.control('', question.validators));
+          }
+        }
+      });
     }
+
+    // Actualizar el valor de tipoUsuario
+    this.registroForm.patchValue({ tipoUsuario: this.entityType });
   }
 
-  // Asignar validadores específicos para usuarios
-  setUsuarioValidators(): void {
-    this.registroForm.get('nombre')?.setValidators([Validators.required]);
-    this.registroForm.get('nombre')?.updateValueAndValidity();
-  }
-
-  // Asignar validadores específicos para empresas
-  setEmpresaValidators(): void {
-    this.registroForm.get('nombreEmpresa')?.setValidators([Validators.required]);
-    this.registroForm.get('nombreEmpresa')?.updateValueAndValidity();
-
-    this.registroForm.get('rut')?.setValidators([Validators.required, this.rutValidator]);
-    this.registroForm.get('rut')?.updateValueAndValidity();
-
-    this.registroForm.get('eRut')?.setValidators([Validators.required, Validators.pattern(/^(https?:\/\/.*\.(?:pdf))$/i)]);
-    this.registroForm.get('eRut')?.updateValueAndValidity();
-
-    this.registroForm.get('nombreRepresentante')?.setValidators([Validators.required]);
-    this.registroForm.get('nombreRepresentante')?.updateValueAndValidity();
-
-    this.registroForm.get('rutRepresentante')?.setValidators([Validators.required, this.rutValidator]);
-    this.registroForm.get('rutRepresentante')?.updateValueAndValidity();
-  }
-
-  // Limpiar validadores de campos específicos de empresa
-  clearEmpresaValidators(): void {
-    this.registroForm.get('nombreEmpresa')?.clearValidators();
-    this.registroForm.get('nombreEmpresa')?.updateValueAndValidity();
-
-    this.registroForm.get('rut')?.clearValidators();
-    this.registroForm.get('rut')?.updateValueAndValidity();
-
-    this.registroForm.get('eRut')?.clearValidators();
-    this.registroForm.get('eRut')?.updateValueAndValidity();
-
-    this.registroForm.get('nombreRepresentante')?.clearValidators();
-    this.registroForm.get('nombreRepresentante')?.updateValueAndValidity();
-
-    this.registroForm.get('rutRepresentante')?.clearValidators();
-    this.registroForm.get('rutRepresentante')?.updateValueAndValidity();
-  }
-
-  // Limpiar validadores de campos específicos de usuario
-  clearUsuarioValidators(): void {
-    this.registroForm.get('nombre')?.clearValidators();
-    this.registroForm.get('nombre')?.updateValueAndValidity();
+  // Limpiar todos los campos dinámicos
+  clearAllDynamicFields(): void {
+    Object.keys(this.registroForm.controls).forEach(controlName => {
+      if (!['tipoUsuario', 'correo', 'password', 'confirmPassword'].includes(controlName)) {
+        this.registroForm.removeControl(controlName);
+      }
+    });
   }
 
   // Validador personalizado para la contraseña
@@ -175,6 +273,65 @@ export class RegistroFormularioComponent implements OnInit, OnDestroy {
     return calculatedDV !== dv ? { rutInvalid: true } : null;
   }
 
+  // Validador personalizado para archivos (solo PDF y máximo 2MB)
+  fileValidator(control: AbstractControl): ValidationErrors | null {
+    const file = control.value;
+    if (!file) return null;
+
+    const maxSize = 2 * 1024 * 1024; // 2MB
+    const allowedTypes = ['application/pdf'];
+
+    if (file.size > maxSize) {
+      return { fileSize: true };
+    }
+
+    if (!allowedTypes.includes(file.type)) {
+      return { fileType: true };
+    }
+
+    return null;
+  }
+
+  // Validador para confirmar contraseña
+  passwordMatchValidator(group: FormGroup): ValidationErrors | null {
+    const password = group.get('password')?.value;
+    const confirmPassword = group.get('confirmPassword')?.value;
+    return password === confirmPassword ? null : { passwordsMismatch: true };
+  }
+
+  // Manejar la subida del archivo ERUT
+  onFileChange(event: any, controlName: string): void {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.registroForm.patchValue({
+        [controlName]: file
+      });
+      // Necesario para que Angular detecte el cambio
+      this.registroForm.get(controlName)?.updateValueAndValidity();
+    }
+  }
+
+  // Manejar la selección de valoración
+  setRating(questionName: string, rating: number): void {
+    this.registroForm.get(questionName)?.setValue(rating);
+    this.registroForm.get(questionName)?.markAsTouched();
+  }
+
+  // Obtener la valoración actual para un campo específico
+  getRating(questionName: string): number {
+    return this.hoverRatings[questionName] || this.registroForm.get(questionName)?.value || 0;
+  }
+
+  // Manejar el hover de las estrellas
+  hoverRating(questionName: string, rating: number): void {
+    this.hoverRatings[questionName] = rating;
+  }
+
+  // Manejar el mouseleave de las estrellas
+  leaveRating(questionName: string): void {
+    this.hoverRatings[questionName] = this.registroForm.get(questionName)?.value || 0;
+  }
+
   // Manejar el envío del formulario
   onSubmit(): void {
     this.isLoading = true;
@@ -185,14 +342,35 @@ export class RegistroFormularioComponent implements OnInit, OnDestroy {
     }
 
     const formValue = this.registroForm.value;
-    const usuario = this.entityType === 'usuario' 
-      ? { nombre: formValue.nombre, correo: formValue.correo, password: formValue.password, tipoUsuario: 'usuario' }
-      : { nombreEmpresa: formValue.nombreEmpresa, correo: formValue.correo, password: formValue.password, eRut: formValue.eRut, rut: formValue.rut, nombreRepresentante: formValue.nombreRepresentante, rutRepresentante: formValue.rutRepresentante, tipoUsuario: 'empresa' };
+
+    // Construir el objeto de usuario según el tipo
+    const usuario = {
+      tipoUsuario: this.entityType,
+      correo: formValue.correo,
+      password: formValue.password,
+      ...this.getDynamicFields(formValue)
+    };
 
     console.log('Datos de Registro:', usuario);
+    console.log('Archivo ERUT:', formValue.eRut);
 
     // Aquí se enviaría el formulario al backend
     this.isLoading = false;
+  }
+
+  // Obtener campos dinámicos basados en el tipo de entidad
+  getDynamicFields(formValue: any): any {
+    const dynamicFields: any = {};
+    if (this.preguntas[this.entityType]) {
+      this.preguntas[this.entityType].forEach(question => {
+        if (question.type !== 'file') {
+          dynamicFields[question.name] = formValue[question.name];
+        } else {
+          dynamicFields[question.name] = formValue[question.name]; // Archivo
+        }
+      });
+    }
+    return dynamicFields;
   }
 
   // Resetear el formulario

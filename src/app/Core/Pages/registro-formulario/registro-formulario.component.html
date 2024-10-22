@@ -1,109 +1,114 @@
 <div class="registro-formulario">
   <div class="content">
-      <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
-        <mat-card class="account-card">
-          <mat-card-title>Registro de {{ entityType }}</mat-card-title>
-            <mat-card-content>
+    <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+      <mat-card class="account-card">
+        <mat-card-title>Registro de {{ entityType | titlecase }}</mat-card-title>
+        <mat-card-content>
 
-            <!-- Campos para Usuario -->
-            <div *ngIf="entityType === 'Persona'">
-              <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Nombre</mat-label>
-                <input matInput formControlName="nombre" placeholder="Ingresa tu nombre">
-                <mat-error *ngIf="registroForm.get('nombre')?.hasError('required')">
-                  El nombre es obligatorio
-                </mat-error>
-              </mat-form-field>
+          <!-- Campos Dinámicos -->
+          <ng-container *ngIf="preguntas[entityType]">
+            <div *ngFor="let question of preguntas[entityType]">
+              <!-- Campo de texto -->
+              <ng-container *ngIf="question.type === 'text'">
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>{{ question.label }}</mat-label>
+                  <input matInput [formControlName]="question.name" [placeholder]="question.label">
+                  <mat-error *ngIf="registroForm.get(question.name)?.hasError('required')">
+                    {{ question.label }} es obligatorio
+                  </mat-error>
+                </mat-form-field>
+              </ng-container>
+
+              <!-- Campo de archivo (fuera de mat-form-field) -->
+              <ng-container *ngIf="question.type === 'file'">
+                <div class="file-input-container">
+                  <label>{{ question.label }}</label>
+                  <input type="file" (change)="onFileChange($event, question.name)" accept="application/pdf">
+                  <mat-error *ngIf="registroForm.get(question.name)?.hasError('required')">
+                    {{ question.label }} es obligatorio
+                  </mat-error>
+                  <mat-error *ngIf="registroForm.get(question.name)?.hasError('fileType')">
+                    Solo se permiten archivos PDF
+                  </mat-error>
+                  <mat-error *ngIf="registroForm.get(question.name)?.hasError('fileSize')">
+                    El archivo no debe exceder los 2MB
+                  </mat-error>
+                </div>
+              </ng-container>
+
+              <!-- Campo de valoración -->
+              <ng-container *ngIf="question.type === 'rating'">
+                <div class="rating-container">
+                  <label>{{ question.label }}</label>
+                  <div class="stars"
+                       (mouseleave)="leaveRating(question.name)">
+                    <mat-icon
+                      *ngFor="let star of [1, 2, 3, 4, 5]"
+                      [ngClass]="{'active': star <= getRating(question.name)}"
+                      (click)="setRating(question.name, star)"
+                      (mouseenter)="hoverRating(question.name, star)"
+                      [attr.aria-label]="'Calificación de ' + star + ' estrellas'"
+                      [attr.role]="'button'"
+                      [attr.tabindex]="'0'"
+                    >
+                      {{ star <= getRating(question.name) ? 'star' : 'star_border' }}
+                    </mat-icon>
+                  </div>
+                  <mat-error *ngIf="registroForm.get(question.name)?.hasError('required')">
+                    {{ question.label }} es obligatorio
+                  </mat-error>
+                </div>
+              </ng-container>
             </div>
+          </ng-container>
 
-            <!-- Campos para Empresa -->
-            <div *ngIf="entityType === 'Empresa' || entityType === 'Proveedor'">
-              <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Nombre de la Empresa</mat-label>
-                <input matInput formControlName="nombreEmpresa" placeholder="Ingresa el nombre de la empresa">
-                <mat-error *ngIf="registroForm.get('nombreEmpresa')?.hasError('required')">
-                  El nombre de la empresa es obligatorio
-                </mat-error>
-              </mat-form-field>
+          <!-- Campos Comunes -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Correo Electrónico</mat-label>
+            <input matInput formControlName="correo" placeholder="Ingresa tu correo">
+            <mat-error *ngIf="registroForm.get('correo')?.hasError('required')">
+              El correo es obligatorio
+            </mat-error>
+            <mat-error *ngIf="registroForm.get('correo')?.hasError('email')">
+              Ingresa un correo electrónico válido
+            </mat-error>
+          </mat-form-field>
 
-              <mat-form-field appearance="outline" class="full-width">
-                <mat-label>RUT de la Empresa</mat-label>
-                <input matInput formControlName="rut" placeholder="Ingresa el RUT de la empresa">
-                <mat-error *ngIf="registroForm.get('rut')?.hasError('required')">
-                  El RUT es obligatorio
-                </mat-error>
-                <mat-error *ngIf="registroForm.get('rut')?.hasError('rutInvalid')">
-                  El RUT ingresado es inválido
-                </mat-error>
-              </mat-form-field>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Contraseña</mat-label>
+            <input matInput type="password" formControlName="password" placeholder="Ingresa tu contraseña">
+            <mat-error *ngIf="registroForm.get('password')?.hasError('required')">
+              La contraseña es obligatoria
+            </mat-error>
+            <mat-error *ngIf="registroForm.get('password')?.hasError('passwordStrength')">
+              La contraseña debe tener al menos 8 caracteres, incluir mayúsculas, minúsculas, números y caracteres especiales
+            </mat-error>
+          </mat-form-field>
 
-              <mat-form-field appearance="outline" class="full-width">
-                <mat-label>URL del Documento ERUT</mat-label>
-                <input matInput formControlName="eRut" placeholder="Ingresa la URL del ERUT">
-                <mat-error *ngIf="registroForm.get('eRut')?.hasError('required')">
-                  La URL del ERUT es obligatoria
-                </mat-error>
-                <mat-error *ngIf="registroForm.get('eRut')?.hasError('pattern')">
-                  Ingresa una URL válida que apunte a un documento PDF
-                </mat-error>
-              </mat-form-field>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Confirmar Contraseña</mat-label>
+            <input matInput type="password" formControlName="confirmPassword" placeholder="Reingresa tu contraseña">
+            <mat-error *ngIf="registroForm.get('confirmPassword')?.hasError('required')">
+              Confirmar contraseña es obligatorio
+            </mat-error>
+            <mat-error *ngIf="registroForm.hasError('passwordsMismatch')">
+              Las contraseñas no coinciden
+            </mat-error>
+          </mat-form-field>
 
-              <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Nombre del Representante</mat-label>
-                <input matInput formControlName="nombreRepresentante" placeholder="Ingresa el nombre del representante">
-                <mat-error *ngIf="registroForm.get('nombreRepresentante')?.hasError('required')">
-                  El nombre del representante es obligatorio
-                </mat-error>
-              </mat-form-field>
+        </mat-card-content>
+      </mat-card>
 
-              <mat-form-field appearance="outline" class="full-width">
-                <mat-label>RUT del Representante</mat-label>
-                <input matInput formControlName="rutRepresentante" placeholder="Ingresa el RUT del representante">
-                <mat-error *ngIf="registroForm.get('rutRepresentante')?.hasError('required')">
-                  El RUT del representante es obligatorio
-                </mat-error>
-                <mat-error *ngIf="registroForm.get('rutRepresentante')?.hasError('rutInvalid')">
-                  El RUT ingresado es inválido
-                </mat-error>
-              </mat-form-field>
-            </div>
-
-            <!-- Campos Comunes -->
-            <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Correo Electrónico</mat-label>
-              <input matInput formControlName="correo" placeholder="Ingresa tu correo">
-              <mat-error *ngIf="registroForm.get('correo')?.hasError('required')">
-                El correo es obligatorio
-              </mat-error>
-              <mat-error *ngIf="registroForm.get('correo')?.hasError('email')">
-                Ingresa un correo electrónico válido
-              </mat-error>
-            </mat-form-field>
-
-            <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Contraseña</mat-label>
-              <input matInput type="password" formControlName="password" placeholder="Ingresa tu contraseña">
-              <mat-error *ngIf="registroForm.get('password')?.hasError('required')">
-                La contraseña es obligatoria
-              </mat-error>
-              <mat-error *ngIf="registroForm.get('password')?.hasError('passwordStrength')">
-                La contraseña debe tener al menos 8 caracteres, incluir mayúsculas, minúsculas, números y caracteres especiales
-              </mat-error>
-            </mat-form-field>
-            
-            </mat-card-content>
-          </mat-card>
-
-          <!-- Botones de Acción -->
-          <div class="buttons">
-            <button class="volver-button" mat-button routerLink="/registro" (click)="onReset()">
-              Volver
-            </button>
-            <button mat-flat-button class="registrar-button" type="submit" [disabled]="isLoading" (click)="onSubmit()">
-              <mat-icon>save</mat-icon>
-              Registrar
-            </button>
-          </div>
-        </form>
+      <!-- Botones de Acción -->
+      <div class="buttons">
+        <button class="volver-button" mat-button routerLink="/registro" (click)="onReset()">
+          Volver
+        </button>
+        <button mat-flat-button class="registrar-button" type="submit" [disabled]="isLoading">
+          <mat-icon>save</mat-icon>
+          Registrar
+        </button>
+      </div>
+    </form>
   </div>
 </div>
