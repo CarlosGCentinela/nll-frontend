@@ -38,12 +38,16 @@
       </form>
     </div>
     <div class="buttons-general">
-      <button mat-button class="btn-secondary" routerLink="/">Volver</button>
+      <button mat-button routerLink="/">
+        Volver
+      </button>
       <div class="button-container">
-        <button mat-flat-button color="primary" type="submit" [disabled]="isLoading" (click)="onSubmit()">
+        <button mat-flat-button color="primary" routerLink="/registro" type="submit" [disabled]="isLoading">
+          <mat-icon>person_add</mat-icon>
           Crear cuenta
         </button>
-        <button mat-flat-button color="accent" type="submit" [disabled]="isLoading" (click)="onSubmit()">
+        <button mat-flat-button color="primary" type="submit" [disabled]="isLoading" (click)="onSubmit()">
+          <mat-icon>login</mat-icon>
           Acceder
         </button>
       </div>

@@ -1,0 +1,83 @@
+.registro-formulario {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-image: url('/assets/img-fondo.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  .content {
+    flex: 1;
+    padding: 12px;
+    align-content: center;
+    align-self: center;
+  }
+
+  .buttons{
+    .volver-button{
+      color: var(--primary-color);
+      background-color: var(--background-color-blur);
+      -webkit-backdrop-filter: blur(17px);
+      backdrop-filter: blur(17px);
+    }
+    .registrar-button{
+      background-color: var(--primary-color);
+    }
+  }
+
+  .account-card {
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeIn 0.6s ease-out forwards;
+    background-color: var(--background-color-blur);
+    backdrop-filter: blur(17px);
+
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+    }
+  
+    mat-card-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-align: center;
+      color: var(--primary-color);
+    }
+  
+    mat-form-field {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+  
+    .full-width {
+      width: 100%;
+    }
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  
+    button {
+      width: 48%;
+    }
+  }
+  
+  /* Animación de Fade-In */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+  
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

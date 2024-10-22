@@ -1,4 +1,3 @@
-// general.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError, of, BehaviorSubject } from 'rxjs';
@@ -9,12 +8,11 @@ import { catchError, delay, tap } from 'rxjs/operators';
 })
 export class GeneralService {
 
-  private apiUrl = 'http://localhost:3000/api'; // URL base de tu API
+  private apiUrl = 'http://webapi.nuevoloslagos.org/api'; // URL base de la API
 
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
-      // Puedes añadir más cabeceras si es necesario
     })
   };
 
@@ -28,6 +26,7 @@ export class GeneralService {
     this.isLoggedInSubject.next(!!token);
   }
 
+  // Manejar los errores de la API
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.error('Ocurrió un error:', error.error.message);
@@ -36,10 +35,10 @@ export class GeneralService {
         `Backend retornó código ${error.status}, ` +
         `cuerpo del error: ${error.error}`);
     }
-    return throwError(
-      'Algo salió mal; por favor, intenta de nuevo más tarde.');
+    return throwError('Algo salió mal; por favor, intenta de nuevo más tarde.');
   }
 
+  // Obtener datos de la API
   getData(endpoint: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${endpoint}`, this.httpOptions)
       .pipe(
@@ -47,6 +46,7 @@ export class GeneralService {
       );
   }
 
+  // Enviar datos a la API
   postData(endpoint: string, data: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/${endpoint}`, data, this.httpOptions)
       .pipe(
@@ -54,6 +54,7 @@ export class GeneralService {
       );
   }
 
+  // Actualizar datos en la API
   updateData(endpoint: string, id: number | string, data: any): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}/${endpoint}/${id}`, data, this.httpOptions)
       .pipe(
@@ -61,6 +62,7 @@ export class GeneralService {
       );
   }
 
+  // Eliminar datos de la API
   deleteData(endpoint: string, id: number | string): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/${endpoint}/${id}`, this.httpOptions)
       .pipe(
@@ -68,13 +70,18 @@ export class GeneralService {
       );
   }
 
+  // Lógica común para manejar el token y actualizar estado de autenticación
+  private manejarToken(token: string): void {
+    localStorage.setItem('authToken', token);
+    this.isLoggedInSubject.next(true);
+  }
+
   // Método de login real
   login(data: any): Observable<any> {
     return this.postData('login', data).pipe(
       tap(response => {
         if (response.token) {
-          localStorage.setItem('authToken', response.token);
-          this.isLoggedInSubject.next(true);
+          this.manejarToken(response.token);
         }
       }),
       catchError(this.handleError)
@@ -83,21 +90,18 @@ export class GeneralService {
 
   // Método de login simulado
   mockLogin(data: any): Observable<any> {
-    // Simula una validación de credenciales
     const { email, password } = data;
     if (email === 'test@example.com' && password === 'password') {
-      // Simula un token JWT
       const simulatedToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'; 
       return of({ token: simulatedToken }).pipe(
-        delay(1000), // Simula un retardo de 1 segundo
+        delay(1000),
         tap(response => {
-          localStorage.setItem('authToken', response.token);
-          this.isLoggedInSubject.next(true);
+          this.manejarToken(response.token);
         })
       );
     } else {
       return throwError('Credenciales inválidas').pipe(
-        delay(1000) // Simula un retardo de 1 segundo
+        delay(1000)
       );
     }
   }

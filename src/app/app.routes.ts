@@ -6,11 +6,27 @@ import { HomeComponent } from './Core/Pages/home/home.component';
 import { ModeloComponent } from './Core/Pages/modelo/modelo.component';
 import { BuscadorComponent } from './Core/Pages/buscador/buscador.component';
 import { BuscadorDetalleComponent } from './Core/Pages/buscador-detalle/buscador-detalle.component';
+import { RegistroFormularioComponent } from './Core/Pages/registro-formulario/registro-formulario.component';
 
 export const routes: Routes = [
   // Rutas que no incluyen el sidebar ni el navbar
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
+
+  //formulario de registro, usa el mismo componente
+  { path: 'registro-persona',
+    component: RegistroFormularioComponent,
+    data: { entityType: 'Persona'}
+  },
+  { path: 'registro-empresa',
+    component: RegistroFormularioComponent,
+    data: { entityType: 'Empresa'}
+  },
+  { path: 'registro-proveedor',
+    component: RegistroFormularioComponent,
+    data: { entityType: 'Proveedor'}
+  },
+
 
   // Ruta principal que incluye el sidebar y el navbar
   { 
