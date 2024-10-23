@@ -51,11 +51,23 @@ button:active {
   height: 30px;
   font-size: 20px;
   background-color: var(--primary-color) ;
-  border-radius: 50%;
+  border-radius: 25%;
   color: white;
   border: none;
   cursor: pointer;
 }
 .container-lead{
   padding: 40px 0px;
+}
+
+mat-divider{
+  border-top-color: white;
+  margin: 30px;
+}
+
+.only-mobile{
+  visibility: hidden;
+  @media (max-width: 770px) {
+    visibility: visible;
+  }
 }

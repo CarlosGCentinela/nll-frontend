@@ -91,14 +91,14 @@ export const routes: Routes = [
 
       // Rutas para 'financiamiento-empleo'
       {
-        path: 'financiamiento-empleo',
+        path: 'financiamiento',
         component: BuscadorComponent,
-        data: { entityType: 'financiamiento-empleo', name: 'Financiamiento y empleo' }
+        data: { entityType: 'financiamiento', name: 'Financiamiento' }
       },
       {
-        path: 'financiamiento-empleo/:id',
+        path: 'financiamiento/:id',
         component: BuscadorDetalleComponent,
-        data: { entityType: 'financiamiento-empleo', name: 'Financiamiento y empleo' }
+        data: { entityType: 'financiamiento', name: 'Financiamiento' }
       },
     ],
   },

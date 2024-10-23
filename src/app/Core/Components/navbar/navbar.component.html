@@ -23,52 +23,15 @@
       <mat-icon>star</mat-icon>
       <span>Casos de Éxitos</span>
     </li>
-    <li routerLink="/financiamiento-empleo" routerLinkActive="active">
+    <li routerLink="/financiamiento" routerLinkActive="active">
       <mat-icon>attach_money</mat-icon>
-      <span>Financiamiento y Empleo</span>
+      <span>Financiamiento</span>
     </li>
     <li routerLink="/articulos" routerLinkActive="active">
       <mat-icon>article</mat-icon>
       <span>Artículos de interés</span>
     </li>
   </ul>
-  
-  <!-- Menú desplegable para pantallas pequeñas -->
-  <div class="dropdown-menu">
-    <button class="dropdown-toggle" (click)="toggleDropdown()">
-      <mat-icon>arrow_drop_down</mat-icon>
-    </button>
-    <ul *ngIf="isDropdownOpen">
-      <li routerLink="/quienes-somos" routerLinkActive="active">
-        <mat-icon>info</mat-icon>
-        <span>Quienes somos</span>
-      </li>
-      <li>
-        <mat-icon>assessment</mat-icon>
-        <span>Modelo de diagnóstico</span>
-      </li>
-      <li>
-        <mat-icon>book</mat-icon>
-        <span>Cursos</span>
-      </li>
-      <li>
-        <mat-icon>business</mat-icon>
-        <span>Proveedores</span>
-      </li>
-      <li>
-        <mat-icon>star</mat-icon>
-        <span>Casos de Éxitos</span>
-      </li>
-      <li>
-        <mat-icon>attach_money</mat-icon>
-        <span>Financiamiento y Empleo</span>
-      </li>
-      <li>
-        <mat-icon>article</mat-icon>
-        <span>Artículos de interés</span>
-      </li>
-    </ul>
-  </div>
   
   <button class="menu-toggle" *ngIf="!isLoggedIn" (click)="onToggleSidebar()">
     <mat-icon>menu</mat-icon>

@@ -6,11 +6,12 @@ import { SidebarService } from '../../../Services/sidebar.service.ts/sidebar.ser
 import { Subscription, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { GeneralService } from '../../../Services/general.service';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [CommonModule, RouterLink, RouterLinkActive, MatIconModule],
+  imports: [CommonModule, MatDividerModule, RouterLink, RouterLinkActive, MatIconModule],
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
 })
@@ -18,6 +19,18 @@ export class SidebarComponent implements OnInit, OnDestroy {
   isOpen = false; // Controla el estado abierto/cerrado del sidebar
   isLoggedIn = false; // controla el estado de la  autenticacion
   menuOptions: any[] = [];
+  menuNavbar = [
+    { label: 'Quienes somos', icon: 'info', routerLink: '/quienes-somos' },
+    { label: 'Modelo de diagnóstico', icon: 'assessment', routerLink: '/modelo' },
+    { label: 'Cursos', icon: 'book', routerLink: '/cursos' },
+    { label: 'Proveedores', icon: 'business', routerLink: '/proveedores' },
+    { label: 'Casos de Éxitos', icon: 'star', routerLink: '/casos-exito' },
+    { label: 'Financiamiento', icon: 'attach_money', routerLink: '/financiamiento' },
+    { label: 'Artículos de interés', icon: 'article', routerLink: '/articulos' }
+  ];
+  menuBotton = [
+    { label: 'Cerrar Sesión', icon: 'logout', action: 'logout' },
+  ]
 
   private destroy$ = new Subject<void>(); // Utilizado para manejar la desuscripción
   
@@ -57,7 +70,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
         { label: 'Crear Empleo', icon: 'work', routerLink: '/crear-empleo' },
         { label: 'Crear Artículo de Interés', icon: 'article', routerLink: '/crear-articulo' },
         { label: 'Crear Caso de Éxito', icon: 'star', routerLink: '/crear-caso-exito' },
-        { label: 'Cerrar Sesión', icon: 'logout', action: 'logout' },
       ];
     } else {
       this.menuOptions = [
