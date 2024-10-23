@@ -5,6 +5,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-modelo',
@@ -15,12 +16,15 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatDividerModule,
     MatIconModule,
     MatListModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatButtonModule,
   ],
   templateUrl: './modelo.component.html',
   styleUrl: './modelo.component.scss'
 })
 export class ModeloComponent {
+  estado: string='incompleto'; //completo - incompleto - ''
+
   puntaje = {
     general:{
       letra: "A",
