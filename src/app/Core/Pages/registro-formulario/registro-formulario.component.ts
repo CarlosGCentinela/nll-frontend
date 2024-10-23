@@ -53,6 +53,11 @@ export class RegistroFormularioComponent implements OnInit, OnDestroy {
   entityType: string = '';
   registroForm: FormGroup;
   isLoading = false;
+  isPassMatch = false;
+
+  // Propiedades para manejar la visibilidad de las contraseñas
+  hidePassword: boolean = true;
+  hideConfirmPassword: boolean = true;
 
   // Propiedad para manejar el hover de las estrellas
   hoverRatings: { [key: string]: number } = {};
@@ -298,7 +303,8 @@ export class RegistroFormularioComponent implements OnInit, OnDestroy {
   passwordMatchValidator(group: FormGroup): ValidationErrors | null {
     const password = group.get('password')?.value;
     const confirmPassword = group.get('confirmPassword')?.value;
-    return password === confirmPassword ? null : { passwordsMismatch: true };
+    const isValid = password === confirmPassword;
+    return isValid ? null : { passwordsMismatch: true };
   }
 
   // Manejar la subida del archivo ERUT
@@ -334,8 +340,18 @@ export class RegistroFormularioComponent implements OnInit, OnDestroy {
     this.hoverRatings[questionName] = this.registroForm.get(questionName)?.value || 0;
   }
 
+  // Métodos para alternar la visibilidad de las contraseñas
+  togglePasswordVisibility(): void {
+    this.hidePassword = !this.hidePassword;
+  }
+
+  toggleConfirmPasswordVisibility(): void {
+    this.hideConfirmPassword = !this.hideConfirmPassword;
+  }
+
   // Manejar el envío del formulario
   onSubmit(): void {
+    console.log(this.registroForm, this.registroForm.hasError('passwordsMismatch'))
     this.isLoading = true;
     if (this.registroForm.invalid) {
       this.registroForm.markAllAsTouched();

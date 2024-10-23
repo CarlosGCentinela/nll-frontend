@@ -8,6 +8,9 @@
   -webkit-backdrop-filter: blur(17px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 
+  @media (max-width: 480px) {
+    margin: 0px;
+  }
   .title {
     color: var(--primary-color);
     font-size: 28px;
@@ -68,6 +71,10 @@
     .mat-expansion-panel-header {
       background-color: var(--primary-color);
       color: #fff;
+      
+      @media (max-width: 480px) {
+        height: auto;
+      }
     }
 
     .mat-expansion-panel-content {
