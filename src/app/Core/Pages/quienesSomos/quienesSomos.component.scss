@@ -7,6 +7,11 @@
   backdrop-filter: blur(17px);
   -webkit-backdrop-filter: blur(17px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  max-width: 900px;
+
+  .header-container{
+    display: flow;
+  }
 
   @media (max-width: 480px) {
     margin: 0px;
@@ -15,16 +20,19 @@
     color: var(--primary-color);
     font-size: 28px;
     font-weight: 600;
+    align-self: center;
   }
 
   .subtitle {
     color: var(--secondary-color);
     font-size: 18px;
     margin-top: 4px;
+    align-self: center;
   }
 
   .section {
     margin-top: 20px;
+    max-width: 700px;
 
     h2 {
       color: var(--primary-color);
@@ -61,6 +69,7 @@
   mat-divider {
     margin: 20px 0;
     border-color: var(--secondary-color);
+    max-width: 700px;
   }
 
   mat-expansion-panel {

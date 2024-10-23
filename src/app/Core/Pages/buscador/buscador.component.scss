@@ -50,7 +50,6 @@
     }
 
     mat-card-subtitle{
-      max-width: 80vw;
       font-weight: 600;
       color: var(--text-color);
     }
@@ -77,6 +76,7 @@
 
   .resultado {
     border-top: 1px solid #ccc;
+    text-align-last: left;
 
     mat-card {
       margin-bottom: 10px;
