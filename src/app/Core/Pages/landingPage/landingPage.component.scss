@@ -74,10 +74,12 @@
   }
 
   .articles-container{
-    display: ruby;
+    display: flex;
+    @media (max-width: 768px) {
+      display: ruby;
+    }
   }
 
   .card-size{
-    width: 330px;
     display: flex;
   }
