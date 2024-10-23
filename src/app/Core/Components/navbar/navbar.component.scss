@@ -19,6 +19,9 @@ nav {
 
 .logo {
   font-weight: bold;
+  height: 40px;
+  align-content: center;
+  cursor: pointer;
 }
 
 .main-menu {
@@ -34,6 +37,10 @@ nav {
   align-items: center;
   margin: 0 10px;
   cursor: pointer;
+  transition: transform 0.3s ease,;
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
 .main-menu mat-icon {
