@@ -1,1 +1,40 @@
-<p>modelo works!</p>
+<mat-card class="modelo-container">
+  <mat-card-title class="title">
+    Plataforma Inteligente Nuevo Los Lagos
+  </mat-card-title>
+    <mat-card-subtitle class="subtitle">
+      Fortalecimiento del ecosistema de Manufactura Avanzada e i4.0
+    </mat-card-subtitle>
+  <section>
+    <div class="modelo-general">
+      <mat-card appearance="outlined">
+        <mat-card-title>A</mat-card-title>
+        <mat-card-subtitle>Puntuacíon</mat-card-subtitle>
+      </mat-card>
+      <mat-card-content>
+        <p>
+          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+          bred for hunting.
+        </p>
+      </mat-card-content>
+    </div>
+    <div class="modelo-categoria">
+      <div class="categoria" *ngFor="let item of puntaje.categoria">
+        <mat-card appearance="outlined">
+          <mat-card-title>{{item.letra}}</mat-card-title>
+        </mat-card>
+        <mat-expansion-panel >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{item.categoria}}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>
+            {{item.descripcion}}
+          </p>
+        </mat-expansion-panel>
+      </div>
+    </div>
+  </section>
+</mat-card>

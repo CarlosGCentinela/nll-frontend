@@ -1,7 +1,8 @@
+<!-- buscador.component.html -->
 <mat-card class="buscador-container">
-  <mat-card-header >
+  <mat-card-header>
     <mat-card-title class="title">
-      <p  routerLink="/" routerLinkActive="active">Inicio</p>
+      <p routerLink="/" routerLinkActive="active">Inicio</p>
       <p>/</p>
       {{name}}
     </mat-card-title>
@@ -31,10 +32,12 @@
 
   <h2>Resultados de búsqueda:</h2>
   <div class="resultado" *ngFor="let resultado of items">
-    <app-article-card
-          [title]="resultado.title"
-          [description]="resultado.description">
-        </app-article-card>
+    <a [routerLink]="['/', entityType, getRouteParam(resultado.id, resultado.title)]" class="resultado-link">
+      <app-article-card
+        [title]="resultado.title"
+        [description]="resultado.description">
+      </app-article-card>
+    </a>
   </div>
 
   <button mat-raised-button color="primary" class="listar-todos">Listar todos los de la categoría</button>

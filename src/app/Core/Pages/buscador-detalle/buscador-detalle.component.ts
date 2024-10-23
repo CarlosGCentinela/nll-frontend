@@ -35,7 +35,8 @@ export class BuscadorDetalleComponent implements OnInit, OnDestroy {
         this.id = params.get('id') || '';
         this.loadDetail();
       });
-  }
+      console.log(this.entityType,this.id)
+    }
 
   loadDetail(): void {
     if (this.entityType && this.id) {
