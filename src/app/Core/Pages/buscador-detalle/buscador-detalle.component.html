@@ -1,3 +1,57 @@
-<p>buscador-detalle works!</p>
-<h4>{{entityType}}</h4>
-<h4>{{id}}</h4>
+<div class="detalle-container">
+  <mat-card-header>
+    <mat-card-title class="title">
+      <p routerLink="/" routerLinkActive="active">
+        Inicio
+      </p>
+      <p>/</p>
+      <p  routerLink="/{{entityType}}" routerLinkActive="active">
+      {{entityName}}
+      <p>/</p>
+      {{idParam}}
+    </mat-card-title>
+  </mat-card-header>
+  <section *ngIf="estado===''">
+    <div class="modelo-general">
+      <mat-card appearance="outlined">
+        <mat-card-subtitle>
+          Imagen
+        </mat-card-subtitle>
+      </mat-card>
+      <mat-card-content *ngIf="itemDetails?.link">
+        <button mat-fab class="link-button" (click)="openLink()" extended>
+          <mat-icon class="animated-icon">link</mat-icon>
+          Completa aquí
+        </button>
+      </mat-card-content>
+    </div>
+    <div class="modelo-categoria">
+      <mat-card-header>
+        <mat-card-title>{{ itemDetails?.titulo }}</mat-card-title>
+        <mat-card-subtitle *ngIf="itemDetails?.fecha">
+          {{ itemDetails?.fecha | date }}
+        </mat-card-subtitle>
+      </mat-card-header>
+      <div class="categoria">
+        <mat-card-content>
+          <!-- Para Artículos y Casos de Éxito -->
+          <p *ngIf="(entityType === 'articulos' || entityType === 'casos-exito') && itemDetails?.resumen">
+            {{ itemDetails?.resumen }}
+          </p>
+      
+          <!-- Para Cursos -->
+          <div *ngIf="entityType === 'cursos'">
+            <p *ngIf="itemDetails?.descripcion">{{ itemDetails?.descripcion }}</p>
+            <p *ngIf="itemDetails?.modalidad">Modalidad: {{ itemDetails?.modalidad }}</p>
+            <p *ngIf="itemDetails?.duracion">Duración: {{ itemDetails?.duracion }}</p>
+            <p *ngIf="itemDetails?.pagado !== undefined">Pagado: {{ itemDetails?.pagado ? 'Sí' : 'No' }}</p>
+            <p *ngIf="itemDetails?.textos_claves">Palabras clave: {{ itemDetails?.textos_claves }}</p>
+          </div>
+        </mat-card-content>
+      </div>
+    </div>
+  </section>
+  
+  <section *ngIf="estado==='notfound'">
+  </section>
+</div>

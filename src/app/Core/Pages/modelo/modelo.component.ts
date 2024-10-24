@@ -28,7 +28,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './modelo.component.scss'
 })
 export class ModeloComponent {
-  estado: string=''; //completo - incompleto - ''
+  estado: string='incompleto'; //completo - incompleto - ''
 
   mySlides: Slide[] = [
     {

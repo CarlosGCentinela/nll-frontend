@@ -11,9 +11,8 @@
   <div class="search-bar">
     <mat-form-field appearance="outline" class="search-field">
       <mat-label>Buscar...</mat-label>
-      <input matInput type="text" placeholder="Buscar..." />
-    </mat-form-field>
-    <button mat-fab class="search-button">
+      <input matInput type="text" placeholder="Buscar..." [(ngModel)]="searchTerm" (keyup.enter)="onSearch()" />    </mat-form-field>
+    <button mat-fab class="search-button" (click)="onSearch()">
       <mat-icon>search</mat-icon>
     </button>
   </div>
@@ -22,7 +21,7 @@
     <mat-card-subtitle>Recomendados según tu modelo de madurez tecnológico:</mat-card-subtitle>
     <div class="recomendacion-box">
       <div class="recomendacion" *ngFor="let recomendacion of recomendaciones">
-        <app-article-card
+        <app-article-card [routerLink]="['/', entityType, getRouteParam(recomendacion.id, recomendacion.title)]"
           [title]="recomendacion.title"
           [description]="recomendacion.description">
         </app-article-card>
@@ -33,9 +32,7 @@
   <h2>Resultados de búsqueda:</h2>
   <div class="resultado" *ngFor="let resultado of items">
     <a [routerLink]="['/', entityType, getRouteParam(resultado.id, resultado.title)]" class="resultado-link">
-      <app-article-card
-        [title]="resultado.title"
-        [description]="resultado.description">
+      <app-article-card [title]="resultado.title" [description]="resultado.description">
       </app-article-card>
     </a>
   </div>
