@@ -62,8 +62,18 @@
   </section>
 
   <!--Cuando no ha logeado o no corresponde a empresa 4.0-->
-  <section *ngIf="estado===''">
-    <p>no aaplica</p>
-  </section>
+  <div class="hero" *ngIf="estado===''">
+    <app-carousel [slides]="mySlides" [showIndicators]="false" [showArrows]="false"></app-carousel>
+    <mat-card-content>
+      <button mat-fab class="link-button" routerLink="/registro-proveedor" extended>
+        <mat-icon class="animated-icon">link</mat-icon>
+        Registro Proveedores
+      </button>
+      <button mat-fab class="link-button" routerLink="/registro-empresa" extended>
+        <mat-icon class="animated-icon">link</mat-icon>
+        Registro Empresa
+      </button>
+    </mat-card-content>
+  </div>
 
 </mat-card>

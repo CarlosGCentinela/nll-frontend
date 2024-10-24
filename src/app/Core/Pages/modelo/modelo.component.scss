@@ -160,4 +160,33 @@
       }
     }
   }
+
+  .hero{
+    gap: 24px;
+    display: grid;
+
+    button{
+      color: #fff;
+      background-color: var(--primary-color);
+
+      width: 200px;
+      @media (max-width: 670px) {
+        margin-top: 12px;
+      }
+    }
+
+    mat-card-content{
+      gap: 22px;
+      display: flex;
+      justify-content: center;
+
+      @media (max-width: 670px) {
+        display: ruby;
+      }
+    }
+
+    app-carousel{
+      height: 540px;
+    }
+  }
 }
