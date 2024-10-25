@@ -1,24 +1,18 @@
 # Etapa 1: Construcción de la aplicación
-FROM node:20-alpine AS build
+FROM node:20-alpine
 
 WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install
-
 COPY . .
 
-RUN npm run build --prod
+RUN npm install
 
 # Etapa 2: Servir la aplicación con Nginx
-FROM nginx:alpine
+EXPOSE 4200
 
-COPY --from=build /app/dist/nll-frontend/browser /usr/share/nginx/html
-
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["npm","run", "start"]
 
 
 #solo subimos el build de angular, que es el cod reducido
