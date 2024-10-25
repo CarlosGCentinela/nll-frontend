@@ -1,0 +1,35 @@
+name: Build and Deploy to Docker Hub
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Docker tag
+        id: docker_tag
+        run: |
+          # Set timezone to Santiago, Chile
+          sudo timedatectl set-timezone America/Santiago
+          # Format the timestamp as dd-mm-yyyy hh:mm
+          timestamp=$(date +'%d-%m-%Y_%H-%M')
+          echo "tag=$timestamp" >> $GITHUB_ENV
+
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Build Docker image
+        run: |
+          docker build -t krlosaa/nll-frontend:${{ env.tag }} -t krlosaa/nll-frontend:latest .
+
+      - name: Push Docker image
+        run: |
+          docker push krlosaa/nll-frontend:${{ env.tag }}
+          docker push krlosaa/nll-frontend:latest
+
