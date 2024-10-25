@@ -1,4 +1,3 @@
-// buscador-detalle.component.ts
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -7,20 +6,19 @@ import { GeneralService } from '../../../Services/general.service';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { Articulo } from '../../Models/articulo.model';
-import { CasoExito } from '../../Models/casoExito.model';
-import { Curso } from '../../Models/curso.model';
 import { MatButtonModule } from '@angular/material/button';
+import { TruncatePipe } from '../../Pipe/truncate.pipe';
 
 @Component({
   selector: 'app-buscador-detalle',
   standalone: true,
   imports: [
-    CommonModule, 
-    MatCardModule, 
+    CommonModule,
+    MatCardModule,
     MatIconModule,
     MatButtonModule,
-    RouterLink
+    RouterLink,
+    TruncatePipe
   ],
   templateUrl: './buscador-detalle.component.html',
   styleUrls: ['./buscador-detalle.component.scss']
@@ -28,11 +26,12 @@ import { MatButtonModule } from '@angular/material/button';
 export class BuscadorDetalleComponent implements OnInit, OnDestroy {
   entityType: string = '';
   idParam: string = '';
-  entityName= '';
+  entityName = '';
   itemId: number = 0;
-  itemDetails: Articulo | CasoExito | Curso | any; // Puede ser cualquier tipo
+  itemDetails: any;
+  allItems: any[] = [];
   private unsubscribe$ = new Subject<void>();
-  estado='' // notfound, ''
+  estado = ''; // 'notfound' or ''
 
   constructor(
     private route: ActivatedRoute,
@@ -52,7 +51,7 @@ export class BuscadorDetalleComponent implements OnInit, OnDestroy {
       .subscribe(params => {
         this.idParam = params.get('id') || '';
         this.itemId = this.parseId(this.idParam);
-        this.loadDetail2();
+        this.loadDetail();
       });
   }
 
@@ -63,86 +62,135 @@ export class BuscadorDetalleComponent implements OnInit, OnDestroy {
 
   loadDetail(): void {
     if (this.entityType && this.itemId) {
-      const endpoint = `${this.entityType}/${this.itemId}`;
+      const endpoint = `${this.entityType}`;
       this.generalService.getData(endpoint).subscribe(
         data => {
-          this.itemDetails = data;
+          // Normalizamos las claves de los items
+          this.allItems = data.map(item => this.normalizeItemKeys(item));
+          const item = this.allItems.find((item: any) => this.getId(item) === this.itemId);
+          if (item) {
+            this.itemDetails = item;
+            console.log(item)
+            this.estado = '';
+          } else {
+            this.estado = 'notfound';
+          }
         },
         error => {
           console.error('Error al obtener detalles:', error);
-          // Datos de prueba
-          if (this.entityType === 'articulos') {
-            this.itemDetails = {
-              idArticulo: this.itemId,
-              titulo: 'Artículo de Prueba',
-              resumen: 'Resumen del artículo de prueba.',
-              fecha: '2023-10-01',
-              imagen: 'https://example.com/imagen.jpg',
-              link: 'https://example.com'
-            } as Articulo;
-          } else if (this.entityType === 'casos-exito') {
-            this.itemDetails = {
-              idCasoExito: this.itemId,
-              titulo: 'Caso de Éxito de Prueba',
-              resumen: 'Resumen del caso de éxito de prueba.',
-              fecha: '2023-10-01',
-              imagen: 'https://example.com/imagen.jpg',
-              link: 'https://example.com'
-            } as CasoExito;
-          } else if (this.entityType === 'cursos') {
-            this.itemDetails = {
-              idCurso: this.itemId,
-              titulo: 'Curso de Prueba',
-              descripcion: 'Descripción del curso de prueba.',
-              link: 'https://example.com',
-              textos_claves: 'clave1, clave2',
-              fecha_validacion: '2023-10-01',
-              modalidad: 'Online',
-              duracion: '20 horas',
-              pagado: false
-            } as Curso;
-          }
-          // Agregar lógica similar para 'proveedores' y 'financiamiento' si es necesario
+          this.estado = 'notfound';
         }
       );
     }
   }
 
-  loadDetail2(): void {
-    if (this.entityType && this.itemId) {
-      // Datos de prueba
-      if (this.entityType === 'articulos') {
-        this.itemDetails = {
-          idArticulo: this.itemId,
-          titulo: 'Artículo de Prueba',
-          resumen: 'Resumen del artículo de prueba.',
-          fecha: '2023-10-01',
-          imagen: 'https://example.com/imagen.jpg',
-          link: 'https://example.com'
-        } as Articulo;
-      } else if (this.entityType === 'casos-exito') {
-        this.itemDetails = {
-          idCasoExito: this.itemId,
-          titulo: 'Caso de Éxito de Prueba',
-          resumen: 'Resumen del caso de éxito de prueba.',
-          fecha: '2023-10-01',
-          imagen: 'https://example.com/imagen.jpg',
-          link: 'https://example.com'
-        } as CasoExito;
-      } else if (this.entityType === 'cursos') {
-        this.itemDetails = {
-          idCurso: this.itemId,
-          titulo: 'Curso de Prueba',
-          descripcion: 'Descripción del curso de prueba.',
-          link: 'https://example.com',
-          textos_claves: 'clave1, clave2',
-          fecha_validacion: '2023-10-01',
-          modalidad: 'Online',
-          duracion: '20 horas',
-          pagado: false
-        } as Curso;    
+  normalizeFieldName(fieldName: string): string {
+    return fieldName
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/\s+/g, '_')
+      .replace(/[^\w]/g, '');
+  }
+
+  normalizeItemKeys(item: any): any {
+    const normalizedItem: any = {};
+    for (const key in item) {
+      if (item.hasOwnProperty(key)) {
+        const normalizedKey = this.normalizeFieldName(key);
+        normalizedItem[normalizedKey] = item[key];
       }
     }
+    return normalizedItem;
+  }
+
+  getId(item: any): number | null {
+    if (!item) {
+      return null;
+    }
+
+    const idFieldMap: { [key: string]: string } = {
+      'articulos': 'id',
+      'financiamiento': 'id',
+      'proyectos': 'id',
+      'proveedores': 'id',
+      'cursos': 'id'
+    };
+
+    const idField = idFieldMap[this.entityType];
+
+    if (!idField) {
+      return null;
+    }
+
+    const id = item[idField] || null;
+    return id ? parseInt(id, 10) : null;
+  }
+
+  getTitle(item: any): string {
+    if (!item) return '';
+    const titleFields: { [key: string]: string } = {
+      'articulos': 'ttulo',
+      'financiamiento': 'ttulo',
+      'proyectos': 'tarea',
+      'proveedores': 'nombreproveedor',
+      'cursos': 'nombre_curso'
+    };
+    const titleField = titleFields[this.entityType];
+    return item[titleField] ?? '';
+  }
+
+  getImageUrl(item: any): string | null {
+    if (!item) return null;
+    const imageFields: { [key: string]: string } = {
+      'articulos': 'img',
+      'casos-exito': 'img',
+      // Añade otros entityType si tienen imágenes
+    };
+    const imageField = imageFields[this.entityType];
+    return item[imageField] ?? null;
+  }
+
+  getDate(item: any): Date | null {
+    if (!item) return null;
+    const dateFields: { [key: string]: string } = {
+      'articulos': 'fecha',
+      'financiamiento': 'fecha',
+      'proyectos': 'fecha',
+      'cursos': 'fecha_de_identificacion'
+    };
+    const dateField = dateFields[this.entityType];
+    const dateStr = item[dateField] ?? null;
+    return dateStr ? new Date(dateStr) : null;
+  }
+
+  getDescription(entityType: string, item: any): string {
+    if (!item) {
+      return '';
+    }
+
+    const descriptionFields: { [key: string]: string } = {
+      'articulos': 'resumen',
+      'financiamiento': 'descripcin',
+      'proyectos': 'solucion',
+      'proveedores': 'ofrece',
+      'cursos': 'descripcin'
+    };
+
+    if (entityType === 'proyectos') {
+      const solucion = item['solucion'] ?? '';
+      const resultado = item['resultado'] ?? '';
+      return `${solucion}\n\nResultado:\n${resultado}`;
+    }
+
+    const descriptionField = descriptionFields[entityType];
+
+    if (!descriptionField) {
+      console.warn(`EntityType no reconocido: ${entityType}`);
+      return '';
+    }
+
+    return item[descriptionField] ?? '';
   }
 
   ngOnDestroy(): void {
@@ -154,5 +202,21 @@ export class BuscadorDetalleComponent implements OnInit, OnDestroy {
     if (this.itemDetails?.link) {
       window.open(this.itemDetails.link, '_blank');
     }
+  }
+
+  getIconName(): string {
+    const iconMap: { [key: string]: string } = {
+      'quienes-somos': 'info',
+      'modelo': 'assessment',
+      'cursos': 'book',
+      'proveedores': 'business',
+      'proyectos': 'star',
+      'financiamiento': 'attach_money',
+      'articulos': 'article',
+      'casos-exito': 'star', // Puedes ajustar este ícono si es necesario
+      // Añade otros entityType y sus respectivos íconos
+      'default': 'insert_photo'
+    };
+    return iconMap[this.entityType] || iconMap['default'];
   }
 }

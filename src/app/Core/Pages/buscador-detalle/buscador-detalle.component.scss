@@ -12,6 +12,7 @@
 
   @media (max-width: 400px) {
     margin: 0px;
+    padding: 0px;
   }
   .title {
     color: var(--primary-color);
@@ -29,7 +30,6 @@
     .title {
       font-size: 1em;
       display: ruby;
-      white-space: pre;
     }
   }
 
@@ -61,6 +61,18 @@
       width: 200px;
       justify-content: center;
       gap: 36px;
+
+      .icon-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 200px; // Puedes ajustar la altura según necesites
+      }
+      
+      .icon {
+        color: var(--primary-color); // Utiliza tu variable de color primaria
+        scale: 3;
+      }
 
       mat-card-title{
         font-size: 100px;
@@ -107,7 +119,6 @@
   }
 
   .modelo-categoria{
-    max-width: 340px;
     align-self: center;
 
     .categoria{

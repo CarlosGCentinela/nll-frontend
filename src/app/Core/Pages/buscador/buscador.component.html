@@ -16,30 +16,31 @@
       <mat-icon>search</mat-icon>
     </button>
   </div>
-
   <div class="recomendaciones" *ngIf="enableRecomendacion.includes(entityType) && recomendaciones.length">
     <mat-card-subtitle>Recomendados según tu modelo de madurez tecnológico:</mat-card-subtitle>
     <div class="recomendacion-box">
       <div class="recomendacion" *ngFor="let recomendacion of recomendaciones">
-        <app-article-card [routerLink]="['/', entityType, getRouteParam(recomendacion.id, recomendacion.title)]"
-          [title]="recomendacion.title"
-          [description]="recomendacion.description.length > 100 ? (recomendacion.description | slice:0:100) + '...' : recomendacion.description">
+        <app-article-card [routerLink]="['/', entityType, getRouteParam(recomendacion?.id, getTitle(entityType,recomendacion))]"
+          [title]="getTitle(entityType,recomendacion)"
+          [description]="getDescription(entityType,recomendacion) | truncate:100:true">
         </app-article-card>
       </div>
     </div>
   </div>
 
   <h2 class="resultado">Resultados de búsqueda:</h2>
-  <div class="resultado" *ngFor="let resultado of items">
-    <a [routerLink]="['/', entityType, getRouteParam(resultado.id, resultado.title)]" class="resultado-link">
-      <app-article-card [title]="resultado.title" [description]="resultado.description.length > 100 ? (resultado.description | slice:0:100) + '...' : resultado.description">
-      </app-article-card>
-    </a>
+  <div class="only-search">
+    <div class="resultado" *ngFor="let resultado of items">
+      <a [routerLink]="['/', entityType, getRouteParam(resultado?.id, getDescription(entityType,resultado))]" class="resultado-link">
+        <app-article-card [title]="getTitle(entityType,resultado)" [description]="getDescription(entityType,resultado) | truncate:100:true">
+        </app-article-card>
+      </a>
+    </div>
+    
+    <!--
+    <button mat-raised-button color="primary" class="listar-todos" (click)="listarTodo()">
+      Listar todos los de la categoría
+    </button>
+    -->
   </div>
-  
-  <!--
-  <button mat-raised-button color="primary" class="listar-todos" (click)="listarTodo()">
-    Listar todos los de la categoría
-  </button>
-  -->
 </mat-card>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError, of, BehaviorSubject } from 'rxjs';
-import { catchError, delay, tap } from 'rxjs/operators';
+import { catchError, delay, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -38,12 +38,40 @@ export class GeneralService {
     return throwError('Algo salió mal; por favor, intenta de nuevo más tarde.');
   }
 
-  // Obtener datos de la API
-  getData(endpoint: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${endpoint}`, this.httpOptions)
-      .pipe(
-        catchError(this.handleError)
-      );
+   // Obtener datos de la API y manejar respuestas en diferentes formatos
+   getData(endpoint: string): Observable<any[]> {
+    return this.http.get(`${this.apiUrl}/${endpoint}`, {
+      ...this.httpOptions,
+      responseType: 'text' // Solicitamos la respuesta como texto
+    }).pipe(
+      map((responseText: string) => {
+        try {
+          const trimmedResponse = responseText.trim();
+
+          if (trimmedResponse.startsWith('{')) {
+            // Caso 1: Múltiples objetos JSON separados por líneas
+            const jsonObjects = trimmedResponse.split('\n')
+              .filter(line => line.trim().length > 0) // Filtrar líneas vacías
+              .map(line => JSON.parse(line));
+            return jsonObjects;
+          } else if (trimmedResponse.startsWith('[')) {
+            // Caso 2: Arreglo JSON válido
+            return JSON.parse(trimmedResponse);
+          } else {
+            // Formato desconocido
+            console.error('Formato de respuesta desconocido.');
+            return [];
+          }
+        } catch (e) {
+          console.error('Error al parsear la respuesta:', e);
+          return []; // Retornamos una lista vacía en caso de error
+        }
+      }),
+      catchError(error => {
+        console.error('Error en getData:', error);
+        return of([]); // Retornamos una lista vacía en caso de error HTTP
+      })
+    );
   }
 
   // Enviar datos a la API

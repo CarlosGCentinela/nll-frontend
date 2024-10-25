@@ -1,57 +1,89 @@
 <div class="detalle-container">
   <mat-card-header>
-    <mat-card-title class="title">
-      <p routerLink="/" routerLinkActive="active">
-        Inicio
-      </p>
+    <mat-card-title style="text-transform: uppercase;" class="title">
+      <p routerLink="/" routerLinkActive="active">Inicio</p>
       <p>/</p>
-      <p  routerLink="/{{entityType}}" routerLinkActive="active">
-      {{entityName}}
+      <p routerLink="/{{entityType}}" routerLinkActive="active">{{entityName}}</p>
       <p>/</p>
-      {{idParam}}
+      {{ getTitle(itemDetails) | truncate:40:true}}
     </mat-card-title>
   </mat-card-header>
-  <section *ngIf="estado===''">
+
+  <section *ngIf="estado === ''">
     <div class="modelo-general">
-      <mat-card appearance="outlined">
-        <mat-card-subtitle>
-          Imagen
-        </mat-card-subtitle>
+      <mat-card>
+        <!--<img mat-card-image *ngIf="getImageUrl(itemDetails)" [src]="getImageUrl(itemDetails)" alt="Imagen" />-->
+        <div class="icon-container">
+          <mat-icon class="icon">{{ getIconName() }}</mat-icon>
+        </div>
       </mat-card>
       <mat-card-content *ngIf="itemDetails?.link">
         <button mat-fab class="link-button" (click)="openLink()" extended>
           <mat-icon class="animated-icon">link</mat-icon>
-          Completa aquí
+          Ir al Enlace
         </button>
       </mat-card-content>
     </div>
-    <div class="modelo-categoria">
+
+    <div class="modelo-categoria" style="    font-weight: 500;">
       <mat-card-header>
-        <mat-card-title>{{ itemDetails?.titulo }}</mat-card-title>
-        <mat-card-subtitle *ngIf="itemDetails?.date">
-          {{ itemDetails?.date | date }}
+        <mat-card-title style="text-transform: uppercase;font-weight: 500;">{{ getTitle(itemDetails) }}</mat-card-title>
+        <mat-card-subtitle *ngIf="getDate(itemDetails)">
+          {{ getDate(itemDetails) | date }}
         </mat-card-subtitle>
       </mat-card-header>
       <div class="categoria">
         <mat-card-content>
           <!-- Para Artículos y Casos de Éxito -->
-          <p *ngIf="(entityType === 'articulos' || entityType === 'casos-exito') && itemDetails?.resumen">
-            {{ itemDetails?.resumen }}
-          </p>
-      
+          <div *ngIf="entityType === 'articulos' || entityType === 'casos-exito'">
+            <p>{{ itemDetails?.resumen }}</p>
+          </div>
+
           <!-- Para Cursos -->
           <div *ngIf="entityType === 'cursos'">
-            <p *ngIf="itemDetails?.description">{{ itemDetails?.description }}</p>
+            <p style="text-align: justify;">{{ getDescription(entityType,itemDetails) }}</p>
+            <p *ngIf="itemDetails?.entidad">Entidad: {{ itemDetails?.entidad }}</p>
             <p *ngIf="itemDetails?.modalidad">Modalidad: {{ itemDetails?.modalidad }}</p>
-            <p *ngIf="itemDetails?.duracion">Duración: {{ itemDetails?.duracion }}</p>
-            <p *ngIf="itemDetails?.pagado !== undefined">Pagado: {{ itemDetails?.pagado ? 'Sí' : 'No' }}</p>
-            <p *ngIf="itemDetails?.textos_claves">Palabras clave: {{ itemDetails?.textos_claves }}</p>
+            <p *ngIf="itemDetails?.duracin">Duración: {{ itemDetails?.duracin }}</p>
+            <p *ngIf="itemDetails?.costo">Costo: {{ itemDetails?.costo }}</p>
+            <p *ngIf="itemDetails?.idioma">Idioma: {{ itemDetails?.idioma }}</p>
+            <p *ngIf="itemDetails?.rubro">Rubro: {{ itemDetails?.rubro }}</p>
+            <p *ngIf="itemDetails?.requisitos_y_evaluacion_del_curso">Requisitos y Evaluación: {{ itemDetails?.requisitos_y_evaluacion_del_curso }}</p>
+            <p *ngIf="itemDetails?.tags">Tags: {{ itemDetails?.tags }}</p>
+          </div>
+
+          <!-- Para Proveedores -->
+          <div *ngIf="entityType === 'proveedores'">
+            <p>Nombre Proveedor: {{ itemDetails?.nombreproveedor }}</p>
+            <p>Rut: {{ itemDetails?.rut }}</p>
+            <p>Nombre Representante: {{ itemDetails?.nombrerepresentante }}</p>
+            <p>Rut Representante: {{ itemDetails?.rutrepresentante }}</p>
+            <p>Ofrece: {{ itemDetails?.ofrece }}</p>
+            <!-- Otros campos relevantes -->
+          </div>
+
+          <!-- Para Financiamiento -->
+          <div *ngIf="entityType === 'financiamiento'">
+            <p>{{ itemDetails?.descripcion }}</p>
+            <p *ngIf="itemDetails?.categorias">Categorías: {{ itemDetails?.categorias }}</p>
+            <!-- Otros campos relevantes -->
+          </div>
+
+          <!-- Para Proyectos -->
+          <div *ngIf="entityType === 'proyectos'">
+            <p>{{ itemDetails?.tarea }}</p>
+            <p>{{ itemDetails?.solucion }}</p>
+            <p>{{ itemDetails?.resultado }}</p>
+            <p *ngIf="itemDetails?.sector">Sector: {{ itemDetails?.sector }}</p>
+            <p *ngIf="itemDetails?.localidad">Localidad: {{ itemDetails?.localidad }}</p>
+            <!-- Otros campos relevantes -->
           </div>
         </mat-card-content>
       </div>
     </div>
   </section>
-  
-  <section *ngIf="estado==='notfound'">
+
+  <section *ngIf="estado === 'notfound'">
+    <p>El elemento no fue encontrado.</p>
   </section>
 </div>
