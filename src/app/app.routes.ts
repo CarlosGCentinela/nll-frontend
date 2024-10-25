@@ -7,6 +7,8 @@ import { ModeloComponent } from './Core/Pages/modelo/modelo.component';
 import { BuscadorComponent } from './Core/Pages/buscador/buscador.component';
 import { BuscadorDetalleComponent } from './Core/Pages/buscador-detalle/buscador-detalle.component';
 import { RegistroFormularioComponent } from './Core/Pages/registro-formulario/registro-formulario.component';
+import { InformeComponent } from './Core/Pages/informe/informe.component';
+import { PodcastsComponent } from './Core/Pages/podcasts/podcasts.component';
 
 export const routes: Routes = [
   // Rutas que no incluyen el sidebar ni el navbar
@@ -39,7 +41,9 @@ export const routes: Routes = [
         path: 'quienes-somos', 
         loadComponent: () => import('./Core/Pages/quienesSomos/quienesSomos.component').then(m => m.QuienesSomosComponent) 
       },
-      { path: 'modelo', component: ModeloComponent }, 
+      { path: 'modelo', component: ModeloComponent },
+      { path: 'informe', component: InformeComponent },
+      { path: 'podcasts', component: PodcastsComponent },
 
       // Rutas para 'cursos'
       {
