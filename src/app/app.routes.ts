@@ -79,14 +79,14 @@ export const routes: Routes = [
 
       // Rutas para 'casos-exito'
       {
-        path: 'casos-exito',
+        path: 'proyectos',
         component: BuscadorComponent,
-        data: { entityType: 'casos-exito', name: 'Casos de éxito' }
+        data: { entityType: 'proyectos', name: 'Proyectos destacados' }
       },
       {
-        path: 'casos-exito/:id',
+        path: 'proyectos/:id',
         component: BuscadorDetalleComponent,
-        data: { entityType: 'casos-exito', name: 'Casos de éxito' }
+        data: { entityType: 'proyectos', name: 'Proyectos destacados' }
       },
 
       // Rutas para 'financiamiento-empleo'

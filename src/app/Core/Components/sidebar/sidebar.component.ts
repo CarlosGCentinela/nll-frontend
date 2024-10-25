@@ -24,7 +24,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     { label: 'Modelo de diagnóstico', icon: 'assessment', routerLink: '/modelo' },
     { label: 'Cursos', icon: 'book', routerLink: '/cursos' },
     { label: 'Proveedores', icon: 'business', routerLink: '/proveedores' },
-    { label: 'Casos de Éxitos', icon: 'star', routerLink: '/casos-exito' },
+    { label: 'Proyectos destacados', icon: 'star', routerLink: '/proyectos' },
     { label: 'Financiamiento', icon: 'attach_money', routerLink: '/financiamiento' },
     { label: 'Artículos de interés', icon: 'article', routerLink: '/articulos' }
   ];
