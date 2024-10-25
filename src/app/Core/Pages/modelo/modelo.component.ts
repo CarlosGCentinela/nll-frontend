@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { CarouselComponent } from '../../Components/carousel/carousel.component';
 import { Slide } from '../../Models/slide.model';
 import { RouterLink } from '@angular/router';
+import { GeneralService } from '../../../Services/general.service';
 
 @Component({
   selector: 'app-modelo',
@@ -27,8 +28,13 @@ import { RouterLink } from '@angular/router';
   templateUrl: './modelo.component.html',
   styleUrl: './modelo.component.scss'
 })
-export class ModeloComponent {
-  estado: string='incompleto'; //completo - incompleto - ''
+export class ModeloComponent implements OnInit {
+  //Debo obtener el encuestaRealizada desde el generalService para verificar si la encuesta ha sido realizada
+  // incompleta para empresas que no han contestado
+  // completa para empresas que han contestado
+  // '' para proveedores o personas no logeadas. Si nombreRol no existe o contiene proveedores / usuario
+  estado: string=''; //completo - incompleto - ''
+  rolUsuario = '';
 
   mySlides: Slide[] = [
     {
@@ -106,8 +112,91 @@ export class ModeloComponent {
     ]
   }
 
+  // Crear un cosntructor para inicializar los valores
+  constructor(private generalService: GeneralService) {
+    try {
+      // Obtener valores de localStorage
+      const nombreRol = localStorage.getItem('nombreRol') || '';
+      const encuestaRealizadaStr = localStorage.getItem('encuestaRealizada') || 'false';
+      const encuestaRealizada = encuestaRealizadaStr === 'true';
+
+      // Determinar el valor de 'estado' basado en la lógica proporcionada
+      if (nombreRol === 'empresa') {
+        this.estado = encuestaRealizada ? 'completo' : 'incompleto';
+      } else {
+        this.estado = '';
+      }
+    } catch (error) {
+      console.error('Error al obtener nombreRol o encuestaRealizada de localStorage:', error);
+      this.estado = '';
+    }
+  }
+  // copiar el ngOnInit general
+   // Implementar ngOnInit para suscribirse a los cambios en GeneralService
+   ngOnInit(): void {
+    // Suscribirse a los cambios de nombreRol
+    this.generalService.nombreRol$.subscribe({
+      next: (nombreRol) => {
+        try {
+          const encuestaRealizadaStr = localStorage.getItem('encuestaRealizada') || 'false';
+          const encuestaRealizada = encuestaRealizadaStr === 'true';
+          this.rolUsuario = nombreRol;
+
+          if (nombreRol === 'empresa') {
+            this.estado = encuestaRealizada ? 'completo' : 'incompleto';
+          } else {
+            this.estado = '';
+          }
+        } catch (error) {
+          console.error('Error al actualizar estado en la suscripción de nombreRol:', error);
+          this.estado = '';
+        }
+      },
+      error: (err) => {
+        console.error('Error en la suscripción de nombreRol:', err);
+        this.estado = '';
+      }
+    });
+
+    // Suscribirse a los cambios de encuestaRealizada
+    this.generalService.encuestaRealizada$.subscribe({
+      next: (encuestaRealizada) => {
+        try {
+          const nombreRol = localStorage.getItem('nombreRol') || '';
+          
+          
+          if (nombreRol === 'empresa') {
+            this.estado = encuestaRealizada ? 'completo' : 'incompleto';
+          } else {
+            this.estado = '';
+          }
+        } catch (error) {
+          console.error('Error al actualizar estado en la suscripción de encuestaRealizada:', error);
+          this.estado = '';
+        }
+      },
+      error: (err) => {
+        console.error('Error en la suscripción de encuestaRealizada:', err);
+        this.estado = '';
+      }
+    });
+  }
 
   openLink(): void {
-    window.open('https://modelomadurez.nuevoloslagos.org/evaluar_madurez_tecnologica?rut=333'+'', '_blank');
+    try {
+      const rut = localStorage.getItem('rut') || '';
+      
+      if (rut) {
+        const url = `https://modelomadurez.nuevoloslagos.org/evaluar_madurez_tecnologica?rut=${rut}`;
+        window.open(url, '_blank');
+      } else {
+        console.warn('RUT no encontrado en localStorage. Recargando la página actual.');
+        window.location.reload(); // Recarga la página actual
+      }
+    } catch (error) {
+      console.error('Error al obtener RUT de localStorage:', error);
+      // Opcional: Puedes manejar este error de otra manera, como mostrar un mensaje al usuario
+      window.location.href = '/404';
+    }
   }
 }

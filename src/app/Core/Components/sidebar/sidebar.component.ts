@@ -15,6 +15,7 @@ import { MatDividerModule } from '@angular/material/divider';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
 })
+//copiar el OnInit en modelo
 export class SidebarComponent implements OnInit, OnDestroy {
   isOpen = false; // Controla el estado abierto/cerrado del sidebar
   isLoggedIn = false; // controla el estado de la  autenticacion

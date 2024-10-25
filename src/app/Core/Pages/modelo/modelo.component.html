@@ -65,7 +65,7 @@
   <div class="hero" *ngIf="estado===''">
     <app-carousel [slides]="mySlides" [showIndicators]="false" [showArrows]="false"></app-carousel>
     <mat-card-content>
-      <button mat-fab class="link-button" routerLink="/registro-proveedor" extended>
+      <button mat-fab *ngIf="rolUsuario!=='proveedor'" class="link-button" routerLink="/registro-proveedor" extended>
         <mat-icon class="animated-icon">link</mat-icon>
         Registro Proveedores
       </button>

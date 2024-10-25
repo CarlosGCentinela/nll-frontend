@@ -57,12 +57,31 @@ export class LoginComponent implements OnInit {
     const { email, password } = this.loginForm.value;
 
     // Usar el método de login simulado
-    this.generalService.mockLogin({ email, password })
+    this.generalService.login({ correo:email, password })
       .subscribe({
-        next: (response: { token: any; }) => {
+        next: (response: any) => {
           const token = response.token;
-          if (token) {
+          if (token) { 
             localStorage.setItem('authToken', token);
+            
+            //suscribirse a los nuvos observables
+            this.generalService.nombreRol$.subscribe(nombreRol => {
+              console.log('Nombre Rol:', nombreRol);
+              // Realiza acciones basadas en el rol
+              if (nombreRol === 'empresa') {
+                this.router.navigate(['/empresa-dashboard']);
+              } else {
+                this.router.navigate(['/otro-dashboard']);
+              }
+            });
+
+            this.generalService.encuestaRealizada$.subscribe(encuestaRealizada => {
+              console.log('Encuesta Realizada:', encuestaRealizada);
+              if (!encuestaRealizada) {
+                this.router.navigate(['/realizar-encuesta']);
+              }
+            });
+
             this.router.navigate(['/']);
           } else {
             this.errorMessage = 'Token no recibido del servidor.';
@@ -74,5 +93,6 @@ export class LoginComponent implements OnInit {
           this.isLoading = false;
         }
       });
+      //Guardar el rol->nombreRol / encuestaRealizada
   }
 }
