@@ -31,7 +31,7 @@
   <h2 class="resultado">Resultados de búsqueda:</h2>
   <div class="only-search">
     <div class="resultado" *ngFor="let resultado of items">
-      <a [routerLink]="['/', entityType, getRouteParam(resultado?.id, getDescription(entityType,resultado))]" class="resultado-link">
+      <a [routerLink]="['/', entityType, getRouteParam(resultado?.id, getTitle(entityType,resultado))]" class="resultado-link">
         <app-article-card [title]="getTitle(entityType,resultado)" [description]="getDescription(entityType,resultado) | truncate:100:true">
         </app-article-card>
       </a>

@@ -24,11 +24,11 @@
     </ng-container>
 
     <!-- Slide Personalizado 2 -->
-    <ng-container *ngIf="slide.type === 'custom2'">
+    <ng-container *ngIf="slide.type === 'callToAction'">
       <div class="special-content">
         <h2>Especial Slide</h2>
         <p>Este es un slide personalizado con contenido único.</p>
-        <button>¡Haz Click!</button>
+        <button>{{slide.buttonText??'¡Haz Click!'}}</button>
       </div>
     </ng-container>
   </div>

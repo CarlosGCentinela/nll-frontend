@@ -3,10 +3,54 @@
   <app-carousel [slides]="mySlides" [showIndicators]="true" [showArrows]="true"></app-carousel>
 </div>
 
+<div class="callToAction">
+  <div class="special-content">
+    <h2>{{callToAction.content}}</h2>
+    <button mat-fab class="link-button" (click)="openLink()" extended>
+      <mat-icon class="animated-icon">link</mat-icon>
+      {{callToAction.buttonText??'¡Haz Click!'}}
+    </button>
+  </div>
+</div>
+
+<!--financiamiento-->
 <div class="articles-container">
-  <app-article-card class="card-size"
-    *ngFor="let article of articles" 
-    [title]="article.title" 
-    [description]="article.description.length > 100 ? (article.description | slice:0:100) + '...' : article.description">
-  </app-article-card>
+  <mat-toolbar class="transparent-toolbar">
+    <mat-icon class="toolbar-icon">{{getIconName('financiamiento')}}</mat-icon>
+    <span class="toolbar-title">Financiamiento</span>
+  </mat-toolbar>
+  <a style="display: flex;" *ngFor="let item of datosRelevantes.financiamiento"  [routerLink]="['/', 'financiamiento', getRouteParam(item.id, getTitle('financiamiento',item))]" class="resultado-link">
+    <app-article-card class="card-size"
+      [title]="getTitle('financiamiento', item)" 
+      [description]="getDescription('financiamiento', item) | truncate:100:true">
+    </app-article-card>
+  </a>
+</div>
+
+<!--cursos-->
+<div class="articles-container">
+  <mat-toolbar class="transparent-toolbar">
+    <mat-icon class="toolbar-icon">{{getIconName('cursos')}}</mat-icon>
+    <span class="toolbar-title">Cursos</span>
+  </mat-toolbar>
+  <a style="display: flex;" *ngFor="let item of datosRelevantes.cursos"  [routerLink]="['/', 'cursos', getRouteParam(item.id, getTitle('cursos',item))]" class="resultado-link">
+    <app-article-card class="card-size"
+      [title]="getTitle('cursos', item)" 
+      [description]="getDescription('cursos', item) | truncate:100:true">
+    </app-article-card>
+  </a>
+</div>
+
+<!--articulos-->
+<div class="articles-container">
+  <mat-toolbar class="transparent-toolbar">
+    <mat-icon class="toolbar-icon">{{getIconName('articulos')}}</mat-icon>
+    <span class="toolbar-title">Artículos</span>
+  </mat-toolbar>
+  <a style="display: flex;" *ngFor="let item of datosRelevantes.articulos"  [routerLink]="['/', 'articulos', getRouteParam(item.id, getTitle('articulos',item))]" class="resultado-link">
+    <app-article-card class="card-size"
+      [title]="getTitle('articulos', item)" 
+      [description]="getDescription('articulos', item) | truncate:100:true">
+    </app-article-card>
+  </a>
 </div>
