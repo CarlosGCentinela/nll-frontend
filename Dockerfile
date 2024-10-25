@@ -1,19 +1,17 @@
 # Etapa 1: Construcción de la aplicación
-FROM node:20-alpine
+FROM node:20.14.0-alpine
 
 WORKDIR /app
-
-COPY package*.json ./
 
 COPY . .
 
 RUN npm install
 
-# Etapa 2: Servir la aplicación con Nginx
+
 EXPOSE 4200
 
-CMD ["npm","run", "start"]
-
+CMD ["npm", "run", "start", "--", "--host", "0.0.0.0"]
+###  "start": "ng serve --host 0.0.0.0",
 
 #solo subimos el build de angular, que es el cod reducido
 #docker build -t nll-frontend:latest .
