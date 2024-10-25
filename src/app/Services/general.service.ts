@@ -8,7 +8,7 @@ import { catchError, delay, tap } from 'rxjs/operators';
 })
 export class GeneralService {
 
-  private apiUrl = 'http://webapi.nuevoloslagos.org/api'; // URL base de la API
+  private apiUrl = 'https://demo.nuevoloslagos.org/data'; // URL base de la API
 
   private httpOptions = {
     headers: new HttpHeaders({

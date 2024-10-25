@@ -7,6 +7,6 @@
   <app-article-card class="card-size"
     *ngFor="let article of articles" 
     [title]="article.title" 
-    [description]="article.description">
+    [description]="article.description.length > 100 ? (article.description | slice:0:100) + '...' : article.description">
   </app-article-card>
 </div>

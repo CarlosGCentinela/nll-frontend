@@ -105,4 +105,9 @@ export class ModeloComponent {
       }
     ]
   }
+
+
+  openLink(): void {
+    window.open('https://modelomadurez.nuevoloslagos.org/evaluar_madurez_tecnologica?rut=333'+'', '_blank');
+  }
 }

@@ -28,8 +28,8 @@
     <div class="modelo-categoria">
       <mat-card-header>
         <mat-card-title>{{ itemDetails?.titulo }}</mat-card-title>
-        <mat-card-subtitle *ngIf="itemDetails?.fecha">
-          {{ itemDetails?.fecha | date }}
+        <mat-card-subtitle *ngIf="itemDetails?.date">
+          {{ itemDetails?.date | date }}
         </mat-card-subtitle>
       </mat-card-header>
       <div class="categoria">
@@ -41,7 +41,7 @@
       
           <!-- Para Cursos -->
           <div *ngIf="entityType === 'cursos'">
-            <p *ngIf="itemDetails?.descripcion">{{ itemDetails?.descripcion }}</p>
+            <p *ngIf="itemDetails?.description">{{ itemDetails?.description }}</p>
             <p *ngIf="itemDetails?.modalidad">Modalidad: {{ itemDetails?.modalidad }}</p>
             <p *ngIf="itemDetails?.duracion">Duración: {{ itemDetails?.duracion }}</p>
             <p *ngIf="itemDetails?.pagado !== undefined">Pagado: {{ itemDetails?.pagado ? 'Sí' : 'No' }}</p>
