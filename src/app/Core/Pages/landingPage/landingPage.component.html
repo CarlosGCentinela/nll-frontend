@@ -1,78 +1,53 @@
 <!-- src/app/landing-page/landingPage.component.html -->
-<div class="hero">
-  <app-carousel [slides]="mySlides" [showIndicators]="true" [showArrows]="true"></app-carousel>
-</div>
+<section>
+  <div class="hero">
+    <app-carousel [slides]="mySlides" [showIndicators]="true" [showArrows]="true"></app-carousel>
+  </div>
+</section>
 
-<div class="callToAction">
-  <div class="special-content">
-    <h2>{{callToAction.content}}</h2>
-    <img loading="lazy" style="max-width: 300px;border-radius: 24px;" [src]="'assets/images/informe.jpg'" alt="Slide Image" loading="lazy">
-    <div>
-      
-      <button mat-fab class="link-button" routerLink="/informe" extended>
-        <mat-icon class="animated-icon">more</mat-icon>
-        Más información
-      </button>
-      <button mat-fab class="link-button" (click)="openLink()" extended>
-        <mat-icon class="animated-icon">link</mat-icon>
-        {{callToAction.buttonText??'¡Haz Click!'}}
-      </button>
+<section>
+  <div class="articles-container">
+    <mat-toolbar class="transparent-toolbar" routerLink="financiamiento">
+      <mat-icon class="toolbar-icon">attach_money</mat-icon>
+      <span class="toolbar-title">Financiamiento</span>
+    </mat-toolbar>
+
+    <mat-toolbar class="transparent-toolbar" routerLink="cursos">
+      <mat-icon class="toolbar-icon">book</mat-icon>
+      <span class="toolbar-title">Cursos</span>
+    </mat-toolbar>
+    
+    <mat-toolbar class="transparent-toolbar" routerLink="proyectos">
+      <mat-icon class="toolbar-icon">star</mat-icon>
+      <span class="toolbar-title">Proyectos</span>
+    </mat-toolbar>
+  </div>
+</section>
+
+<section>
+  <div class="extra">
+    <div class="extra-content">
+      <h2>Revisa el informe sobre la Industria 4.0 en la Región de Los Lagos</h2>
+      <div>
+        <img loading="lazy" style="max-width: 300px;border-radius: 24px;" [src]="'assets/images/informe.jpg'" alt="Slide Image" loading="lazy">
+        <button mat-fab class="link-button" routerLink="/informe" extended>
+          <mat-icon class="animated-icon">more</mat-icon>
+          Más información
+        </button>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+  
+    <div class="extra-content">
+      <div>
+        <img loading="lazy" style="max-width: 300px; border-radius: 24px;" [src]="'assets/images/podcasts.jpg'" alt="Slide Image" loading="lazy">
+        <button mat-fab class="link-button" routerLink="/podcasts" extended>
+          <mat-icon class="animated-icon">more</mat-icon>
+          Más información
+        </button>
+      </div>
+      <h2>Accede a nuestros podcasts, basados en investigaciones y conversaciones con expertos, te mantienen al día con las últimas tendencias.</h2>
     </div>
   </div>
-</div>
-
-<!--financiamiento-->
-<div class="articles-container">
-  <mat-toolbar class="transparent-toolbar">
-    <mat-icon class="toolbar-icon">{{getIconName('financiamiento')}}</mat-icon>
-    <span class="toolbar-title">Financiamiento</span>
-  </mat-toolbar>
-  <a style="display: flex;" *ngFor="let item of datosRelevantes.financiamiento"  [routerLink]="['/', 'financiamiento', getRouteParam(item.id, getTitle('financiamiento',item))]" class="resultado-link">
-    <app-article-card class="card-size"
-      [title]="getTitle('financiamiento', item)" 
-      [description]="getDescription('financiamiento', item) | truncate:100:true">
-    </app-article-card>
-  </a>
-</div>
-
-<!--cursos-->
-<div class="articles-container">
-  <mat-toolbar class="transparent-toolbar">
-    <mat-icon class="toolbar-icon">{{getIconName('cursos')}}</mat-icon>
-    <span class="toolbar-title">Cursos</span>
-  </mat-toolbar>
-  <a style="display: flex;" *ngFor="let item of datosRelevantes.cursos"  [routerLink]="['/', 'cursos', getRouteParam(item.id, getTitle('cursos',item))]" class="resultado-link">
-    <app-article-card class="card-size"
-      [title]="getTitle('cursos', item)" 
-      [description]="getDescription('cursos', item) | truncate:100:true">
-    </app-article-card>
-  </a>
-</div>
-
-<!--articulos-->
-<div class="articles-container">
-  <mat-toolbar class="transparent-toolbar">
-    <mat-icon class="toolbar-icon">{{getIconName('articulos')}}</mat-icon>
-    <span class="toolbar-title">Artículos</span>
-  </mat-toolbar>
-  <a style="display: flex;" *ngFor="let item of datosRelevantes.articulos"  [routerLink]="['/', 'articulos', getRouteParam(item.id, getTitle('articulos',item))]" class="resultado-link">
-    <app-article-card class="card-size"
-      [title]="getTitle('articulos', item)" 
-      [description]="getDescription('articulos', item) | truncate:100:true">
-    </app-article-card>
-  </a>
-</div>
-
-
-<div class="callToAction">
-  <div class="special-content">
-    <h2>Accede a información actualizada sobre las tecnologías de la Industria 4.0 de forma sencilla y directa. Nuestros podcasts, basados en investigaciones y conversaciones con expertos, te mantienen al día con las últimas tendencias.</h2>
-    <img loading="lazy" style="max-width: 300px; border-radius: 24px;" [src]="'assets/images/podcasts.jpg'" alt="Slide Image" loading="lazy">
-    <div>
-      <button mat-fab class="link-button" routerLink="/podcasts" extended>
-        <mat-icon class="animated-icon">more</mat-icon>
-        Más información
-      </button>
-    </div>
-  </div>
-</div>
+</section>

@@ -67,10 +67,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   updateMenuOptions() {
     if (this.isLoggedIn) {
       this.menuOptions = [
-        { label: 'Mi Perfil', icon: 'person', routerLink: '/mi-perfil' },
-        { label: 'Crear Empleo', icon: 'work', routerLink: '/crear-empleo' },
-        { label: 'Crear Artículo de Interés', icon: 'article', routerLink: '/crear-articulo' },
-        { label: 'Crear Caso de Éxito', icon: 'star', routerLink: '/crear-caso-exito' },
+        { label: 'Mi Perfil', icon: 'person', routerLink: '/mi-perfil' }
       ];
     } else {
       this.menuOptions = [

@@ -88,6 +88,10 @@
     border-top: 1px solid #ccc;
     text-align-last: left;
 
+    a{
+      text-decoration: unset;
+    }
+
     mat-card {
       margin-bottom: 10px;
     }

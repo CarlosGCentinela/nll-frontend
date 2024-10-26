@@ -24,7 +24,7 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class InformeComponent {
   // Puedes agregar lógica del componente aquí si es necesario
-  openLink(): void {
-    window.open('https://drive.google.com/file/d/12LpUYnh2Gje8wC3TMkESBJJSO3kJhXO2/view?usp=sharing', '_blank');
+  openLink(link:string): void {
+    window.open(link, '_blank');
   }
 }

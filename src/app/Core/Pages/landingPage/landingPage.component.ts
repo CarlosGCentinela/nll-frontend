@@ -9,6 +9,8 @@ import { RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-landing-page',
@@ -21,7 +23,9 @@ import { MatButtonModule } from '@angular/material/button';
     RouterLink,
     MatIconModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule,
+    MatDividerModule
   ],
   templateUrl: './landingPage.component.html',
   styleUrls: ['./landingPage.component.scss']
@@ -67,13 +71,6 @@ export class LandingPageComponent {
       duration: 5000 // 5 segundos
     }
   ];
-
-  callToAction: any={
-    type: 'callToAction',
-    content: 'Revisa el informe sobre la Industria 4.0 en la Región de Los Lagos',
-    buttonText: 'Descargar',
-    path: '/ruta/al/informe.pdf'
-  }
 
   datosRelevantes= {
     cursos:[
