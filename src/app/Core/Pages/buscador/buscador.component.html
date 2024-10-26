@@ -11,7 +11,7 @@
   <div class="search-bar">
     <mat-form-field appearance="outline" class="search-field">
       <mat-label>Buscar...</mat-label>
-      <input matInput type="text" placeholder="Buscar..." [(ngModel)]="searchTerm" (keyup.enter)="onSearch()" />    </mat-form-field>
+      <input matInput type="text" placeholder="Buscar..." [(ngModel)]="searchTerm" (ngModelChange)="onSearch()" (keyup.enter)="onSearch()" />    </mat-form-field>
     <button mat-fab class="search-button" (click)="onSearch()">
       <mat-icon>search</mat-icon>
     </button>
@@ -30,6 +30,7 @@
 
   <h2 class="resultado">Resultados de búsqueda:</h2>
   <div class="only-search">
+    <p *ngIf="items&& !items?.length">No hay coincidencias</p>
     <div class="resultado" *ngFor="let resultado of items">
       <a [routerLink]="['/', entityType, getRouteParam(resultado?.id, getTitle(entityType,resultado))]" class="resultado-link">
         <app-article-card [title]="getTitle(entityType,resultado)" [description]="getDescription(entityType,resultado) | truncate:100:true">

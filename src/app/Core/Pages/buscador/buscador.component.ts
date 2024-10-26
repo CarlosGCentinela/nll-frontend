@@ -122,27 +122,30 @@ export class BuscadorComponent implements OnInit, OnDestroy {
 
   filterItems(): void {
     const termNormalized = this.normalize(this.searchTerm?.trim() || '');
-
+  
     if (!termNormalized) {
       this.items = this.allItems;
     } else {
       if (this.entityType === 'proveedores') {
+        // Mantener la lógica de filtrado para 'proveedores'
         this.items = this.allItems.filter(item => {
           const ofrece = item.ofrece;
           if (!ofrece) {
             return false;
           }
-          const termsList = ofrece.split(',').map((t:any) => this.normalize(t.trim()));
-          return termsList.some((t:any) => t.includes(termNormalized));
+          const termsList = ofrece.split(',').map((t: any) => this.normalize(t.trim()));
+          return termsList.some((t: any) => t.includes(termNormalized));
         });
       } else {
+        // Utilizar getTitle y getDescription para las demás entidades
         this.items = this.allItems.filter(item =>
-          this.normalize(item.title || '').includes(termNormalized) ||
-          this.normalize(item.description || '').includes(termNormalized)
+          this.normalize(this.getTitle(this.entityType, item) || '').includes(termNormalized) ||
+          this.normalize(this.getDescription(this.entityType, item) || '').includes(termNormalized)
         );
       }
     }
   }
+  
 
   normalize(text: string): string {
     return text
