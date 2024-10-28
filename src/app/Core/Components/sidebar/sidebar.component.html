@@ -3,6 +3,14 @@
   <div class="container-lead">
 
     <div>
+      <!--tema oscuro-->
+      <button mat-fab extended (click)="toggleTheme()">
+        <mat-icon>{{ themeIcon }}</mat-icon>
+        {{ themeLabel }}
+      </button>
+    </div>
+
+    <div>
       <!--Opciones segun estado login o perfil-->
       <button mat-fab extended *ngFor="let option of menuOptions" (click)="handleMenuClick(option)">
         <mat-icon>{{option.icon}}</mat-icon>

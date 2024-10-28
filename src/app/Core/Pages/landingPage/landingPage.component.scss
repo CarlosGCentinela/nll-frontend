@@ -15,46 +15,6 @@
     font-size: 24px;
     margin-bottom: 20px;
   }
-  .carousel {
-    position: relative;
-    width: 100%;
-    height: 500px;
-    overflow: hidden;
-  }
-  .carousel img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-  }
-  .carousel img.active {
-    opacity: 1;
-  }
-  .arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    font-size: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  .arrow:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-  }
-  .arrow.left {
-    left: 10px;
-  }
-  .arrow.right {
-    right: 10px;
-  }
   
   .articles {
     display: flex;
@@ -79,17 +39,21 @@
   section{
     .extra{
       justify-content: center;
-      color: #006064; /* Texto personalizado */
+      color: var(--text-background-color); /* Texto personalizado */
       padding: 20px;
       box-sizing: border-box;
       text-align: center;
-      border-radius: 40px;
-      background-color: var(--background-color-blur); /* Fondo personalizado */
-      border-radius: 24px;
-      padding: 24px;
+      background-color: var(--secondary-color); /* Fondo personalizado */
+      padding: 48px;
+      
+      img{
+        border-radius: 0px;
+        max-width: 280px;
+      }
 
       @media (max-width: 480px) {
         padding: 0px;
+        margin-top: 24px;
       }
 
       mat-divider{
@@ -99,6 +63,7 @@
       .extra-content{
         display: flex;
         align-items: center;
+        justify-content: space-between;
 
         @media (max-width: 600px) {
           display: ruby;
@@ -108,11 +73,12 @@
           padding: 12px;
           font-size: clamp(1.2em, 2vw, 2em);
           font-weight: 500;
+          width: 80%;
         }
     
         button{
           background-color: var(--primary-color);
-          color: #fff;
+          color: var(--text-background-color);
         }
     
         .link-button {
@@ -124,7 +90,7 @@
           margin: 8px;
         
           &:hover {
-            background-color: var(--hover-color); /* Cambia el color de fondo si lo deseas */
+            background-color: var(--text-background-color); /* Cambia el color de fondo si lo deseas */
             color: var(--primary-color);
           }
         
@@ -141,12 +107,11 @@
         }
       }
     }
-    
 
     .articles-container{
       display: flex;
       justify-content: center;
-      margin: 24px 0px;
+      margin: 48px 0px;
 
       @media (max-width: 768px) {
         display: ruby;
@@ -160,16 +125,28 @@
         -webkit-backdrop-filter: blur(20px);
         backdrop-filter: blur(20px);
         justify-content: space-between;
-        color: #fff;
+        color: var(--text-background-color);
         margin: 10px;
         max-width: 260px;
         cursor: pointer;
 
         transition: transform 0.3s;
 
-      &:hover {
-        transform: scale(1.1);
-      }
+        &:hover {
+          background-color: var(--text-background-color); /* Cambia el color de fondo si lo deseas */
+          color: var(--primary-color);
+        }
+      
+        /* Animación para el ícono */
+        .animated-icon {
+          display: inline-block;
+          transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+      
+        &:hover .animated-icon {
+          transform: rotate(360deg); /* Rotar el ícono */
+          color: var(--primary-color); /* Cambiar el color del ícono si lo deseas */
+        }
       }
     }
   }

@@ -3,17 +3,9 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color:transparent;
-  color: white;
+  background-color:var(--primary-color);
+  color: var(--text-background-color);
   position: relative;
-
-  /* Agregar efecto de blur */
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px); /* Soporte para Safari */
-  
-  background-color: #00000073;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(30px);
   box-shadow: 0 4px 6px rgb(0 0 0 / 30%);
 }
 
@@ -63,7 +55,7 @@ nav {
 .dropdown-toggle {
   background-color: transparent;
   border: none;
-  color: white;
+  color: var(--text-background-color);
   font-size: 24px;
   cursor: pointer;
 }
@@ -93,7 +85,7 @@ nav {
 button.menu-toggle {
   background-color: transparent;
   border: none;
-  color: white;
+  color: var(--text-background-color);
   padding: 10px;
   font-size: 24px;
   cursor: pointer;
@@ -107,7 +99,7 @@ button.menu-toggle {
 .profile-icon {
   background-color: transparent;
   border: none;
-  color: white;
+  color: var(--text-background-color);
   font-size: 24px;
   cursor: pointer;
   scale: 1.5;

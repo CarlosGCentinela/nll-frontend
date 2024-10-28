@@ -7,6 +7,7 @@ import { Subscription, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { GeneralService } from '../../../Services/general.service';
 import { MatDividerModule } from '@angular/material/divider';
+import { ThemeService } from '../../../Services/theme.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -38,7 +39,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
   constructor(
     private sidebarService: SidebarService,
     private generalService: GeneralService,
-    private router: Router
+    private router: Router,
+    protected themeService: ThemeService
   ) {}
 
   ngOnInit(): void {
@@ -90,5 +92,19 @@ export class SidebarComponent implements OnInit, OnDestroy {
       this.router.navigate([option.routerLink]);
     }
     this.onClose();
+  }
+
+  toggleTheme() {
+    const newTheme =
+      this.themeService.getTheme() === 'light-theme' ? 'dark-theme' : 'light-theme';
+    this.themeService.setTheme(newTheme);
+  }
+
+  get themeIcon(): string {
+    return this.themeService.getTheme() === 'light-theme' ? 'dark_mode' : 'light_mode';
+  }
+
+  get themeLabel(): string {
+    return this.themeService.getTheme() === 'light-theme' ? 'Modo oscuro' : 'Modo claro';
   }
 }
