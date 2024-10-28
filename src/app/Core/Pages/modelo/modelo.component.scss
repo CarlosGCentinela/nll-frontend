@@ -173,6 +173,22 @@
       @media (max-width: 670px) {
         margin-top: 12px;
       }
+
+      &:hover {
+        background-color: var(--text-background-color); /* Cambia el color de fondo si lo deseas */
+        color: var(--primary-color);
+      }
+    
+      /* Animación para el ícono */
+      .animated-icon {
+        display: inline-block;
+        transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+      }
+    
+      &:hover .animated-icon {
+        transform: rotate(360deg); /* Rotar el ícono */
+        color: var(--primary-color); /* Cambiar el color del ícono si lo deseas */
+      }
     }
 
     mat-card-content{

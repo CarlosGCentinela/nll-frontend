@@ -1,34 +1,17 @@
-/* src/styles.scss */
+/* Import Theme Files */
+@import './themes/light-theme';
+@import './themes/dark-theme';
 
-/* Estilos globales */
-html, body { 
-  height: 100%; 
+/* Global Styles */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-body { 
-  margin: 0; 
-  font-family: Roboto, "Helvetica Neue", sans-serif; 
-}
-
+/* Default Theme */
 :root {
-  /* Colores Primarios */
-  --primary-color: #006064;
-  --secondary-color: #004d40;
-
-  /* Colores de Fondo */
-  --background-color: #e0f7fa;
-  --background-color-blur:#e0f7fa91;
-  --card-background: #ffffff;
-
-  /* Colores de Texto */
-  --text-color: #333333;
-  --text-light: #666666;
-  --text-backgroud-color: white;
-
-  /* Colores de Estado */
-  --success-color: #4caf50;
-  --error-color: #f44336;
-  --warning-color: #ff9800;
+  @extend .light-theme;
 }
 
-/* Puedes añadir más estilos globales aquí */
+/* Additional global styles can go here */

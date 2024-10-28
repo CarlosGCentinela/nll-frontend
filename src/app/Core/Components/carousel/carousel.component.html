@@ -8,7 +8,7 @@
     
     <!-- Slide Regular: Imagen y Contenido -->
     <ng-container *ngIf="slide.type === 'regular'">
-      <img *ngIf="slide.imageUrl" loading="lazy" [src]="slide.imageUrl" alt="Slide Image" loading="lazy">
+      <img *ngIf="slide.imageUrl" [src]="slide.imageUrl" alt="Slide Image" loading="lazy">
       <div *ngIf="slide.content" class="slide-content" [innerHTML]="getSanitizedContent(slide.content)"></div>
     </ng-container>
 

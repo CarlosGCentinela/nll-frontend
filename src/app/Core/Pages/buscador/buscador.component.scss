@@ -24,7 +24,6 @@
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    place-self: center;
 
     .search-field {
       flex: 1;
@@ -35,6 +34,7 @@
       background-color: var(--primary-color);
       color: white;
       margin-top: -20px;
+      border-radius: 4px;
     }
   }
 

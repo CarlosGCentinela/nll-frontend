@@ -8,17 +8,17 @@
 <section>
   <div class="articles-container">
     <mat-toolbar class="transparent-toolbar" routerLink="financiamiento">
-      <mat-icon class="toolbar-icon">attach_money</mat-icon>
+      <mat-icon class="animated-icon">attach_money</mat-icon>
       <span class="toolbar-title">Financiamiento</span>
     </mat-toolbar>
 
     <mat-toolbar class="transparent-toolbar" routerLink="cursos">
-      <mat-icon class="toolbar-icon">book</mat-icon>
+      <mat-icon class="animated-icon">book</mat-icon>
       <span class="toolbar-title">Cursos</span>
     </mat-toolbar>
     
     <mat-toolbar class="transparent-toolbar" routerLink="proyectos">
-      <mat-icon class="toolbar-icon">star</mat-icon>
+      <mat-icon class="animated-icon">star</mat-icon>
       <span class="toolbar-title">Proyectos</span>
     </mat-toolbar>
   </div>
@@ -29,7 +29,7 @@
     <div class="extra-content">
       <h2>Revisa el informe sobre la Industria 4.0 en la Región de Los Lagos</h2>
       <div>
-        <img loading="lazy" style="max-width: 300px;border-radius: 24px;" [src]="'assets/images/informe.jpg'" alt="Slide Image" loading="lazy">
+        <img loading="lazy" [src]="'assets/images/informe.jpg'" alt="Slide Image" loading="lazy">
         <button mat-fab class="link-button" routerLink="/informe" extended>
           <mat-icon class="animated-icon">more</mat-icon>
           Más información
@@ -41,7 +41,7 @@
   
     <div class="extra-content">
       <div>
-        <img loading="lazy" style="max-width: 300px; border-radius: 24px;" [src]="'assets/images/podcasts.jpg'" alt="Slide Image" loading="lazy">
+        <img loading="lazy" [src]="'assets/images/podcasts.jpg'" alt="Slide Image" loading="lazy">
         <button mat-fab class="link-button" routerLink="/podcasts" extended>
           <mat-icon class="animated-icon">more</mat-icon>
           Más información
