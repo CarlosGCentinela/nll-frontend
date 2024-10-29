@@ -11,6 +11,7 @@ import { Slide } from '../../Models/slide.model';
 import { RouterLink } from '@angular/router';
 import { GeneralService } from '../../../Services/general.service';
 import { ModeloMadurezService } from '../../../Services/modelo-madurez';
+import { ActivatedRoute } from '@angular/router';2
 
 @Component({
   selector: 'app-modelo',
@@ -24,7 +25,8 @@ import { ModeloMadurezService } from '../../../Services/modelo-madurez';
     MatExpansionModule,
     MatButtonModule,
     CarouselComponent,
-    RouterLink
+    RouterLink,
+    
   ],
   templateUrl: './modelo.component.html',
   styleUrl: './modelo.component.scss'
@@ -89,7 +91,8 @@ export class ModeloComponent implements OnInit {
 
   constructor(
     private generalService: GeneralService,
-    private modeloMadurezService: ModeloMadurezService
+    private modeloMadurezService: ModeloMadurezService,
+    private route: ActivatedRoute 
   ) {
     this.setEstado();
   }
@@ -115,6 +118,16 @@ export class ModeloComponent implements OnInit {
       error: (err) => {
         console.error('Error en la suscripción de encuestaRealizada:', err);
         this.estado = '';
+      }
+    });
+
+    // Suscribirse a los cambios en los parámetros de la ruta
+    this.route.params.subscribe(params => {
+      const rutParam = params['rut'];
+      if (rutParam) {
+        // Opcional: Actualizar el RUT en localStorage
+        localStorage.setItem('rut', rutParam);
+        this.obtenerDatosEncuesta(rutParam);
       }
     });
   }
@@ -154,11 +167,12 @@ export class ModeloComponent implements OnInit {
     }
   }
 
-  private obtenerDatosEncuesta(): void {
-    const rut = localStorage.getItem('rut') || '';
+  private obtenerDatosEncuesta(rut?: string): void {
+    console.log(rut)
+    const rutToUse = rut || localStorage.getItem('rut') || '';
   
-    if (rut) {
-      this.modeloMadurezService.getSurveyByRut(rut).subscribe({
+    if (rutToUse) {
+      this.modeloMadurezService.getSurveyByRut(rutToUse).subscribe({
         next: (data) => {
           console.log(data)
           this.puntaje = {
@@ -172,10 +186,12 @@ export class ModeloComponent implements OnInit {
               categoria: item.category,
               descripcion:"Puntaje: "+ item.categoryGrade + " - En categoría: "+ item.category
             }))
-          };;
+          };
+          this.estado='completo'
         },
         error: (err) => {
           console.error('Error al obtener los datos de la encuesta:', err);
+          this.estado='incompleto'
           // Maneja el error según tus necesidades, por ejemplo, mostrar una notificación al usuario
         }
       });

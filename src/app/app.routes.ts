@@ -42,6 +42,7 @@ export const routes: Routes = [
         loadComponent: () => import('./Core/Pages/quienesSomos/quienesSomos.component').then(m => m.QuienesSomosComponent) 
       },
       { path: 'modelo', component: ModeloComponent },
+      { path: 'modelo/:rut', component: ModeloComponent },
       { path: 'informe', component: InformeComponent },
       { path: 'podcasts', component: PodcastsComponent },
 

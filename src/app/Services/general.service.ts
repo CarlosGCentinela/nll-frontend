@@ -252,6 +252,11 @@ export class GeneralService {
   //   }
   // }
 
+  actualizarEncuestaRealizada(realizado: boolean): void {
+    localStorage.setItem('encuestaRealizada', String(realizado));
+    this.encuestaRealizadaSubject.next(realizado);
+  }
+
   // Método para logout
   logout(): void {
     localStorage.removeItem('authToken');
