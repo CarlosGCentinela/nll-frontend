@@ -10,6 +10,7 @@ import { CarouselComponent } from '../../Components/carousel/carousel.component'
 import { Slide } from '../../Models/slide.model';
 import { RouterLink } from '@angular/router';
 import { GeneralService } from '../../../Services/general.service';
+import { ModeloMadurezService } from '../../../Services/modelo-madurez';
 
 @Component({
   selector: 'app-modelo',
@@ -86,7 +87,10 @@ export class ModeloComponent implements OnInit {
     ]
   };
 
-  constructor(private generalService: GeneralService) {
+  constructor(
+    private generalService: GeneralService,
+    private modeloMadurezService: ModeloMadurezService
+  ) {
     this.setEstado();
   }
 
@@ -120,9 +124,13 @@ export class ModeloComponent implements OnInit {
       const nombreRol = localStorage.getItem('nombreRol') || '';
       const encuestaRealizadaStr = localStorage.getItem('encuestaRealizada') || 'false';
       const encuestaRealizada = encuestaRealizadaStr === 'true';
-
+  
       // Determinar el estado basado en el rol y encuesta realizada
       this.estado = nombreRol === 'empresa' ? (encuestaRealizada ? 'completo' : 'incompleto') : '';
+  
+      if (this.estado === 'completo') {
+        this.obtenerDatosEncuesta();
+      }
     } catch (error) {
       console.error('Error al obtener nombreRol o encuestaRealizada de localStorage:', error);
       this.estado = '';
@@ -143,6 +151,54 @@ export class ModeloComponent implements OnInit {
     } catch (error) {
       console.error('Error al obtener RUT de localStorage:', error);
       window.location.href = '/404';
+    }
+  }
+
+  private obtenerDatosEncuesta(): void {
+    const rut = localStorage.getItem('rut') || '';
+  
+    if (rut) {
+      this.modeloMadurezService.getSurveyByRut(rut).subscribe({
+        next: (data) => {
+          console.log(data)
+          this.puntaje = {
+            general: {
+              letra: data.Grade,
+              subtitulo: 'Evaluación',
+              descripcion: this.getGradeDescription(data.Grade)
+            },
+            categoria: data.summary.map((item: any) => ({
+              letra: item.categoryGrade,
+              categoria: item.category,
+              descripcion:"Puntaje: "+ item.categoryGrade + " - En categoría: "+ item.category
+            }))
+          };;
+        },
+        error: (err) => {
+          console.error('Error al obtener los datos de la encuesta:', err);
+          // Maneja el error según tus necesidades, por ejemplo, mostrar una notificación al usuario
+        }
+      });
+    } else {
+      console.warn('RUT no encontrado en localStorage.');
+      // Puedes manejar esto según tus necesidades, por ejemplo, redirigir al usuario o mostrar un mensaje
+    }
+  }
+
+  getGradeDescription(grade: string): string {
+    switch (grade.toUpperCase()) {
+      case 'A':
+        return 'Excelente adopción y optimización de tecnologías avanzadas.';
+      case 'B':
+        return 'Buena adopción con áreas de mejora identificadas.';
+      case 'C':
+        return 'Adopción moderada, con múltiples oportunidades de desarrollo.';
+      case 'D':
+        return 'Baja adopción, requiere mejoras significativas.';
+      case 'E':
+        return 'Muy baja adopción, necesita una transformación completa.';
+      default:
+        return 'Calificación desconocida.';
     }
   }
 }

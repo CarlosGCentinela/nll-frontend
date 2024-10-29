@@ -139,11 +139,12 @@
         background-color: var(--card-background);
         color: var(--text-color);
         margin-bottom: 10px;
+        width: -webkit-fill-available;
     
         .mat-expansion-panel-header {
           background-color: var(--primary-color);
           color: #fff;
-          
+          height: auto;
 
           .mat-expansion-panel-header-title{
             color: #fff;
