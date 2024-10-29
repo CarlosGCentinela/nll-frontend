@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import { SidebarService } from '../../../Services/sidebar.service.ts/sidebar.service';
+import { SidebarService } from '../../../Services/sidebar.service';
 import { Subscription, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { GeneralService } from '../../../Services/general.service';

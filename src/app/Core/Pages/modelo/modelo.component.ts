@@ -29,11 +29,7 @@ import { GeneralService } from '../../../Services/general.service';
   styleUrl: './modelo.component.scss'
 })
 export class ModeloComponent implements OnInit {
-  //Debo obtener el encuestaRealizada desde el generalService para verificar si la encuesta ha sido realizada
-  // incompleta para empresas que no han contestado
-  // completa para empresas que han contestado
-  // '' para proveedores o personas no logeadas. Si nombreRol no existe o contiene proveedores / usuario
-  estado: string=''; //completo - incompleto - ''
+  estado: string = ''; // completo - incompleto - ''
   rolUsuario = '';
 
   mySlides: Slide[] = [
@@ -44,7 +40,7 @@ export class ModeloComponent implements OnInit {
         <h3>¡Impulsa tu Empresa con Industria 4.0!</h3>
         <p>Inscríbete y accede a herramientas tecnológicas avanzadas para transformar tu empresa.</p>
       `,
-      duration: 5000 // 5 segundos
+      duration: 5000
     },
     {
       type: 'regular',
@@ -53,7 +49,7 @@ export class ModeloComponent implements OnInit {
         <h3>Transforma tu Negocio</h3>
         <p>La Región de Los Lagos avanza hacia la Industria 4.0. No te quedes atrás y moderniza tus procesos.</p>
       `,
-      duration: 7000 // 7 segundos
+      duration: 7000
     },
     {
       type: 'regular',
@@ -62,7 +58,7 @@ export class ModeloComponent implements OnInit {
         <h3>Conéctate con la Innovación</h3>
         <p>Accede a una red de proveedores y expertos en la Región de Los Lagos.</p>
       `,
-      duration: 6000 // 6 segundos
+      duration: 6000
     },
     {
       type: 'regular',
@@ -70,87 +66,36 @@ export class ModeloComponent implements OnInit {
       content: `
         <h3>Beneficios para tu Empresa</h3>
         <p>Mejora la productividad, reduce costos y aumenta tu competitividad con la Industria 4.0.</p>
-        
       `,
-      duration: 5000 // 5 segundos
+      duration: 5000
     }
   ];
-  
 
   puntaje = {
-    general:{
+    general: {
       letra: "A",
       subtitulo: "Evaluacion",
       descripcion: "The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was original"
     },
     categoria: [
-      {
-        letra: "A",
-        categoria: "The Shiba",
-        descripcion: "The Shiba Inu is the smallest of the six"
-      },
-      {
-        letra: "A",
-        categoria: "The Shiba",
-        descripcion: "The Shiba Inu is the smallest of the six"
-      },
-      {
-        letra: "B",
-        categoria: "The Shiba",
-        descripcion: "The Shiba Inu is the smallest of the six"
-      },
-      {
-        letra: "A",
-        categoria: "The Shiba",
-        descripcion: "The Shiba Inu is the smallest of the six"
-      },
-      {
-        letra: "A",
-        categoria: "The Shiba",
-        descripcion: "The Shiba Inu is the smallest of the six"
-      }
+      { letra: "A", categoria: "The Shiba", descripcion: "The Shiba Inu is the smallest of the six" },
+      { letra: "A", categoria: "The Shiba", descripcion: "The Shiba Inu is the smallest of the six" },
+      { letra: "B", categoria: "The Shiba", descripcion: "The Shiba Inu is the smallest of the six" },
+      { letra: "A", categoria: "The Shiba", descripcion: "The Shiba Inu is the smallest of the six" },
+      { letra: "A", categoria: "The Shiba", descripcion: "The Shiba Inu is the smallest of the six" }
     ]
-  }
+  };
 
-  // Crear un cosntructor para inicializar los valores
   constructor(private generalService: GeneralService) {
-    try {
-      // Obtener valores de localStorage
-      const nombreRol = localStorage.getItem('nombreRol') || '';
-      const encuestaRealizadaStr = localStorage.getItem('encuestaRealizada') || 'false';
-      const encuestaRealizada = encuestaRealizadaStr === 'true';
-
-      // Determinar el valor de 'estado' basado en la lógica proporcionada
-      if (nombreRol === 'empresa') {
-        this.estado = encuestaRealizada ? 'completo' : 'incompleto';
-      } else {
-        this.estado = '';
-      }
-    } catch (error) {
-      console.error('Error al obtener nombreRol o encuestaRealizada de localStorage:', error);
-      this.estado = '';
-    }
+    this.setEstado();
   }
-  // copiar el ngOnInit general
-   // Implementar ngOnInit para suscribirse a los cambios en GeneralService
-   ngOnInit(): void {
+
+  ngOnInit(): void {
     // Suscribirse a los cambios de nombreRol
     this.generalService.nombreRol$.subscribe({
       next: (nombreRol) => {
-        try {
-          const encuestaRealizadaStr = localStorage.getItem('encuestaRealizada') || 'false';
-          const encuestaRealizada = encuestaRealizadaStr === 'true';
-          this.rolUsuario = nombreRol;
-
-          if (nombreRol === 'empresa') {
-            this.estado = encuestaRealizada ? 'completo' : 'incompleto';
-          } else {
-            this.estado = '';
-          }
-        } catch (error) {
-          console.error('Error al actualizar estado en la suscripción de nombreRol:', error);
-          this.estado = '';
-        }
+        this.rolUsuario = nombreRol;
+        this.setEstado();
       },
       error: (err) => {
         console.error('Error en la suscripción de nombreRol:', err);
@@ -161,19 +106,7 @@ export class ModeloComponent implements OnInit {
     // Suscribirse a los cambios de encuestaRealizada
     this.generalService.encuestaRealizada$.subscribe({
       next: (encuestaRealizada) => {
-        try {
-          const nombreRol = localStorage.getItem('nombreRol') || '';
-          
-          
-          if (nombreRol === 'empresa') {
-            this.estado = encuestaRealizada ? 'completo' : 'incompleto';
-          } else {
-            this.estado = '';
-          }
-        } catch (error) {
-          console.error('Error al actualizar estado en la suscripción de encuestaRealizada:', error);
-          this.estado = '';
-        }
+        this.setEstado();
       },
       error: (err) => {
         console.error('Error en la suscripción de encuestaRealizada:', err);
@@ -182,20 +115,33 @@ export class ModeloComponent implements OnInit {
     });
   }
 
+  private setEstado(): void {
+    try {
+      const nombreRol = localStorage.getItem('nombreRol') || '';
+      const encuestaRealizadaStr = localStorage.getItem('encuestaRealizada') || 'false';
+      const encuestaRealizada = encuestaRealizadaStr === 'true';
+
+      // Determinar el estado basado en el rol y encuesta realizada
+      this.estado = nombreRol === 'empresa' ? (encuestaRealizada ? 'completo' : 'incompleto') : '';
+    } catch (error) {
+      console.error('Error al obtener nombreRol o encuestaRealizada de localStorage:', error);
+      this.estado = '';
+    }
+  }
+
   openLink(): void {
     try {
       const rut = localStorage.getItem('rut') || '';
-      
+
       if (rut) {
         const url = `https://modelomadurez.nuevoloslagos.org/evaluar_madurez_tecnologica?rut=${rut}`;
         window.open(url, '_blank');
       } else {
         console.warn('RUT no encontrado en localStorage. Recargando la página actual.');
-        window.location.reload(); // Recarga la página actual
+        window.location.reload();
       }
     } catch (error) {
       console.error('Error al obtener RUT de localStorage:', error);
-      // Opcional: Puedes manejar este error de otra manera, como mostrar un mensaje al usuario
       window.location.href = '/404';
     }
   }

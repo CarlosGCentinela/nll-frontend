@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { SidebarService } from '../../../Services/sidebar.service.ts/sidebar.service'; // Asegúrate de que la ruta sea correcta
+import { SidebarService } from '../../../Services/sidebar.service'; // Asegúrate de que la ruta sea correcta
 import { GeneralService } from '../../../Services/general.service';
 
 @Component({
