@@ -12,7 +12,7 @@ import { catchError, delay, map, tap } from 'rxjs/operators';
 })
 export class GeneralService {
   private apiUrl = 'https://demo.nuevoloslagos.org/data'; // URL base de la API
-  private apiUrlUsers = 'https://http://64.176.10.243:3021/api/usuarios';
+  private apiUrlUsers = 'http://64.176.10.243:3021/api/usuarios';
 
   private httpOptions = {
     headers: new HttpHeaders({
