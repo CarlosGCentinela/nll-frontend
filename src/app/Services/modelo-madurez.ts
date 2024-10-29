@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ModeloMadurezService {
-  private baseUrl: string = 'https://modelomadurez.nuevoloslagos.org/api/surveys';
+  //private baseUrl: string = 'https://modelomadurez.nuevoloslagos.org/api/surveys';
+  private baseUrl: string = 'http://64.176.10.243:3021/api/encuestas/test-modelo?rut=';
 
   // Clave de acceso proporcionada
   private passkey: string = '4ZZ2sffWWWR45xfwghfWERr45jiuy3cvZ445DFS';
@@ -19,7 +20,7 @@ export class ModeloMadurezService {
    * @returns Observable con la respuesta de la API
    */
   getSurveyByRut(rut: string): Observable<any> {
-    const url = `${this.baseUrl}/rut/${rut}`;
+    const url = `${this.baseUrl}${rut}`;
     const headers = new HttpHeaders({
       'x-passkey': this.passkey,
     });

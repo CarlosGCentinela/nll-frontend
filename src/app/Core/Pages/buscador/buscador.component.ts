@@ -47,6 +47,9 @@ export class BuscadorComponent implements OnInit, OnDestroy {
   name: string = '';
   recomendaciones: any[] = [];
   private unsubscribe$ = new Subject<void>();
+  isLoggedIn = false;
+  rolUsuario = '';
+
 
   searchTerm: string = '';
   allItems: any[] = []; // Todos los elementos obtenidos de la API
@@ -91,6 +94,23 @@ export class BuscadorComponent implements OnInit, OnDestroy {
         this.name = data['name'] || '';
         this.getData();
       });
+
+      // Suscribirse al estado de autenticacion
+    this.generalService.isLoggedIn$
+    .pipe(takeUntil(this.unsubscribe$))
+    .subscribe((loggedIn) => {
+      this.isLoggedIn = loggedIn;
+    });
+
+    // Suscribirse a los cambios de nombreRol
+    this.generalService.nombreRol$.subscribe({
+      next: (nombreRol) => {
+        this.rolUsuario = nombreRol;
+      },
+      error: (err) => {
+        console.error('Error en la suscripción de nombreRol:', err);
+      }
+    });
   }
 
   ngOnDestroy(): void {

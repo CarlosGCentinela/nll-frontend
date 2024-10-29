@@ -7,7 +7,6 @@
   backdrop-filter: blur(17px);
   -webkit-backdrop-filter: blur(17px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  max-width: 900px;
 
   .header-container {
     display: flex;
@@ -37,7 +36,6 @@
 
   .section {
     margin-top: 20px;
-    max-width: 700px;
 
     h2 {
       color: var(--primary-color);
@@ -165,6 +163,22 @@
   }
 }
 
+mat-icon {
+  color: var(--primary-color);
+  margin-top: 4px;
+}
+
 mat-panel-title {
   color: var(--text-backgroud-color);
+}
+
+.centered-section {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;    /* Centra verticalmente */
+}
+
+.responsive-image {
+  max-width: 100%;
+  height: auto;
 }
